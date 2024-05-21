@@ -1,5 +1,5 @@
 ---
-title: R for the Rest of Us Slide Template
+title: "How to Make a Thousand Plots Look Good: Data Viz Tips for Parameterized Reporting"
 format:
   rfortherestofus-slides-revealjs:
     menu: false
@@ -18,17 +18,332 @@ title-slide-attributes:
   data-background-size: cover
 ---
 
-## Introduction
+```{r}
+library(tidyverse)
+library(scales)
+library(patchwork)
+```
 
-*TODO* Create an example file that demonstrates the formatting and features of your format.
 
-## More Information
 
-You can learn more about controlling the appearance of RevealJS output here: <https://quarto.org/docs/presentations/revealjs/>
+## Think about min and max of all data {.inverse}
 
-## Inverse Slide {.inverse}
+## Set limits of plot based on max of all data
 
-## My Turn {.my-turn}
+---
 
-# Your Turn {.your-turn .center-slide}
+```{r}
+median_income <- read_csv("data/median_income.csv") |>
+  rename("amount" = "value") |>
+  mutate(amount_formatted = dollar(amount, 1)) |>
+  select(geography, year, amount, amount_formatted) |>
+  filter(year == 2024)
 
+oregon_counties <-
+  median_income |>
+  distinct(geography) |>
+  filter(!geography %in% c("Oregon", "Rural", "Urban")) |>
+  pull(geography)
+```
+
+```{r}
+median_income_plot <- function(county) {
+  median_income |>
+    filter(geography %in% c(county, "Oregon")) |>
+    mutate(geography = fct(geography, levels = c("Oregon", county))) |>
+    ggplot(
+      aes(
+        x = amount,
+        y = geography,
+        label = amount_formatted,
+        fill = geography
+      )
+    ) +
+    geom_col(show.legend = FALSE) +
+    geom_text(
+      color = "white",
+      hjust = 1.2,
+      size = 12
+    ) +
+    geom_text(
+      aes(
+        x = 2000,
+        label = geography
+      ),
+      color = "white",
+      hjust = 0,
+      size = 12
+    ) +
+    scale_fill_manual(values = c(
+      "gray",
+      "darkgreen"
+    )) +
+    theme_void()
+}
+```
+
+
+```{r}
+median_income_plot("Jackson")
+```
+
+```
+median_income_plot("Jackson")
+```
+
+---
+
+```{r}
+median_income_plot("Harney")
+```
+
+```
+median_income_plot("Harney")
+```
+
+---
+
+```{r}
+median_income_plot("Washington")
+```
+
+```
+median_income_plot("Washington")
+```
+
+---
+
+```{r}
+#| echo: true
+max_median_income <-
+  median_income |>
+  slice_max(
+    order_by = amount,
+    n = 1
+  ) |>
+  pull(amount)
+```
+
+. . .
+
+```{r}
+#| echo: true
+max_median_income
+```
+
+---
+
+```{r}
+#| eval: false
+#| echo: true
+scale_x_continuous(
+  limits = c(0, max_median_income)
+)
+```
+
+
+```{r}
+median_income_plot_v2 <- function(county) {
+  max_median_income <-
+    median_income |>
+    slice_max(
+      order_by = amount,
+      n = 1
+    ) |>
+    pull(amount)
+
+  median_income |>
+    filter(geography %in% c(county, "Oregon")) |>
+    mutate(geography = fct(geography, levels = c("Oregon", county))) |>
+    ggplot(
+      aes(
+        x = amount,
+        y = geography,
+        label = amount_formatted,
+        fill = geography
+      )
+    ) +
+    geom_col(show.legend = FALSE) +
+    geom_text(
+      color = "white",
+      hjust = 1.2,
+      size = 12
+    ) +
+    geom_text(
+      aes(
+        x = 2000,
+        label = geography
+      ),
+      color = "white",
+      hjust = 0,
+      size = 12
+    ) +
+    scale_fill_manual(values = c(
+      "gray",
+      "darkgreen"
+    )) +
+    scale_x_continuous(
+      limits = c(0, max_median_income)
+    ) +
+    theme_void() 
+}
+```
+
+---
+
+```{r}
+median_income_plot_v2("Jackson")
+```
+
+```
+median_income_plot_v2("Jackson")
+```
+
+---
+
+```{r}
+median_income_plot_v2("Harney")
+```
+
+```
+median_income_plot_v2("Harney")
+```
+
+---
+
+```{r}
+median_income_plot_v2("Washington")
+```
+
+```
+median_income_plot_v2("Washington")
+```
+
+---
+
+```{r}
+median_income_plot_no_text <- function(county) {
+  median_income |>
+    filter(geography %in% c(county, "Oregon")) |>
+    mutate(geography = fct(geography, levels = c("Oregon", county))) |>
+    ggplot(
+      aes(
+        x = amount,
+        y = geography,
+        label = amount_formatted,
+        fill = geography
+      )
+    ) +
+    geom_col(show.legend = FALSE) +
+    # geom_text(
+    #   color = "white",
+    #   hjust = 1.2,
+    #   size = 12
+    # ) +
+    # geom_text(
+    #   aes(
+    #     x = 2000,
+    #     label = geography
+    #   ),
+    #   color = "white",
+    #   hjust = 0,
+    #   size = 12
+    # ) +
+    scale_fill_manual(values = c(
+      "gray",
+      "darkgreen"
+    )) +
+    theme_void()
+}
+
+wrap_plots(
+  map(
+    oregon_counties,
+    median_income_plot_no_text
+  )
+)
+```
+
+---
+
+```{r}
+median_income_plot_v2_no_text <- function(county) {
+  max_median_income <-
+    median_income |>
+    slice_max(
+      order_by = amount,
+      n = 1
+    ) |>
+    pull(amount)
+
+  median_income |>
+    filter(geography %in% c(county, "Oregon")) |>
+    mutate(geography = fct(geography, levels = c("Oregon", county))) |>
+    ggplot(
+      aes(
+        x = amount,
+        y = geography,
+        label = amount_formatted,
+        fill = geography
+      )
+    ) +
+    geom_col(show.legend = FALSE) +
+    # geom_text(
+    #   color = "white",
+    #   hjust = 1.2,
+    #   size = 12
+    # ) +
+    # geom_text(
+    #   aes(
+    #     x = 2000,
+    #     label = geography
+    #   ),
+    #   color = "white",
+    #   hjust = 0,
+    #   size = 12
+    # ) +
+    scale_fill_manual(values = c(
+      "gray",
+      "darkgreen"
+    )) +
+    scale_x_continuous(
+      limits = c(0, max_median_income)
+    ) +
+    theme_void()
+}
+
+wrap_plots(
+  map(
+    oregon_counties,
+    median_income_plot_v2_no_text
+  )
+)
+```
+
+
+TODO: Add OBTN pages here to demonstrate this
+
+
+## Minimize text and think about how to position it
+
+### Minimize text labels
+
+### Hide labels below a certain percentage
+
+### Don't put text in where it could be obscured
+
+### Use ggrepel to avoid text overlaps
+
+### Use geomtextpath to put labels in right place
+
+### Use shadowtext to make sure labels are visible
+
+## Programmatically highlight things
+
+### Use ggfx to add shadows to highlight countries
+
+https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/
+
+### Use gghighlight to programmatically highlight findings
+
+### Add borders around lines with ggborderline
