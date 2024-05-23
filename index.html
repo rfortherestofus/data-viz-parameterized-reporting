@@ -396,29 +396,43 @@
 </div>
 
 </section>
-<section id="think-about-min-and-max-of-all-data" class="slide level2 inverse center">
-<h2>Think about min and max of all data</h2>
+<section id="think-about-min-and-max-of-all-data" class="title-slide slide level1 inverse center">
+<h1>Think about min and max of all data</h1>
+
 </section>
-<section id="set-limits-of-plot-based-on-max-of-all-data" class="slide level2 center">
-<h2>Set limits of plot based on max of all data</h2>
-</section>
-<section class="slide level2 center">
 
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"><pre><code>median_income_plot("Jackson")</code></pre>
-</section>
-<section class="slide level2 center">
-
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"><pre><code>median_income_plot("Harney")</code></pre>
-</section>
-<section class="slide level2 center">
-
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"><pre><code>median_income_plot("Washington")</code></pre>
-</section>
-<section class="slide level2 center">
-
+<section id="set-limits-of-plot-based-on-max-of-all-data" class="title-slide slide level1 center">
+<h1>Set limits of plot based on max of all data</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<pre><code>median_income_plot("Jackson")</code></pre>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<pre><code>median_income_plot("Harney")</code></pre>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-6-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<pre><code>median_income_plot("Washington")</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>max_median_income <span class="ot">&lt;-</span></span>
 <span id="cb4-2"><a href=""></a>  median_income <span class="sc">|&gt;</span></span>
@@ -435,61 +449,175 @@
 <pre><code>[1] 100121</code></pre>
 </div>
 </div>
-</div>
-</section>
-<section class="slide level2 center">
-
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">scale_x_continuous</span>(</span>
 <span id="cb7-2"><a href=""></a>  <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, max_median_income)</span>
 <span id="cb7-3"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-11-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<pre><code>median_income_plot_v2("Jackson")</code></pre>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-12-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<pre><code>median_income_plot_v2("Harney")</code></pre>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<pre><code>median_income_plot_v2("Washington")</code></pre>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-14-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-15-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>TODO: Add OBTN pages here to demonstrate this</p>
+</div>
+</section>
+
+<section>
+<section id="minimize-text-and-think-about-how-to-position-it" class="title-slide slide level1 center">
+<h1>Minimize text and think about how to position it</h1>
+
+</section>
+<section id="minimize-text-labels" class="slide level2 center">
+<h2>Minimize text labels</h2>
+</section>
+<section id="hide-labels-below-a-certain-percentage" class="slide level2 center">
+<h2>Hide labels below a certain percentage</h2>
+
+<img data-src="assets/psc-hide-numbers.png" class="r-stretch"></section>
+<section class="slide level2 center">
+
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   location        burden_level      pct pct_formatted
+   &lt;fct&gt;           &lt;fct&gt;           &lt;dbl&gt; &lt;chr&gt;        
+ 1 Hartford        Severe burden    0.3  30%          
+ 2 Hartford        Moderate burden  0.22 22%          
+ 3 Hartford        Not burdened     0.41 41%          
+ 4 Hartford        Not computed     0.07 7%           
+ 5 Hartford County Severe burden    0.25 25%          
+ 6 Hartford County Moderate burden  0.23 23%          
+ 7 Hartford County Not burdened     0.46 46%          
+ 8 Hartford County Not computed     0.06 6%           
+ 9 Connecticut     Severe burden    0.25 25%          
+10 Connecticut     Moderate burden  0.24 24%          
+11 Connecticut     Not burdened     0.46 46%          
+12 Connecticut     Not computed     0.05 5%           </code></pre>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pct_formatted))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 </section>
 <section class="slide level2 center">
 
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"><pre><code>median_income_plot_v2("Jackson")</code></pre>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-19-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pct_formatted =</span> <span class="fu">if_else</span>(pct <span class="sc">&gt;</span> <span class="fl">0.07</span>, pct_formatted, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   location        burden_level      pct pct_formatted
+   &lt;fct&gt;           &lt;fct&gt;           &lt;dbl&gt; &lt;chr&gt;        
+ 1 Hartford        Severe burden    0.3  30%          
+ 2 Hartford        Moderate burden  0.22 22%          
+ 3 Hartford        Not burdened     0.41 41%          
+ 4 Hartford        Not computed     0.07 &lt;NA&gt;         
+ 5 Hartford County Severe burden    0.25 25%          
+ 6 Hartford County Moderate burden  0.23 23%          
+ 7 Hartford County Not burdened     0.46 46%          
+ 8 Hartford County Not computed     0.06 &lt;NA&gt;         
+ 9 Connecticut     Severe burden    0.25 25%          
+10 Connecticut     Moderate burden  0.24 24%          
+11 Connecticut     Not burdened     0.46 46%          
+12 Connecticut     Not computed     0.05 &lt;NA&gt;         </code></pre>
+</div>
+</div>
+</div>
 </section>
 <section class="slide level2 center">
 
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"><pre><code>median_income_plot_v2("Harney")</code></pre>
-</section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-22-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="dont-put-text-where-it-could-be-obscured" class="slide level2 center">
+<h2>Don’t put text where it could be obscured</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-23-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"><pre><code>median_income_plot_v2("Washington")</code></pre>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-24-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="use-ggrepel-to-avoid-text-overlaps" class="slide level2 center">
+<h2>Use ggrepel to avoid text overlaps</h2>
 </section>
-<section class="slide level2 center">
-
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"><p>TODO: Add OBTN pages here to demonstrate this</p>
+<section id="use-geomtextpath-to-put-labels-in-right-place" class="slide level2 center">
+<h2>Use geomtextpath to put labels in right place</h2>
 </section>
-<section id="minimize-text-and-think-about-how-to-position-it" class="slide level2 center">
-<h2>Minimize text and think about how to position it</h2>
-<h3 id="minimize-text-labels">Minimize text labels</h3>
-<h3 id="hide-labels-below-a-certain-percentage">Hide labels below a certain percentage</h3>
-<h3 id="dont-put-text-in-where-it-could-be-obscured">Don’t put text in where it could be obscured</h3>
-<h3 id="use-ggrepel-to-avoid-text-overlaps">Use ggrepel to avoid text overlaps</h3>
-<h3 id="use-geomtextpath-to-put-labels-in-right-place">Use geomtextpath to put labels in right place</h3>
-<h3 id="use-shadowtext-to-make-sure-labels-are-visible">Use shadowtext to make sure labels are visible</h3>
+<section id="use-shadowtext-to-make-sure-labels-are-visible" class="slide level2 center">
+<h2>Use shadowtext to make sure labels are visible</h2>
+</section></section>
+<section>
+<section id="programmatically-highlight-things" class="title-slide slide level1 center">
+<h1>Programmatically highlight things</h1>
+
 </section>
-<section id="programmatically-highlight-things" class="slide level2 center">
-<h2>Programmatically highlight things</h2>
-<h3 id="use-ggfx-to-add-shadows-to-highlight-countries">Use ggfx to add shadows to highlight countries</h3>
+<section id="use-ggfx-to-add-shadows-to-highlight-countries" class="slide level2 center">
+<h2>Use ggfx to add shadows to highlight countries</h2>
 <p>https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/</p>
-<h3 id="use-gghighlight-to-programmatically-highlight-findings">Use gghighlight to programmatically highlight findings</h3>
-<h3 id="add-borders-around-lines-with-ggborderline">Add borders around lines with ggborderline</h3>
+</section>
+<section id="use-gghighlight-to-programmatically-highlight-findings" class="slide level2 center">
+<h2>Use gghighlight to programmatically highlight findings</h2>
+</section>
+<section id="add-borders-around-lines-with-ggborderline" class="slide level2 center">
+<h2>Add borders around lines with ggborderline</h2>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 

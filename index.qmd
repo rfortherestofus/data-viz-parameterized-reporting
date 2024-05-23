@@ -12,10 +12,16 @@ format:
 execute: 
   message: false
   warning: false
-  cache: false
+  cache: true
+knitr:
+  opts_chunk:
+    dev: "ragg_png"
+    out.width: 100%
 title-slide-attributes:
   data-background-image: assets/rru-hex-bg-gradient-dark.svg
   data-background-size: cover
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r}
@@ -26,11 +32,11 @@ library(patchwork)
 
 
 
-## Think about min and max of all data {.inverse}
+# Think about min and max of all data {.inverse}
 
-## Set limits of plot based on max of all data
+# Set limits of plot based on max of all data
 
----
+
 
 ```{r}
 median_income <- read_csv("data/median_income.csv") |>
@@ -91,7 +97,7 @@ median_income_plot("Jackson")
 median_income_plot("Jackson")
 ```
 
----
+
 
 ```{r}
 median_income_plot("Harney")
@@ -101,7 +107,7 @@ median_income_plot("Harney")
 median_income_plot("Harney")
 ```
 
----
+
 
 ```{r}
 median_income_plot("Washington")
@@ -111,7 +117,7 @@ median_income_plot("Washington")
 median_income_plot("Washington")
 ```
 
----
+
 
 ```{r}
 #| echo: true
@@ -131,7 +137,7 @@ max_median_income <-
 max_median_income
 ```
 
----
+
 
 ```{r}
 #| eval: false
@@ -185,11 +191,11 @@ median_income_plot_v2 <- function(county) {
     scale_x_continuous(
       limits = c(0, max_median_income)
     ) +
-    theme_void() 
+    theme_void()
 }
 ```
 
----
+
 
 ```{r}
 median_income_plot_v2("Jackson")
@@ -199,7 +205,7 @@ median_income_plot_v2("Jackson")
 median_income_plot_v2("Jackson")
 ```
 
----
+
 
 ```{r}
 median_income_plot_v2("Harney")
@@ -209,7 +215,7 @@ median_income_plot_v2("Harney")
 median_income_plot_v2("Harney")
 ```
 
----
+
 
 ```{r}
 median_income_plot_v2("Washington")
@@ -219,7 +225,7 @@ median_income_plot_v2("Washington")
 median_income_plot_v2("Washington")
 ```
 
----
+
 
 ```{r}
 median_income_plot_no_text <- function(county) {
@@ -235,20 +241,6 @@ median_income_plot_no_text <- function(county) {
       )
     ) +
     geom_col(show.legend = FALSE) +
-    # geom_text(
-    #   color = "white",
-    #   hjust = 1.2,
-    #   size = 12
-    # ) +
-    # geom_text(
-    #   aes(
-    #     x = 2000,
-    #     label = geography
-    #   ),
-    #   color = "white",
-    #   hjust = 0,
-    #   size = 12
-    # ) +
     scale_fill_manual(values = c(
       "gray",
       "darkgreen"
@@ -264,7 +256,7 @@ wrap_plots(
 )
 ```
 
----
+
 
 ```{r}
 median_income_plot_v2_no_text <- function(county) {
@@ -288,20 +280,6 @@ median_income_plot_v2_no_text <- function(county) {
       )
     ) +
     geom_col(show.legend = FALSE) +
-    # geom_text(
-    #   color = "white",
-    #   hjust = 1.2,
-    #   size = 12
-    # ) +
-    # geom_text(
-    #   aes(
-    #     x = 2000,
-    #     label = geography
-    #   ),
-    #   color = "white",
-    #   hjust = 0,
-    #   size = 12
-    # ) +
     scale_fill_manual(values = c(
       "gray",
       "darkgreen"
@@ -324,26 +302,373 @@ wrap_plots(
 TODO: Add OBTN pages here to demonstrate this
 
 
-## Minimize text and think about how to position it
+# Minimize text and think about how to position it
 
-### Minimize text labels
 
-### Hide labels below a certain percentage
 
-### Don't put text in where it could be obscured
+## Minimize text labels
 
-### Use ggrepel to avoid text overlaps
 
-### Use geomtextpath to put labels in right place
 
-### Use shadowtext to make sure labels are visible
 
-## Programmatically highlight things
+## Hide labels below a certain percentage
 
-### Use ggfx to add shadows to highlight countries
+![](assets/psc-hide-numbers.png)
+
+---
+
+```{r}
+housing_cost_burden <-
+  tribble(
+    ~location,
+    ~burden_level,
+    ~pct,
+    "Hartford",
+    "Severe burden",
+    0.3,
+    "Hartford",
+    "Moderate burden",
+    0.22,
+    "Hartford",
+    "Not burdened",
+    0.41,
+    "Hartford",
+    "Not computed",
+    0.07,
+    "Hartford County",
+    "Severe burden",
+    0.25,
+    "Hartford County",
+    "Moderate burden",
+    0.23,
+    "Hartford County",
+    "Not burdened",
+    0.46,
+    "Hartford County",
+    "Not computed",
+    0.06,
+    "Connecticut",
+    "Severe burden",
+    0.25,
+    "Connecticut",
+    "Moderate burden",
+    0.24,
+    "Connecticut",
+    "Not burdened",
+    0.46,
+    "Connecticut",
+    "Not computed",
+    0.05,
+  ) |>
+  mutate(pct_formatted = percent(pct, 1)) |>
+  mutate(burden_level = fct(
+    burden_level,
+    levels = c(
+      "Not computed",
+      "Not burdened",
+      "Moderate burden",
+      "Severe burden"
+    )
+  )) |>
+  mutate(location = fct_inorder(location)) |>
+  mutate(location = fct_rev(location))
+```
+
+```{r}
+housing_cost_burden
+```
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+geom_text(aes(label = pct_formatted))
+```
+
+---
+
+```{r}
+housing_cost_burden |>
+  ggplot(aes(
+    x = pct,
+    y = location,
+    fill = burden_level,
+    color = burden_level,
+    label = pct_formatted
+  )) +
+  geom_col(color = "white") +
+  geom_text(
+    position = position_stack(vjust = 0.5),
+    size = 10,
+    fontface = "bold",
+  ) +
+  scale_fill_manual(
+    name = "",
+    values = pschousing::psc_colors("grey3", "grey2", "lightblue2", "lightblue"),
+    guide = guide_legend(reverse = TRUE)
+  ) +
+  scale_color_manual(
+    values = c("white", "white", "#969696", "white"),
+    guide = FALSE
+  ) +
+  scale_x_continuous(expand = expansion(0, 0.01)) +
+  labs(fill = NULL) +
+  theme_void(base_size = 16) +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(hjust = 1)
+  )
+```
+
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+housing_cost_burden |>
+  mutate(pct_formatted = if_else(pct > 0.07, pct_formatted, NA))
+```
+
+. . .
+
+```{r}
+housing_cost_burden |>
+  mutate(pct_formatted = if_else(pct > 0.07, pct_formatted, NA))
+```
+
+---
+
+
+```{r}
+housing_cost_burden |>
+  mutate(pct_formatted = if_else(pct > 0.07, pct_formatted, NA)) |>
+  ggplot(aes(
+    x = pct,
+    y = location,
+    fill = burden_level,
+    color = burden_level,
+    label = pct_formatted
+  )) +
+  geom_col(color = "white") +
+  geom_text(
+    position = position_stack(vjust = 0.5),
+    size = 10,
+    fontface = "bold",
+  ) +
+  scale_fill_manual(
+    name = "",
+    values = pschousing::psc_colors("grey3", "grey2", "lightblue2", "lightblue"),
+    guide = guide_legend(reverse = TRUE)
+  ) +
+  scale_color_manual(
+    values = c("white", "white", "#969696", "white"),
+    guide = FALSE
+  ) +
+  scale_x_continuous(expand = expansion(0, 0.01)) +
+  labs(fill = NULL) +
+  theme_void(base_size = 16) +
+  theme(
+    legend.position = "none",
+    axis.text.y = element_text(hjust = 1)
+  )
+```
+
+
+## Don't put text where it could be obscured
+
+```{r}
+pre_post_data <-
+  tribble(
+    ~question,
+    ~timing,
+    ~rating,
+    "I learned to do thing 1",
+    "Pre",
+    3.4,
+    "I learned to do thing 1",
+    "Post",
+    6.2,
+    "I learned to do thing 2",
+    "Pre",
+    3.8,
+    "I learned to do thing 2",
+    "Post",
+    5.8,
+    "I learned to do thing 3",
+    "Pre",
+    3.6,
+    "I learned to do thing 3",
+    "Post",
+    5.7,
+  ) |> 
+   mutate(
+      growth = rating - lag(rating, 1),
+      growth = if_else(timing == "Post", growth, NA),
+      growth_formatted = number(growth, 0.1),
+      growth_formatted = str_glue("+{growth_formatted}")
+    ) 
+
+pre_post_data |>
+  ggplot(aes(
+    x = rating,
+    y = 1,
+    fill = timing,
+    label = rating,
+    group = question
+  )) +
+  geom_line(
+    color = "grey70",
+    alpha = 0.75,
+    linewidth = 1.5
+  ) +
+  geom_point(
+    shape = 21,
+    color = "white",
+    size = 12,
+    stroke = 2
+  ) +
+  geom_text(color = "white") +
+  geom_text(aes(
+    x = rating - growth / 2,
+    label = growth_formatted
+  ),
+  vjust = -1) +
+  scale_x_continuous(
+    limits = c(1, 7),
+    breaks = seq(1, 7)
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Pre" = "#6d8d24",
+      "Post" = "#213921"
+    ),
+    guide = guide_legend(reverse = TRUE)
+  ) +
+  labs(fill = NULL) +
+  theme_minimal(base_size = 16) +
+  theme(
+    axis.title = element_blank(),
+    axis.text.x = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    strip.text = element_text(
+      hjust = 0.04,
+      face = "bold"
+    ),
+    legend.position = "none",
+    axis.text.y = element_blank()
+  ) +
+  facet_wrap(
+    vars(question),
+    ncol = 1
+  )
+```
+
+---
+
+```{r}
+pre_post_data <-
+  tribble(
+    ~question,
+    ~timing,
+    ~rating,
+    "I learned to do thing 1",
+    "Pre",
+    3.4,
+    "I learned to do thing 1",
+    "Post",
+    3.6,
+    "I learned to do thing 2",
+    "Pre",
+    3.8,
+    "I learned to do thing 2",
+    "Post",
+    5.8,
+    "I learned to do thing 3",
+    "Pre",
+    3.6,
+    "I learned to do thing 3",
+    "Post",
+    5.7,
+  ) |> 
+   mutate(
+      growth = rating - lag(rating, 1),
+      growth = if_else(timing == "Post", growth, NA),
+      growth_formatted = number(growth, 0.1),
+      growth_formatted = str_glue("+{growth_formatted}")
+    ) 
+
+pre_post_data |>
+  ggplot(aes(
+    x = rating,
+    y = 1,
+    fill = timing,
+    label = rating,
+    group = question
+  )) +
+  geom_line(
+    color = "grey70",
+    alpha = 0.75,
+    linewidth = 1.5
+  ) +
+  geom_point(
+    shape = 21,
+    color = "white",
+    size = 12,
+    stroke = 2
+  ) +
+  geom_text(color = "white") +
+  geom_text(aes(
+    x = rating - growth / 2,
+    label = growth_formatted
+  ),
+  vjust = -1) +
+  scale_x_continuous(
+    limits = c(1, 7),
+    breaks = seq(1, 7)
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Pre" = "#6d8d24",
+      "Post" = "#213921"
+    ),
+    guide = guide_legend(reverse = TRUE)
+  ) +
+  labs(fill = NULL) +
+  theme_minimal(base_size = 16) +
+  theme(
+    axis.title = element_blank(),
+    axis.text.x = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank(),
+    strip.text = element_text(
+      hjust = 0.04,
+      face = "bold"
+    ),
+    legend.position = "none",
+    axis.text.y = element_blank()
+  ) +
+  facet_wrap(
+    vars(question),
+    ncol = 1
+  )
+```
+
+
+## Use ggrepel to avoid text overlaps
+
+## Use geomtextpath to put labels in right place
+
+## Use shadowtext to make sure labels are visible
+
+# Programmatically highlight things
+
+## Use ggfx to add shadows to highlight countries
 
 https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/
 
-### Use gghighlight to programmatically highlight findings
+## Use gghighlight to programmatically highlight findings
 
-### Add borders around lines with ggborderline
+## Add borders around lines with ggborderline
