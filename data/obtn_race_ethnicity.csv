@@ -1,0 +1,289 @@
+county,population,pct,pct_formatted
+Baker,American Indian/Alaska Native,0.013125561881929877,1.3%
+Benton,American Indian/Alaska Native,0.004758667573079538,0.5%
+Clackamas,American Indian/Alaska Native,0.003938943992397696,0.4%
+Clatsop,American Indian/Alaska Native,0.003471716436028162,0.3%
+Columbia,American Indian/Alaska Native,0.008890570320628014,0.9%
+Coos,American Indian/Alaska Native,0.019473716645097675,1.9%
+Crook,American Indian/Alaska Native,0.010085244327050066,1.0%
+Curry,American Indian/Alaska Native,0.01307468808750641,1.3%
+Deschutes,American Indian/Alaska Native,0.005277097796861832,0.5%
+Douglas,American Indian/Alaska Native,0.00898295036021631,0.9%
+Gilliam,American Indian/Alaska Native,0.01361573373676248,1.4%
+Grant,American Indian/Alaska Native,0.007738012988807517,0.8%
+Harney,American Indian/Alaska Native,0.009471718249733191,0.9%
+Hood River,American Indian/Alaska Native,0.0019611934070519507,0.2%
+Jackson,American Indian/Alaska Native,0.005498553485112577,0.5%
+Jefferson,American Indian/Alaska Native,0.11756356705462509,11.8%
+Josephine,American Indian/Alaska Native,0.004488942427892811,0.4%
+Klamath,American Indian/Alaska Native,0.02894714125399246,2.9%
+Lake,American Indian/Alaska Native,0.020607243019144007,2.1%
+Lane,American Indian/Alaska Native,0.006260824974229366,0.6%
+Lincoln,American Indian/Alaska Native,0.01660905153574125,1.7%
+Linn,American Indian/Alaska Native,0.0034992768161246674,0.3%
+Malheur,American Indian/Alaska Native,0.009100133172680576,0.9%
+Marion,American Indian/Alaska Native,0.005913566502320605,0.6%
+Morrow,American Indian/Alaska Native,0.0012355848434925864,0.1%
+Multnomah,American Indian/Alaska Native,0.0060660959438087955,0.6%
+Polk,American Indian/Alaska Native,0.01228310502283105,1.2%
+Sherman,American Indian/Alaska Native,0.00631578947368421,0.6%
+Tillamook,American Indian/Alaska Native,0.009654415798134943,1.0%
+Umatilla,American Indian/Alaska Native,0.024091409691629956,2.4%
+Union,American Indian/Alaska Native,0.007608612949859241,0.8%
+Wallowa,American Indian/Alaska Native,0.006721333512568894,0.7%
+Wasco,American Indian/Alaska Native,0.023724614287323097,2.4%
+Washington,American Indian/Alaska Native,0.002817155123669607,0.3%
+Wheeler,American Indian/Alaska Native,7.107320540156361e-4,0.1%
+Yamhill,American Indian/Alaska Native,0.007829188104834964,0.8%
+Baker,Asian,0.0028169014084507044,0.3%
+Benton,Asian,0.06907911938503374,6.9%
+Clackamas,Asian,0.04678980816059868,4.7%
+Clatsop,Asian,0.011604758436513717,1.2%
+Columbia,Asian,0.00603423815378795,0.6%
+Coos,Asian,0.011724286682689345,1.2%
+Crook,Asian,0.0035618521631248247,0.4%
+Curry,Asian,0.00803281490343531,0.8%
+Deschutes,Asian,0.011040772101609213,1.1%
+Douglas,Asian,0.009800398842995994,1.0%
+Gilliam,Asian,0.007564296520423601,0.8%
+Grant,Asian,0.007461655382064392,0.7%
+Harney,Asian,0,0.0%
+Hood River,Asian,0.008929689129981223,0.9%
+Jackson,Asian,0.010952184147634365,1.1%
+Jefferson,Asian,0.003933655054949511,0.4%
+Josephine,Asian,0.008557401641020979,0.9%
+Klamath,Asian,0.008358990590740368,0.8%
+Lake,Asian,0.008657480795024998,0.9%
+Lane,Asian,0.025171498987488817,2.5%
+Lincoln,Asian,0.01366869312989232,1.4%
+Linn,Asian,0.008437145212211698,0.8%
+Malheur,Asian,0.01087576891369142,1.1%
+Marion,Asian,0.020088775790523834,2.0%
+Morrow,Asian,0.007331136738056013,0.7%
+Multnomah,Asian,0.0753831837227663,7.5%
+Polk,Asian,0.018493150684931507,1.8%
+Sherman,Asian,0.0036842105263157894,0.4%
+Tillamook,Asian,0.008411044066556957,0.8%
+Umatilla,Asian,0.008572787344813777,0.9%
+Union,Asian,0.012896598950011414,1.3%
+Wallowa,Asian,0.0037639467670385804,0.4%
+Wasco,Asian,0.006719471451631067,0.7%
+Washington,Asian,0.1084996689133854,10.8%
+Wheeler,Asian,0.007107320540156361,0.7%
+Yamhill,Asian,0.014989691104630644,1.5%
+Baker,Black/African American,0.011687144141444412,1.2%
+Benton,Black/African American,0.01114887831407206,1.1%
+Clackamas,Black/African American,0.008312644770446041,0.8%
+Clatsop,Black/African American,0.009176984705025492,0.9%
+Columbia,Black/African American,0.004445285160314007,0.4%
+Coos,Black/African American,0.004282985148209774,0.4%
+Crook,Black/African American,0.0031616440549085524,0.3%
+Curry,Black/African American,0.0037600410186292943,0.4%
+Deschutes,Black/African American,0.003576588145591717,0.4%
+Douglas,Black/African American,0.002578106753382081,0.3%
+Gilliam,Black/African American,0,0.0%
+Grant,Black/African American,0.0011054304269725024,0.1%
+Harney,Black/African American,0.0030683030949839912,0.3%
+Hood River,Black/African American,0.008762779052785313,0.9%
+Jackson,Black/African American,0.006203841799787964,0.6%
+Jefferson,Black/African American,0.007137353501764062,0.7%
+Josephine,Black/African American,0.005238993567743255,0.5%
+Klamath,Black/African American,0.005841222340517365,0.6%
+Lake,Black/African American,0.002560663333739788,0.3%
+Lane,Black/African American,0.009771910271101832,1.0%
+Lincoln,Black/African American,0.002999960265426948,0.3%
+Linn,Black/African American,0.0035226053282321652,0.4%
+Malheur,Black/African American,0.00792694527236984,0.8%
+Marion,Black/African American,0.010647311423738126,1.1%
+Morrow,Black/African American,0.006672158154859967,0.7%
+Multnomah,Black/African American,0.05258891867075528,5.3%
+Polk,Black/African American,0.005639269406392694,0.6%
+Sherman,Black/African American,0.0036842105263157894,0.4%
+Tillamook,Black/African American,0.005266044980800877,0.5%
+Umatilla,Black/African American,0.007659191029235082,0.8%
+Union,Black/African American,0.009054249410332496,0.9%
+Wallowa,Black/African American,0.010082000268853341,1.0%
+Wasco,Black/African American,0.003040654679229701,0.3%
+Washington,Black/African American,0.021896751014526112,2.2%
+Wheeler,Black/African American,0,0.0%
+Yamhill,Black/African American,0.006111038876609023,0.6%
+Baker,Hispanic/Latino,0.04938567575666766,4.9%
+Benton,Hispanic/Latino,0.08069863515138838,8.1%
+Clackamas,Hispanic/Latino,0.09332303854605928,9.3%
+Clatsop,Hispanic/Latino,0.09079873755765963,9.1%
+Columbia,Hispanic/Latino,0.06028563321668401,6.0%
+Coos,Hispanic/Latino,0.07114685400875084,7.1%
+Crook,Hispanic/Latino,0.08024172569736263,8.0%
+Curry,Hispanic/Latino,0.07797812339770979,7.8%
+Deschutes,Hispanic/Latino,0.08470945864601308,8.5%
+Douglas,Hispanic/Latino,0.06310522628051958,6.3%
+Gilliam,Hispanic/Latino,0.08371154815935451,8.4%
+Grant,Hispanic/Latino,0.043111786651927594,4.3%
+Harney,Hispanic/Latino,0.054562433297758804,5.5%
+Hood River,Hispanic/Latino,0.308408095138744,30.8%
+Jackson,Hispanic/Latino,0.1401502219187436,14.0%
+Jefferson,Hispanic/Latino,0.20767265501439636,20.8%
+Josephine,Hispanic/Latino,0.08117598927199582,8.1%
+Klamath,Hispanic/Latino,0.14243374672690126,14.2%
+Lake,Hispanic/Latino,0.09437873430069504,9.4%
+Lane,Hispanic/Latino,0.09576472065679795,9.6%
+Lincoln,Hispanic/Latino,0.09794572257321095,9.8%
+Linn,Hispanic/Latino,0.09942611860215556,9.9%
+Malheur,Hispanic/Latino,0.34986365654131524,35.0%
+Marion,Hispanic/Latino,0.2783858421410292,27.8%
+Morrow,Hispanic/Latino,0.3831136738056013,38.3%
+Multnomah,Hispanic/Latino,0.12312615549104193,12.3%
+Polk,Hispanic/Latino,0.15050228310502284,15.1%
+Sherman,Hispanic/Latino,0.05052631578947368,5.1%
+Tillamook,Hispanic/Latino,0.10762479429511794,10.8%
+Umatilla,Hispanic/Latino,0.28049909891870245,28.0%
+Union,Hispanic/Latino,0.052042912577037206,5.2%
+Wallowa,Hispanic/Latino,0.037639467670385805,3.8%
+Wasco,Hispanic/Latino,0.19929426780284545,19.9%
+Washington,Hispanic/Latino,0.17388635639597624,17.4%
+Wheeler,Hispanic/Latino,0.06112295664534471,6.1%
+Yamhill,Hispanic/Latino,0.16568530935973402,16.6%
+Baker,Native Hawaiian/Pacific Islander,0.002097692538207971,0.2%
+Benton,Native Hawaiian/Pacific Islander,0.0016524603880144328,0.2%
+Clackamas,Native Hawaiian/Pacific Islander,0.0018863217912929856,0.2%
+Clatsop,Native Hawaiian/Pacific Islander,6.554989075018208e-4,0.1%
+Columbia,Native Hawaiian/Pacific Islander,0.0038399697342286956,0.4%
+Coos,Native Hawaiian/Pacific Islander,2.0028347815369445e-4,0.0%
+Crook,Native Hawaiian/Pacific Islander,0,0.0%
+Curry,Native Hawaiian/Pacific Islander,0,0.0%
+Deschutes,Native Hawaiian/Pacific Islander,7.674866567679281e-4,0.1%
+Douglas,Native Hawaiian/Pacific Islander,2.5152261008605666e-4,0.0%
+Gilliam,Native Hawaiian/Pacific Islander,0,0.0%
+Grant,Native Hawaiian/Pacific Islander,0.002901754870802819,0.3%
+Harney,Native Hawaiian/Pacific Islander,0.0018676627534685165,0.2%
+Hood River,Native Hawaiian/Pacific Islander,3.7554767369079906e-4,0.0%
+Jackson,Native Hawaiian/Pacific Islander,0.0030727210652099694,0.3%
+Jefferson,Native Hawaiian/Pacific Islander,6.488503183421874e-4,0.1%
+Josephine,Native Hawaiian/Pacific Islander,0.00182967020478669,0.2%
+Klamath,Native Hawaiian/Pacific Islander,0.002345121284493425,0.2%
+Lake,Native Hawaiian/Pacific Islander,0,0.0%
+Lane,Native Hawaiian/Pacific Islander,0.0020904300687042475,0.2%
+Lincoln,Native Hawaiian/Pacific Islander,5.960185957801883e-4,0.1%
+Linn,Native Hawaiian/Pacific Islander,0.0014696962627723604,0.1%
+Malheur,Native Hawaiian/Pacific Islander,0.0016488046166529267,0.2%
+Marion,Native Hawaiian/Pacific Islander,0.01033789743070717,1.0%
+Morrow,Native Hawaiian/Pacific Islander,0.003953871499176277,0.4%
+Multnomah,Native Hawaiian/Pacific Islander,0.006078470680536271,0.6%
+Polk,Native Hawaiian/Pacific Islander,0.004474885844748858,0.4%
+Sherman,Native Hawaiian/Pacific Islander,0.019473684210526317,1.9%
+Tillamook,Native Hawaiian/Pacific Islander,0,0.0%
+Umatilla,Native Hawaiian/Pacific Islander,0.0012515018021625952,0.1%
+Union,Native Hawaiian/Pacific Islander,0.0140378908924903,1.4%
+Wallowa,Native Hawaiian/Pacific Islander,2.6885334050275576e-4,0.0%
+Wasco,Native Hawaiian/Pacific Islander,0.0012387852396861744,0.1%
+Washington,Native Hawaiian/Pacific Islander,0.0045301322178132935,0.5%
+Wheeler,Native Hawaiian/Pacific Islander,7.107320540156361e-4,0.1%
+Yamhill,Native Hawaiian/Pacific Islander,0.0024704199713951372,0.2%
+Baker,Some other race,0.0010788133053640995,0.1%
+Benton,Some other race,0.00373372378810856,0.4%
+Clackamas,Some other race,0.0038747995486131735,0.4%
+Clatsop,Some other race,2.91332847778587e-4,0.0%
+Columbia,Some other race,0.003045493237491724,0.3%
+Coos,Some other race,0.0014482036112651753,0.1%
+Crook,Some other race,1.6008324328650899e-4,0.0%
+Curry,Some other race,0.0036318578020851137,0.4%
+Deschutes,Some other race,0.003937758337011919,0.4%
+Douglas,Some other race,0.006656366216920285,0.7%
+Gilliam,Some other race,0.011094301563287948,1.1%
+Grant,Some other race,0.005112615724747823,0.5%
+Harney,Some other race,5.336179295624333e-4,0.1%
+Hood River,Some other race,0.005508032547465053,0.6%
+Jackson,Some other race,0.0036073026540403585,0.4%
+Jefferson,Some other race,0.005474674561012207,0.5%
+Josephine,Some other race,0.004954883287496875,0.5%
+Klamath,Some other race,0.003956492964636147,0.4%
+Lake,Some other race,0.004877453969028167,0.5%
+Lane,Some other race,0.003100324945449979,0.3%
+Lincoln,Some other race,0.004768148766241507,0.5%
+Linn,Some other race,0.005404438638236987,0.5%
+Malheur,Some other race,1.9024668653687616e-4,0.0%
+Marion,Some other race,0.0041149169353556095,0.4%
+Morrow,Some other race,6.589785831960461e-4,0.1%
+Multnomah,Some other race,0.004467279958618881,0.4%
+Polk,Some other race,0.004257990867579909,0.4%
+Sherman,Some other race,0,0.0%
+Tillamook,Some other race,0.004022673249222892,0.4%
+Umatilla,Some other race,0.004092410893071686,0.4%
+Union,Some other race,0.006277105683633873,0.6%
+Wallowa,Some other race,0.00887216023659094,0.9%
+Wasco,Some other race,8.258568264574496e-4,0.1%
+Washington,Some other race,0.005035518838578179,0.5%
+Wheeler,Some other race,0.006396588486140725,0.6%
+Yamhill,Some other race,0.0032134034214387876,0.3%
+Baker,Two or more races,0.028888222954749774,2.9%
+Benton,Two or more races,0.044354965225121584,4.4%
+Clackamas,Two or more races,0.05234424184831027,5.2%
+Clatsop,Two or more races,0.062005341102209274,6.2%
+Columbia,Two or more races,0.05585926416343517,5.6%
+Coos,Two or more races,0.05738891970173168,5.7%
+Crook,Two or more races,0.03605875055028615,3.6%
+Curry,Two or more races,0.05293966843274654,5.3%
+Deschutes,Two or more races,0.0375065211284562,3.8%
+Douglas,Two or more races,0.05317008318212033,5.3%
+Gilliam,Two or more races,0.04639435199193142,4.6%
+Grant,Two or more races,0.048638938786790105,4.9%
+Harney,Two or more races,0.07924226254002134,7.9%
+Hood River,Two or more races,0.04068433131650323,4.1%
+Jackson,Two or more races,0.04768108389786347,4.8%
+Jefferson,Two or more races,0.0811873960825662,8.1%
+Josephine,Two or more races,0.04788962883832989,4.8%
+Klamath,Two or more races,0.05606710212068023,5.6%
+Lake,Two or more races,0.04694549445189611,4.7%
+Lane,Two or more races,0.05751168181508982,5.8%
+Lincoln,Two or more races,0.06297929828743991,6.3%
+Linn,Two or more races,0.05094947044277516,5.1%
+Malheur,Two or more races,0.02321009575749889,2.3%
+Marion,Two or more races,0.043786417593221806,4.4%
+Morrow,Two or more races,0.027841845140032948,2.8%
+Multnomah,Two or more races,0.058104338830191386,5.8%
+Polk,Two or more races,0.048253424657534245,4.8%
+Sherman,Two or more races,0.045263157894736845,4.5%
+Tillamook,Two or more races,0.03982446516730664,4.0%
+Umatilla,Two or more races,0.04190028033640369,4.2%
+Union,Two or more races,0.022978011108574906,2.3%
+Wallowa,Two or more races,0.03306896088183896,3.3%
+Wasco,Two or more races,0.04365779496227336,4.4%
+Washington,Two or more races,0.05661664506680944,5.7%
+Wheeler,Two or more races,0.06183368869936034,6.2%
+Yamhill,Two or more races,0.051553764139903785,5.2%
+Baker,White,0.8909199880131855,89.1%
+Benton,White,0.7845735501751817,78.5%
+Clackamas,White,0.7895302013422819,79.0%
+Clatsop,White,0.8219956300072834,82.2%
+Columbia,White,0.8575995460134305,85.8%
+Coos,White,0.8343347507241018,83.4%
+Crook,White,0.8667306999639812,86.7%
+Curry,White,0.8405828063578875,84.1%
+Deschutes,White,0.8531843171876881,85.3%
+Douglas,White,0.8554553457537594,85.5%
+Gilliam,White,0.83761976802824,83.8%
+Grant,White,0.8839298051678872,88.4%
+Harney,White,0.8512540021344717,85.1%
+Hood River,White,0.6253703317337784,62.5%
+Jackson,White,0.7828340910316077,78.3%
+Jefferson,White,0.5763818484123444,57.6%
+Josephine,White,0.8458644907607337,84.6%
+Klamath,White,0.7520501827180387,75.2%
+Lake,White,0.8219729301304719,82.2%
+Lane,White,0.8003286082811379,80.0%
+Lincoln,White,0.8004331068462669,80.0%
+Linn,White,0.8272912486974914,82.7%
+Malheur,White,0.5971843490392542,59.7%
+Marion,White,0.6267252721831037,62.7%
+Morrow,White,0.5691927512355849,56.9%
+Multnomah,White,0.6741855567022812,67.4%
+Polk,White,0.7560958904109589,75.6%
+Sherman,White,0.8710526315789474,87.1%
+Tillamook,White,0.8251965624428598,82.5%
+Umatilla,White,0.6319333199839807,63.2%
+Union,White,0.8751046184280605,87.5%
+Wallowa,White,0.8995832773222208,90.0%
+Wasco,White,0.7214985547505537,72.1%
+Washington,White,0.6267177724292416,62.7%
+Wheeler,White,0.8621179815209666,86.2%
+Yamhill,White,0.7481471850214536,74.8%

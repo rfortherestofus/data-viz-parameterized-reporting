@@ -48,3 +48,4 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 data-viz-parameterized-reporting.Rproj
+cutouts.R

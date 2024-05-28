@@ -12,7 +12,7 @@ format:
 execute: 
   message: false
   warning: false
-  cache: true
+  cache: false
 knitr:
   opts_chunk:
     dev: "ragg_png"
@@ -30,13 +30,28 @@ library(scales)
 library(patchwork)
 ```
 
+# Intro
+
+
+
+# What is parameterized reporting
+
+Add animation here
+
+With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports
+
+Show snapshots of reports I'm giving examples from (OBTN, PSC, and IVAC)
+
+# There are packages to help with all of this, but nothing that can help you avoid thinking about your data
 
 
 # Think about min and max of all data {.inverse}
 
-# Set limits of plot based on max of all data
+::: {.notes}
+Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports
+:::
 
-
+## Set limits of plot based on max of all data
 
 ```{r}
 median_income <- read_csv("data/median_income.csv") |>
@@ -84,7 +99,8 @@ median_income_plot <- function(county) {
       "gray",
       "darkgreen"
     )) +
-    theme_void()
+    theme_void() +
+    theme(plot.margin = margin(rep(20, 4)))
 }
 ```
 
@@ -191,7 +207,8 @@ median_income_plot_v2 <- function(county) {
     scale_x_continuous(
       limits = c(0, max_median_income)
     ) +
-    theme_void()
+    theme_void() +
+    theme(plot.margin = margin(rep(20, 4)))
 }
 ```
 
@@ -228,6 +245,7 @@ median_income_plot_v2("Washington")
 
 
 ```{r}
+#| cache: true
 median_income_plot_no_text <- function(county) {
   median_income |>
     filter(geography %in% c(county, "Oregon")) |>
@@ -245,7 +263,8 @@ median_income_plot_no_text <- function(county) {
       "gray",
       "darkgreen"
     )) +
-    theme_void()
+    theme_void() +
+    theme(plot.margin = margin(rep(20, 4)))
 }
 
 wrap_plots(
@@ -259,6 +278,7 @@ wrap_plots(
 
 
 ```{r}
+#| cache: true
 median_income_plot_v2_no_text <- function(county) {
   max_median_income <-
     median_income |>
@@ -287,7 +307,8 @@ median_income_plot_v2_no_text <- function(county) {
     scale_x_continuous(
       limits = c(0, max_median_income)
     ) +
-    theme_void()
+    theme_void() +
+    theme(plot.margin = margin(rep(20, 4)))
 }
 
 wrap_plots(
@@ -302,16 +323,153 @@ wrap_plots(
 TODO: Add OBTN pages here to demonstrate this
 
 
+## You can also just set limits as 100% when working with percentage data
+
+Move this before previous example because it's simpler?
+
+TODO: Add https://show.rfor.us/9V2Cxw00
+
+---
+
+```{r}
+obtn::obtn_race_ethnicity |>
+  filter(year == 2024) |>
+  filter(geography %in% obtn::obtn_oregon_counties) |>
+  select(geography:value) |>
+  rename(
+    "county" = "geography",
+    "pct" = "value"
+  ) |>
+  mutate(pct_formatted = percent(pct, 0.1)) |>
+  mutate(population = fct_rev(population)) |>
+  write_rds("data/obtn_race_ethnicity.rds")
+```
+
+```{r}
+obtn_race_ethnicity <-
+  read_rds("data/obtn_race_ethnicity.rds")
+
+obtn_race_ethnicity_plot <- function(county_to_plot) {
+  obtn_race_ethnicity_filtered <-
+    obtn_race_ethnicity |>
+    filter(county == county_to_plot)
+
+  obtn_race_ethnicity_filtered |>
+    ggplot(
+      aes(
+        x = pct,
+        y = population
+      )
+    ) +
+    geom_col(fill = obtn::tfff_dark_green) +
+    geom_text(
+      data = obtn_race_ethnicity_filtered |> filter(population == "White"),
+      aes(
+        label = pct_formatted
+      ),
+      color = "white",
+      hjust = 1.1
+    ) +
+    theme_void()
+}
+
+obtn_race_ethnicity_plot("Multnomah")
+```
+
+---
+
+```{r}
+#| fig-height: 10
+#| fig-width: 18
+wrap_plots(
+  map(
+    oregon_counties[1:12],
+    obtn_race_ethnicity_plot
+  ),
+  nrow = 3
+)
+```
+
+
+---
+
+```{r}
+#| echo: true
+#| output: false
+obtn_race_ethnicity_plot("Multnomah") +
+  geom_col(
+    aes(
+      x = 1
+    ),
+    fill = "transparent",
+    color = obtn::tfff_light_green,
+    linetype = "dotted"
+  )
+```
+
+
+---
+
+### Multnomah County
+
+```{r}
+obtn_race_ethnicity_plot("Multnomah") +
+  geom_col(
+    aes(
+      x = 1
+    ),
+    fill = "transparent",
+    color = obtn::tfff_light_green,
+    linetype = "dotted"
+  )
+```
+
+---
+
+### Baker County
+
+```{r}
+obtn_race_ethnicity_plot("Baker") +
+  geom_col(
+    aes(
+      x = 1
+    ),
+    fill = "transparent",
+    color = obtn::tfff_light_green,
+    linetype = "dotted"
+  )
+```
+
+
+
+
+
+
+
 # Minimize text and think about how to position it
 
+Text WILL overlap so think proactively about how to avoid it
 
 
-## Minimize text labels
 
 
 
+
+::: {.notes}
+The problem is, you never know how it will look for all of your plots
+:::
+
+
+## Don't try to label everything
+
+https://show.rfor.us/QLbWktrG (but fix colors so Hartford is red)
 
 ## Hide labels below a certain percentage
+
+TODO: Add image of PSC reports
+
+
+---
 
 ![](assets/psc-hide-numbers.png)
 
@@ -417,7 +575,8 @@ housing_cost_burden |>
   theme_void(base_size = 16) +
   theme(
     legend.position = "none",
-    axis.text.y = element_text(hjust = 1)
+    axis.text.y = element_text(hjust = 1),
+    plot.margin = margin(rep(20, 4))
   )
 ```
 
@@ -471,12 +630,85 @@ housing_cost_burden |>
   theme_void(base_size = 16) +
   theme(
     legend.position = "none",
-    axis.text.y = element_text(hjust = 1)
+    axis.text.y = element_text(hjust = 1),
+    plot.margin = margin(rep(20, 4))
   )
 ```
 
 
+
+
+
+
+
 ## Don't put text where it could be obscured
+
+---
+
+```{r}
+pre_post_plot <- function(df) {
+  df |>
+    ggplot(aes(
+      x = rating,
+      y = 1,
+      fill = timing,
+      label = rating,
+      group = question
+    )) +
+    geom_vline(
+      xintercept = 1:5,
+      color = "grey90"
+    ) +
+    geom_line(
+      color = "grey70",
+      alpha = 0.75,
+      linewidth = 1.5
+    ) +
+    geom_point(
+      shape = 21,
+      color = "white",
+      size = 12,
+      stroke = 2
+    ) +
+    scale_x_continuous(
+      limits = c(1, 5),
+      breaks = seq(1, 5, 1),
+      position = "top",
+      expand = expansion(0, 0)
+    ) +
+    scale_color_manual(
+      values = c(
+        "Pre" = "#6d8d24",
+        "Post" = "#213921"
+      )
+    ) +
+    scale_fill_manual(
+      values = c(
+        "Pre" = "#6d8d24",
+        "Post" = "#213921"
+      ),
+      guide = guide_legend(reverse = TRUE)
+    ) +
+    labs(
+      title = "How much do you understand thing X?",
+      fill = NULL
+    ) +
+    theme_minimal(base_size = 16) +
+    theme(
+      plot.margin = margin(rep(20, 4)),
+      axis.title = element_blank(),
+      panel.grid = element_blank(),
+      # plot.title = element_text(face = "bold",
+      #                           color = "grey30"),
+      plot.title = element_blank(),
+      plot.title.position = "plot",
+      legend.position = "none",
+      axis.text.x = element_text(color = "grey40"),
+      axis.text.y = element_blank()
+    )
+}
+```
+
 
 ```{r}
 pre_post_data <-
@@ -484,85 +716,40 @@ pre_post_data <-
     ~question,
     ~timing,
     ~rating,
-    "I learned to do thing 1",
+    "Question 1",
     "Pre",
-    3.4,
-    "I learned to do thing 1",
+    1.6,
+    "Question 1",
     "Post",
-    6.2,
-    "I learned to do thing 2",
-    "Pre",
-    3.8,
-    "I learned to do thing 2",
-    "Post",
-    5.8,
-    "I learned to do thing 3",
-    "Pre",
-    3.6,
-    "I learned to do thing 3",
-    "Post",
-    5.7,
-  ) |> 
-   mutate(
-      growth = rating - lag(rating, 1),
-      growth = if_else(timing == "Post", growth, NA),
-      growth_formatted = number(growth, 0.1),
-      growth_formatted = str_glue("+{growth_formatted}")
-    ) 
+    4.2
+  ) |>
+  mutate(
+    growth = rating - lag(rating, 1),
+    growth = if_else(timing == "Post", growth, NA),
+    growth_formatted = number(growth, 0.1),
+    growth_formatted = str_glue("+{growth_formatted}")
+  )
+```
 
+```{r}
+#| fig-height: 2
 pre_post_data |>
-  ggplot(aes(
-    x = rating,
-    y = 1,
-    fill = timing,
-    label = rating,
-    group = question
-  )) +
-  geom_line(
-    color = "grey70",
-    alpha = 0.75,
-    linewidth = 1.5
-  ) +
-  geom_point(
-    shape = 21,
-    color = "white",
-    size = 12,
-    stroke = 2
-  ) +
+  pre_post_plot() +
   geom_text(color = "white") +
-  geom_text(aes(
-    x = rating - growth / 2,
-    label = growth_formatted
-  ),
-  vjust = -1) +
-  scale_x_continuous(
-    limits = c(1, 7),
-    breaks = seq(1, 7)
-  ) +
-  scale_fill_manual(
-    values = c(
-      "Pre" = "#6d8d24",
-      "Post" = "#213921"
+  geom_text(
+    aes(
+      label = timing,
+      color = timing
     ),
-    guide = guide_legend(reverse = TRUE)
+    vjust = -2,
+    fontface = "bold"
   ) +
-  labs(fill = NULL) +
-  theme_minimal(base_size = 16) +
-  theme(
-    axis.title = element_blank(),
-    axis.text.x = element_blank(),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.y = element_blank(),
-    strip.text = element_text(
-      hjust = 0.04,
-      face = "bold"
+  geom_text(
+    aes(
+      x = rating - growth / 2,
+      label = growth_formatted
     ),
-    legend.position = "none",
-    axis.text.y = element_blank()
-  ) +
-  facet_wrap(
-    vars(question),
-    ncol = 1
+    vjust = -1
   )
 ```
 
@@ -574,101 +761,523 @@ pre_post_data <-
     ~question,
     ~timing,
     ~rating,
-    "I learned to do thing 1",
+    "Question 1",
     "Pre",
-    3.4,
-    "I learned to do thing 1",
+    3.5,
+    "Question 1",
     "Post",
-    3.6,
-    "I learned to do thing 2",
-    "Pre",
-    3.8,
-    "I learned to do thing 2",
-    "Post",
-    5.8,
-    "I learned to do thing 3",
-    "Pre",
-    3.6,
-    "I learned to do thing 3",
-    "Post",
-    5.7,
-  ) |> 
-   mutate(
-      growth = rating - lag(rating, 1),
-      growth = if_else(timing == "Post", growth, NA),
-      growth_formatted = number(growth, 0.1),
-      growth_formatted = str_glue("+{growth_formatted}")
-    ) 
+    3.6
+  ) |>
+  mutate(
+    growth = rating - lag(rating, 1),
+    growth = if_else(timing == "Post", growth, NA),
+    growth_formatted = number(growth, 0.1),
+    growth_formatted = str_glue("+{growth_formatted}")
+  )
+```
 
+
+
+```{r}
+#| fig-height: 2
 pre_post_data |>
-  ggplot(aes(
-    x = rating,
-    y = 1,
-    fill = timing,
-    label = rating,
-    group = question
-  )) +
-  geom_line(
-    color = "grey70",
-    alpha = 0.75,
-    linewidth = 1.5
-  ) +
-  geom_point(
-    shape = 21,
-    color = "white",
-    size = 12,
-    stroke = 2
-  ) +
+  pre_post_plot() +
   geom_text(color = "white") +
-  geom_text(aes(
-    x = rating - growth / 2,
-    label = growth_formatted
-  ),
-  vjust = -1) +
+  geom_text(
+    aes(
+      label = timing,
+      color = timing
+    ),
+    vjust = -2,
+    fontface = "bold"
+  ) +
+  geom_text(
+    aes(
+      x = rating - growth / 2,
+      label = growth_formatted
+    ),
+    vjust = -1
+  )
+```
+
+---
+
+```{r}
+pre_post_data <-
+  tribble(
+    ~question,
+    ~timing,
+    ~rating,
+    "Question 1",
+    "Pre",
+    3.5,
+    "Question 1",
+    "Post",
+    3.6
+  ) |>
+  mutate(
+    growth = rating - lag(rating, 1),
+    growth = if_else(timing == "Post", growth, NA),
+    growth_formatted = number(growth, 0.1),
+    growth_formatted = if_else(timing == "Pre", NA, str_glue("+{growth_formatted}"))
+  ) |>
+  mutate(rating_text_position = case_when(
+    timing == "Pre" ~ rating - 0.15,
+    timing == "Post" ~ rating + 0.15
+  ))
+```
+
+
+
+
+```{r}
+#| fig-height: 2
+pre_post_data |>
+  pre_post_plot() +
+  geom_text(
+    aes(
+      x = rating_text_position,
+      color = timing
+    ),
+    fontface = "bold"
+  ) +
+  geom_text(
+    aes(
+      x = rating_text_position,
+      label = timing,
+      color = timing
+    ),
+    vjust = -2,
+    fontface = "bold"
+  ) +
+  geom_text(
+    aes(
+      x = rating - growth / 2,
+      label = growth_formatted
+    ),
+    vjust = -1
+  )
+```
+
+---
+
+```{r}
+#| fig-height: 2
+pre_post_data |>
+  mutate(rating_text_position = case_when(
+    timing == "Pre" ~ rating - 0.2,
+    timing == "Post" ~ rating + 0.2
+  )) |>
+  pre_post_plot() +
+  geom_text(
+    aes(
+      x = rating_text_position,
+      color = timing
+    ),
+    fontface = "bold"
+  ) +
+  geom_text(
+    aes(
+      x = rating_text_position,
+      label = timing,
+      color = timing
+    ),
+    vjust = -2,
+    fontface = "bold"
+  ) +
+  geom_label(
+    aes(
+      x = 6,
+      label = growth_formatted
+    ),
+    fill = "#cfd82d",
+    label.size = unit(0, "pt"),
+    label.padding = unit(4, "pt"),
+    label.r = unit(3, "pt"),
+    color = "grey30",
+    fontface = "bold"
+  ) +
   scale_x_continuous(
-    limits = c(1, 7),
-    breaks = seq(1, 7)
-  ) +
-  scale_fill_manual(
-    values = c(
-      "Pre" = "#6d8d24",
-      "Post" = "#213921"
+    position = "top",
+    limits = c(1, 6),
+    breaks = c(
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
     ),
-    guide = guide_legend(reverse = TRUE)
-  ) +
-  labs(fill = NULL) +
-  theme_minimal(base_size = 16) +
-  theme(
-    axis.title = element_blank(),
-    axis.text.x = element_blank(),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.y = element_blank(),
-    strip.text = element_text(
-      hjust = 0.04,
-      face = "bold"
-    ),
-    legend.position = "none",
-    axis.text.y = element_blank()
-  ) +
-  facet_wrap(
-    vars(question),
-    ncol = 1
+    labels = c(
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "Growth"
+    )
   )
 ```
 
 
 ## Use ggrepel to avoid text overlaps
 
-## Use geomtextpath to put labels in right place
-
-## Use shadowtext to make sure labels are visible
+But be careful because you don't know what you're going to get
 
 # Programmatically highlight things
 
-## Use ggfx to add shadows to highlight countries
+1. Color
 
+1. Outline
+
+1. Opacity
+
+1. Shadow
+
+## Color (and size)
+
+https://show.rfor.us/VDbXYqcw
+
+```{r}
+pschousing::data_acs$units_structure_occupancy_status |>
+  filter(area_level == "Town") |>
+  group_by(area_name, units_structure_grp) |>
+  summarize(total = sum(estimate)) |>
+  mutate(pct = total / sum(total, na.rm = TRUE)) |>
+  ungroup() |>
+  filter(units_structure_grp == "Single-Family") |>
+  mutate(highlight_town = if_else(area_name == "Hartford", "Y", "N")) |>
+  ggplot(
+    aes(
+      x = pct,
+      y = 1,
+      color = highlight_town,
+      size = highlight_town
+    )
+  ) +
+  geom_hline(
+    yintercept = 1,
+    color = "grey90",
+    linewidth = 0.25
+  ) +
+  geom_point(
+    shape = 124
+  ) +
+  scale_color_manual(
+    values = c(
+      "Y" = "#15397f",
+      "N" = "grey80"
+    )
+  ) +
+  scale_size_manual(values = c(
+    "Y" = 15,
+    "N" = 5
+  )) +
+  scale_x_continuous(
+    labels = percent_format(accuracy = 1),
+    breaks = seq(0, 1, 0.25)
+  ) +
+  expand_limits(
+    x = 0
+  ) +
+  theme_void() +
+  theme(
+    axis.text.x = element_text(),
+    legend.position = "none"
+  )
+```
+
+
+---
+
+```{r}
+building_permits_by_county <-
+  pschousing::data_building_permits |>
+  filter(area_level == "County")
+
+building_permits_highlight_county <-
+  building_permits_by_county |>
+  filter(area_name == "Hartford County")
+```
+
+```{r}
+building_permits_by_county |>
+  ggplot(
+    aes(
+      x = year,
+      y = nb_building_permits,
+      group = area_name
+    )
+  ) +
+  geom_line(color = "grey90") +
+  geom_line(
+    data = building_permits_highlight_county,
+    color = "#15397f"
+  ) +
+  scale_y_continuous(
+    labels = comma_format()
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.title = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(
+      linetype = "dotted",
+      color = "grey80"
+    )
+  )
+```
+
+---
+
+```{r}
+building_permits_by_county |>
+  ggplot(
+    aes(
+      x = year,
+      y = nb_building_permits,
+      group = area_name
+    )
+  ) +
+  geom_line(color = "grey90") +
+  geom_line(
+    data = building_permits_highlight_county,
+    color = "#15397f",
+    linewidth = 1
+  ) +
+  scale_y_continuous(
+    labels = comma_format()
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.title = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(
+      linetype = "dotted",
+      color = "grey80"
+    )
+  )
+```
+
+
+---
+
+```{r}
+library(ggborderline)
+
+building_permits_by_county |>
+  ggplot(
+    aes(
+      x = year,
+      y = nb_building_permits,
+      group = area_name
+    )
+  ) +
+  geom_line(color = "grey90") +
+  geom_borderline(
+    data = building_permits_highlight_county,
+    bordercolour = "white",
+    borderwidth = 0.75,
+    linewidth = 1,
+    color = "#15397f"
+  ) +
+  scale_y_continuous(
+    labels = comma_format()
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.title = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(
+      linetype = "dotted",
+      color = "grey80"
+    )
+  )
+```
+
+## Outlines {.inverse}
+
+## Shadow
+
+```{r}
+library(ggfx)
+library(sf)
+
+sf_region_ig1_2_map <- read_rds("data/sf_region_ig1_2_map.rds")
+country_filter <- "Saudi Arabia"
+
+ia2030_colors <- list(
+  navy = "#1f4675",
+  light_blue = "#59b8cd",
+  light_blue_back = "#e5f1f8",
+  red = "#eb5a53",
+  yellow = "#ffd300",
+  stone = "#f0eae5",
+  light_grey = "#e5ebee",
+  # not official
+  green = "#43a047",
+  dark_grey = "#353535"
+)
+
+ggplot() +
+  geom_sf(
+    data = sf_region_ig1_2_map |>
+      filter(ind_region == 1) |>
+      add_row(status = "Achieved", disease = "Rubella") |>
+      add_row(status = "Re-established", disease = "Rubella") |>
+      add_row(status = "Not achieved", disease = "Rubella") |>
+      add_row(status = "No data", disease = "Rubella"),
+    aes(fill = status),
+    linewidth = 0.2,
+    color = "white",
+    alpha = 0.95
+  ) +
+  geom_sf(
+    data = sf_region_ig1_2_map |>
+      filter(ind_region == 0),
+    fill = "lightgrey",
+    color = "grey",
+    linewidth = 0,
+    alpha = 0.5
+  ) +
+  # shadow for the current country
+  ggfx::with_shadow(
+    geom_sf(
+      data = sf_region_ig1_2_map |>
+        filter(country_name == country_filter),
+      aes(fill = status),
+      linewidth = 0.8,
+      color = "white",
+      alpha = 1
+    ),
+    sigma = 0,
+    x_offset = 1,
+    y_offset = 1
+  ) +
+  facet_wrap(
+    vars(disease),
+    labeller = labeller(disease = label_wrap_gen(20))
+  ) +
+  scale_fill_manual(
+    name = "",
+    values = c(
+      "Achieved" = ia2030_colors$navy,
+      "Re-established" = ia2030_colors$yellow,
+      "Not achieved" = ia2030_colors$red,
+      "No data" = ia2030_colors$light_grey
+    ),
+    drop = FALSE
+  ) +
+  theme_void() +
+  theme(
+    strip.text = element_text(
+      size = 9,
+      family = "Inter"
+    ),
+    plot.margin = margin(rep(20, 4)),
+    legend.position = "bottom"
+  )
+```
+
+::: {.notes}
 https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/
+:::
 
-## Use gghighlight to programmatically highlight findings
 
-## Add borders around lines with ggborderline
+---
+
+### Use shadowtext to make sure labels are visible
+
+https://show.rfor.us/sFSTz6qJ
+
+
+
+
+::: {.notes}
+https://www.nytimes.com/2024/05/23/weather/noaa-atlantic-hurricane-forecast-prediction.html
+:::
+
+## Opacity
+
+Can't do it too much because then it looks like a different category
+
+```{r}
+ggplot() +
+  geom_sf(
+    data = sf_region_ig1_2_map |>
+      filter(ind_region == 1) |>
+      add_row(status = "Achieved", disease = "Rubella") |>
+      add_row(status = "Re-established", disease = "Rubella") |>
+      add_row(status = "Not achieved", disease = "Rubella") |>
+      add_row(status = "No data", disease = "Rubella"),
+    aes(fill = status),
+    linewidth = 0.2,
+    color = "white",
+    alpha = 0.75
+  ) +
+  geom_sf(
+    data = sf_region_ig1_2_map |>
+      filter(ind_region == 0),
+    fill = "lightgrey",
+    color = "grey",
+    linewidth = 0,
+    alpha = 0.5
+  ) +
+  # shadow for the current country
+  ggfx::with_shadow(
+    geom_sf(
+      data = sf_region_ig1_2_map |>
+        filter(country_name == country_filter),
+      aes(fill = status),
+      linewidth = 0.8,
+      color = "white",
+      alpha = 1
+    ),
+    sigma = 0,
+    x_offset = 1,
+    y_offset = 1
+  ) +
+  facet_wrap(
+    vars(disease),
+    labeller = labeller(disease = label_wrap_gen(20))
+  ) +
+  scale_fill_manual(
+    name = "",
+    values = c(
+      "Achieved" = ia2030_colors$navy,
+      "Re-established" = ia2030_colors$yellow,
+      "Not achieved" = ia2030_colors$red,
+      "No data" = ia2030_colors$light_grey
+    ),
+    drop = FALSE
+  ) +
+  theme_void() +
+  theme(
+    strip.text = element_text(
+      size = 9,
+      family = "Inter"
+    ),
+    plot.margin = margin(rep(20, 4)),
+    legend.position = "bottom"
+  )
+```
+
+
+## Use gghighlight to programmatically do this highlighting
+
+Show how to do each chart above with gghighlight
+
+
+# Conclusion
+
+1. Account for outer limits of your data
+
+1. Think carefully about text
+
+1. Highlight strategically and programatically

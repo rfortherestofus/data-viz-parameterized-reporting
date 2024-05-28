@@ -396,13 +396,42 @@
 </div>
 
 </section>
-<section id="think-about-min-and-max-of-all-data" class="title-slide slide level1 inverse center">
-<h1>Think about min and max of all data</h1>
+<section id="intro" class="title-slide slide level1 center">
+<h1>Intro</h1>
 
 </section>
 
-<section id="set-limits-of-plot-based-on-max-of-all-data" class="title-slide slide level1 center">
-<h1>Set limits of plot based on max of all data</h1>
+<section id="what-is-parameterized-reporting" class="title-slide slide level1 center">
+<h1>What is parameterized reporting</h1>
+<p>Add animation here</p>
+<p>With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports</p>
+<p>Show snapshots of reports I’m giving examples from (OBTN, PSC, and IVAC)</p>
+</section>
+
+<section id="there-are-packages-to-help-with-all-of-this-but-nothing-that-can-help-you-avoid-thinking-about-your-data" class="title-slide slide level1 center">
+<h1>There are packages to help with all of this, but nothing that can help you avoid thinking about your data</h1>
+
+</section>
+
+<section>
+<section id="think-about-min-and-max-of-all-data" class="title-slide slide level1 inverse center">
+<h1>Think about min and max of all data</h1>
+<aside class="notes">
+<p>Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="set-limits-of-plot-based-on-max-of-all-data" class="slide level2 center">
+<h2>Set limits of plot based on max of all data</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -505,17 +534,71 @@
 <p>TODO: Add OBTN pages here to demonstrate this</p>
 </div>
 </section>
+<section id="you-can-also-just-set-limits-as-100-when-working-with-percentage-data" class="slide level2 center">
+<h2>You can also just set limits as 100% when working with percentage data</h2>
+<p>Move this before previous example because it’s simpler?</p>
+<p>TODO: Add https://show.rfor.us/9V2Cxw00</p>
+</section>
+<section class="slide level2 center">
 
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-17-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-18-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">obtn_race_ethnicity_plot</span>(<span class="st">"Multnomah"</span>) <span class="sc">+</span></span>
+<span id="cb11-2"><a href=""></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb11-3"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb11-4"><a href=""></a>      <span class="at">x =</span> <span class="dv">1</span></span>
+<span id="cb11-5"><a href=""></a>    ),</span>
+<span id="cb11-6"><a href=""></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb11-7"><a href=""></a>    <span class="at">color =</span> obtn<span class="sc">::</span>tfff_light_green,</span>
+<span id="cb11-8"><a href=""></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
+<span id="cb11-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="slide level2 center">
+
+<h3 id="multnomah-county">Multnomah County</h3>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-20-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+<h3 id="baker-county">Baker County</h3>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-21-1.png" style="width:100.0%" class="r-stretch"></section></section>
 <section>
 <section id="minimize-text-and-think-about-how-to-position-it" class="title-slide slide level1 center">
 <h1>Minimize text and think about how to position it</h1>
-
+<p>Text WILL overlap so think proactively about how to avoid it</p>
+<aside class="notes">
+<p>The problem is, you never know how it will look for all of your plots</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="minimize-text-labels" class="slide level2 center">
-<h2>Minimize text labels</h2>
+<section id="dont-try-to-label-everything" class="slide level2 center">
+<h2>Don’t try to label everything</h2>
+<p>https://show.rfor.us/QLbWktrG (but fix colors so Hartford is red)</p>
 </section>
 <section id="hide-labels-below-a-certain-percentage" class="slide level2 center">
 <h2>Hide labels below a certain percentage</h2>
+<p>TODO: Add image of PSC reports</p>
+</section>
+<section class="slide level2 center">
+
 
 <img data-src="assets/psc-hide-numbers.png" class="r-stretch"></section>
 <section class="slide level2 center">
@@ -541,19 +624,19 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pct_formatted))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pct_formatted))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-19-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-25-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pct_formatted =</span> <span class="fu">if_else</span>(pct <span class="sc">&gt;</span> <span class="fl">0.07</span>, pct_formatted, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pct_formatted =</span> <span class="fu">if_else</span>(pct <span class="sc">&gt;</span> <span class="fl">0.07</span>, pct_formatted, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -580,44 +663,117 @@
 <section class="slide level2 center">
 
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-22-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-28-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="dont-put-text-where-it-could-be-obscured" class="slide level2 center">
 <h2>Don’t put text where it could be obscured</h2>
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-23-1.png" style="width:100.0%" class="r-stretch"></section>
+</section>
 <section class="slide level2 center">
 
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-24-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-31-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-33-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-35-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-36-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="use-ggrepel-to-avoid-text-overlaps" class="slide level2 center">
 <h2>Use ggrepel to avoid text overlaps</h2>
-</section>
-<section id="use-geomtextpath-to-put-labels-in-right-place" class="slide level2 center">
-<h2>Use geomtextpath to put labels in right place</h2>
-</section>
-<section id="use-shadowtext-to-make-sure-labels-are-visible" class="slide level2 center">
-<h2>Use shadowtext to make sure labels are visible</h2>
+<p>But be careful because you don’t know what you’re going to get</p>
 </section></section>
 <section>
 <section id="programmatically-highlight-things" class="title-slide slide level1 center">
 <h1>Programmatically highlight things</h1>
+<ol type="1">
+<li class="fragment"><p>Color</p></li>
+<li class="fragment"><p>Outline</p></li>
+<li class="fragment"><p>Opacity</p></li>
+<li class="fragment"><p>Shadow</p></li>
+</ol>
+</section>
+<section id="color-and-size" class="slide level2 center">
+<h2>Color (and size)</h2>
+<p>https://show.rfor.us/VDbXYqcw</p>
 
+<img data-src="index_files/figure-revealjs/unnamed-chunk-37-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-39-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="outlines" class="slide level2 inverse center">
+<h2>Outlines</h2>
 </section>
-<section id="use-ggfx-to-add-shadows-to-highlight-countries" class="slide level2 center">
-<h2>Use ggfx to add shadows to highlight countries</h2>
+<section id="shadow" class="slide level2 center">
+<h2>Shadow</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
 <p>https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="use-gghighlight-to-programmatically-highlight-findings" class="slide level2 center">
-<h2>Use gghighlight to programmatically highlight findings</h2>
+<section class="slide level2 center">
+
+<h3 id="use-shadowtext-to-make-sure-labels-are-visible">Use shadowtext to make sure labels are visible</h3>
+<p>https://show.rfor.us/sFSTz6qJ</p>
+<aside class="notes">
+<p>https://www.nytimes.com/2024/05/23/weather/noaa-atlantic-hurricane-forecast-prediction.html</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="add-borders-around-lines-with-ggborderline" class="slide level2 center">
-<h2>Add borders around lines with ggborderline</h2>
+<section id="opacity" class="slide level2 center">
+<h2>Opacity</h2>
+<p>Can’t do it too much because then it looks like a different category</p>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-43-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="use-gghighlight-to-programmatically-do-this-highlighting" class="slide level2 center">
+<h2>Use gghighlight to programmatically do this highlighting</h2>
+<p>Show how to do each chart above with gghighlight</p>
+</section></section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
+<ol type="1">
+<li class="fragment"><p>Account for outer limits of your data</p></li>
+<li class="fragment"><p>Think carefully about text</p></li>
+<li class="fragment"><p>Highlight strategically and programatically</p></li>
+</ol>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
