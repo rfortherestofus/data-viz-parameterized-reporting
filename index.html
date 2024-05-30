@@ -432,26 +432,35 @@
 </section>
 <section id="set-limits-of-plot-based-on-max-of-all-data" class="slide level2 center">
 <h2>Set limits of plot based on max of all data</h2>
+</section>
+<section class="slide level2 center">
+
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" style="width:100.0%"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>median_income</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 37 × 4
+   geography  year amount amount_formatted
+   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;           
+ 1 Oregon     2024  76632 $76,632         
+ 2 Baker      2024  51657 $51,657         
+ 3 Benton     2024  72882 $72,882         
+ 4 Clackamas  2024  95740 $95,740         
+ 5 Clatsop    2024  68025 $68,025         
+ 6 Columbia   2024  83265 $83,265         
+ 7 Coos       2024  57563 $57,563         
+ 8 Crook      2024  74969 $74,969         
+ 9 Curry      2024  64300 $64,300         
+10 Deschutes  2024  82042 $82,042         
+# ℹ 27 more rows</code></pre>
 </div>
 </div>
-</div>
-<pre><code>median_income_plot("Jackson")</code></pre>
+</section>
+<section class="slide level2 center">
+
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" style="width:100.0%"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">median_income_plot</span>(<span class="st">"Jackson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<pre><code>median_income_plot("Harney")</code></pre>
+<div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -461,7 +470,44 @@
 </div>
 </div>
 </div>
-<pre><code>median_income_plot("Washington")</code></pre>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-7-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-8-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center">
+
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>max_median_income <span class="ot">&lt;-</span></span>
 <span id="cb4-2"><a href=""></a>  median_income <span class="sc">|&gt;</span></span>
@@ -478,41 +524,22 @@
 <pre><code>[1] 100121</code></pre>
 </div>
 </div>
+</div>
+<div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">scale_x_continuous</span>(</span>
-<span id="cb7-2"><a href=""></a>  <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, max_median_income)</span>
-<span id="cb7-3"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-11-1.png" style="width:100.0%"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">median_income_plot</span>(<span class="st">"Jackson"</span>) <span class="sc">+</span></span>
+<span id="cb7-2"><a href=""></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb7-3"><a href=""></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, max_median_income)</span>
+<span id="cb7-4"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</div>
-<pre><code>median_income_plot_v2("Jackson")</code></pre>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-12-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<pre><code>median_income_plot_v2("Harney")</code></pre>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<pre><code>median_income_plot_v2("Washington")</code></pre>
+</section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -522,6 +549,7 @@
 </div>
 </div>
 </div>
+<div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -531,7 +559,17 @@
 </div>
 </div>
 </div>
-<p>TODO: Add OBTN pages here to demonstrate this</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="you-can-also-just-set-limits-as-100-when-working-with-percentage-data" class="slide level2 center">
@@ -541,38 +579,86 @@
 </section>
 <section class="slide level2 center">
 
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-17-1.png" style="width:100.0%" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-18-1.png" style="width:100.0%" class="r-stretch"></section>
+</section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">obtn_race_ethnicity_plot</span>(<span class="st">"Multnomah"</span>) <span class="sc">+</span></span>
-<span id="cb11-2"><a href=""></a>  <span class="fu">geom_col</span>(</span>
-<span id="cb11-3"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb11-4"><a href=""></a>      <span class="at">x =</span> <span class="dv">1</span></span>
-<span id="cb11-5"><a href=""></a>    ),</span>
-<span id="cb11-6"><a href=""></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
-<span id="cb11-7"><a href=""></a>    <span class="at">color =</span> obtn<span class="sc">::</span>tfff_light_green,</span>
-<span id="cb11-8"><a href=""></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
-<span id="cb11-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="st">"Multnomah"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-20-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section class="slide level2 center">
 
-<h3 id="multnomah-county">Multnomah County</h3>
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-20-1.png" style="width:100.0%" class="r-stretch"></section>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-21-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-22-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section class="slide level2 center">
 
-<h3 id="baker-county">Baker County</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="st">"Multnomah"</span>) <span class="sc">+</span></span>
+<span id="cb9-2"><a href=""></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb9-3"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb9-4"><a href=""></a>      <span class="at">x =</span> <span class="dv">1</span></span>
+<span id="cb9-5"><a href=""></a>    ),</span>
+<span id="cb9-6"><a href=""></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb9-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"#A9C27F"</span>,</span>
+<span id="cb9-8"><a href=""></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
+<span id="cb9-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="slide level2 center">
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-21-1.png" style="width:100.0%" class="r-stretch"></section></section>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-24-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-25-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section></section>
 <section>
-<section id="minimize-text-and-think-about-how-to-position-it" class="title-slide slide level1 center">
+<section id="minimize-text-and-think-about-how-to-position-it" class="title-slide slide level1 inverse center">
 <h1>Minimize text and think about how to position it</h1>
 <p>Text WILL overlap so think proactively about how to avoid it</p>
 <aside class="notes">
@@ -588,6 +674,10 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="use-ggrepel-to-avoid-text-overlaps" class="slide level2 center">
+<h2>Use ggrepel to avoid text overlaps</h2>
+<p>But be careful because you don’t know what you’re going to get</p>
 </section>
 <section id="dont-try-to-label-everything" class="slide level2 center">
 <h2>Don’t try to label everything</h2>
@@ -624,19 +714,19 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pct_formatted))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pct_formatted))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-25-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-29-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pct_formatted =</span> <span class="fu">if_else</span>(pct <span class="sc">&gt;</span> <span class="fl">0.07</span>, pct_formatted, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pct_formatted =</span> <span class="fu">if_else</span>(pct <span class="sc">&gt;</span> <span class="fl">0.07</span>, pct_formatted, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -663,18 +753,14 @@
 <section class="slide level2 center">
 
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-28-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-32-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="put-some-labels-inside-bars-and-others-outside-it" class="slide level2 center">
+<h2>Put some labels inside bars and others outside it</h2>
+<p>https://linear.app/rfortherestofus/issue/R4-437/scale-n=1-inconsistency</p>
+</section>
 <section id="dont-put-text-where-it-could-be-obscured" class="slide level2 center">
 <h2>Don’t put text where it could be obscured</h2>
 </section>
-<section class="slide level2 center">
-
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-31-1.png" style="width:100.0%" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-33-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 
@@ -682,11 +768,15 @@
 <section class="slide level2 center">
 
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-36-1.png" style="width:100.0%" class="r-stretch"></section>
-<section id="use-ggrepel-to-avoid-text-overlaps" class="slide level2 center">
-<h2>Use ggrepel to avoid text overlaps</h2>
-<p>But be careful because you don’t know what you’re going to get</p>
-</section></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-37-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-39-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" style="width:100.0%" class="r-stretch"></section></section>
 <section>
 <section id="programmatically-highlight-things" class="title-slide slide level1 center">
 <h1>Programmatically highlight things</h1>
@@ -701,26 +791,29 @@
 <h2>Color (and size)</h2>
 <p>https://show.rfor.us/VDbXYqcw</p>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-37-1.png" style="width:100.0%" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-39-1.png" style="width:100.0%" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" style="width:100.0%" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
 <img data-src="index_files/figure-revealjs/unnamed-chunk-41-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-43-1.png" style="width:100.0%" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-44-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="outlines" class="slide level2 inverse center">
 <h2>Outlines</h2>
+</section>
+<section class="slide level2 center">
+
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-45-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="todo-add-country-map-with-just-outline-before-showing-shadow" class="slide level2 center">
+<h2>TODO: add country map with just outline before showing shadow</h2>
 </section>
 <section id="shadow" class="slide level2 center">
 <h2>Shadow</h2>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
+<img data-src="index_files/figure-revealjs/unnamed-chunk-46-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
 <p>https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -738,6 +831,7 @@
 
 <h3 id="use-shadowtext-to-make-sure-labels-are-visible">Use shadowtext to make sure labels are visible</h3>
 <p>https://show.rfor.us/sFSTz6qJ</p>
+<p>https://x.com/dgkeyes/status/1237812892189093888</p>
 <aside class="notes">
 <p>https://www.nytimes.com/2024/05/23/weather/noaa-atlantic-hurricane-forecast-prediction.html</p>
 <style type="text/css">
@@ -756,7 +850,7 @@
 <h2>Opacity</h2>
 <p>Can’t do it too much because then it looks like a different category</p>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-43-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-47-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="use-gghighlight-to-programmatically-do-this-highlighting" class="slide level2 center">
 <h2>Use gghighlight to programmatically do this highlighting</h2>
 <p>Show how to do each chart above with gghighlight</p>
