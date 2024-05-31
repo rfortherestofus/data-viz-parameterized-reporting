@@ -42,6 +42,8 @@ With parameterized reporting data viz the big thing is everything that is in you
 
 Show snapshots of reports I'm giving examples from (OBTN, PSC, and IVAC)
 
+Show how you add parameter in YAML and then use it in plot functions throughout
+
 # There are packages to help with all of this, but nothing that can help you avoid thinking about your data
 
 
@@ -74,7 +76,39 @@ TODO: Add https://show.rfor.us/9V2Cxw00
 ```{r}
 obtn_race_ethnicity <-
   read_rds("data/obtn_race_ethnicity.rds")
+```
 
+---
+
+```{r}
+#| echo: true
+obtn_race_ethnicity |>
+  filter(county == "Multnomah")
+```
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+race_ethnicity_bar_chart <- function(county_to_plot) {
+  obtn_race_ethnicity |>
+    filter(county == county_to_plot) |>
+    ggplot(
+      aes(
+        x = pct,
+        y = population
+      )
+    ) +
+    geom_col(fill = "#004f39") +
+    ...
+}
+```
+
+
+---
+
+```{r}
 race_ethnicity_bar_chart <- function(county_to_plot) {
   obtn_race_ethnicity_filtered <-
     obtn_race_ethnicity |>
@@ -87,7 +121,7 @@ race_ethnicity_bar_chart <- function(county_to_plot) {
         y = population
       )
     ) +
-    geom_col(fill = obtn::tfff_dark_green) +
+    geom_col(fill = "#004f39") +
     geom_text(
       data = obtn_race_ethnicity_filtered |> filter(population == "White"),
       aes(
@@ -111,7 +145,6 @@ race_ethnicity_bar_chart <- function(county_to_plot) {
 }
 ```
 
----
 
 ```{r}
 #| echo: true
@@ -208,10 +241,10 @@ oregon_counties <-
 ```
 
 ```{r}
-median_income_plot <- function(county) {
+median_income_plot <- function(county_to_plot) {
   median_income |>
-    filter(geography %in% c(county, "Oregon")) |>
-    mutate(geography = fct(geography, levels = c("Oregon", county))) |>
+    filter(geography %in% c(county_to_plot, "Oregon")) |>
+    mutate(geography = fct(geography, levels = c("Oregon", county_to_plot))) |>
     ggplot(
       aes(
         x = amount,
@@ -250,6 +283,28 @@ median_income_plot <- function(county) {
 #| echo: true
 median_income
 ```
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+median_income_plot <- function(county_to_plot) {
+  median_income |>
+    filter(geography %in% c(county_to_plot, "Oregon")) |>
+    ggplot(
+      aes(
+        x = amount,
+        y = geography,
+        label = amount_formatted,
+        fill = geography
+      )
+    ) +
+    geom_col() +
+    ...
+}
+```
+
 
 
 ---
@@ -313,7 +368,7 @@ max_median_income <-
 max_median_income
 ```
 
-. . .
+---
 
 
 ```{r}
@@ -325,7 +380,7 @@ median_income_plot("Jackson") +
   )
 ```
 
----
+. . . 
 
 ```{r}
 #| fig-height: 3
@@ -381,15 +436,17 @@ The problem is, you never know how it will look for all of your plots
 
 ## Use ggrepel to avoid text overlaps {.inverse}
 
----
-
 ```{r}
 library(ggrepel)
 library(palmerpenguins)
 
+set.seed(1234)
+
 penguins_scatterplot <- function(number_of_dots) {
   penguins |>
-    slice_sample(n = number_of_dots) |>
+    group_by(island) |>
+    slice(1:(number_of_dots / 3)) |>
+    ungroup() |>
     ggplot(aes(
       bill_length_mm,
       bill_depth_mm
@@ -402,27 +459,31 @@ penguins_scatterplot <- function(number_of_dots) {
 ---
 
 ```{r}
-penguins_scatterplot(number_of_dots = 10)
+#| echo: true
+penguins_scatterplot(number_of_dots = 36)
 ```
 
 ---
 
 ```{r}
-penguins_scatterplot(number_of_dots = 10) +
+#| echo: true
+penguins_scatterplot(number_of_dots = 36) +
   geom_text(aes(label = island))
 ```
 
 ---
 
 ```{r}
-penguins_scatterplot(number_of_dots = 10) +
+#| echo: true
+penguins_scatterplot(number_of_dots = 36) +
   geom_text_repel(aes(label = island))
 ```
 
 ---
 
 ```{r}
-penguins_scatterplot(number_of_dots = 100) +
+#| echo: true
+penguins_scatterplot(number_of_dots = 120) +
   geom_text_repel(aes(label = island))
 ```
 
@@ -432,13 +493,243 @@ penguins_scatterplot(number_of_dots = 100) +
 But be careful because you don't know what you're going to get
 :::
 
-## Don't try to label everything
+## Don't try to label everything {.inverse}
 
+---
+
+::: {.notes}
 https://show.rfor.us/QLbWktrG (but fix colors so Hartford is red)
+:::
+
+```{r}
+# pschousing::data_population_projection |>
+#   select(area_name:age_cohort_grp, perc_proj) |>
+#   rename(
+#     "geography" = "area_name",
+#     "age_group" = "age_cohort_grp",
+#     "pct" = "perc_proj"
+#   ) |>
+#   mutate(pct_formatted = percent(pct, 1)) |>
+#   write_rds("data/population_projection.rds")
+```
+
+
+```{r}
+population_projection <-
+  read_rds("data/population_projection.rds")
+```
+
+```{r}
+#| echo: true
+population_projection |>
+  filter(geography == "Hartford")
+```
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+population_projection_plot <- function(town_to_plot, county_to_plot) {
+  population_projection |>
+    filter(geography %in% c(town_to_plot, county_to_plot, "Connecticut")) |>
+    ggplot(aes(
+      x = year,
+      y = pct,
+      color = geography,
+      group = geography
+    )) +
+    geom_point() +
+    geom_line() +
+    ...
+}
+```
+
+---
+
+```{r}
+population_projection_plot <- function(town_to_plot, county_to_plot) {
+  population_projection |>
+    filter(geography %in% c(town_to_plot, county_to_plot, "Connecticut")) |>
+    mutate(geography = fct(
+      geography,
+      levels = c("Connecticut", "Hartford County", "Hartford")
+    )) |>
+    ggplot(aes(
+      x = year,
+      y = pct,
+      color = geography,
+      group = geography
+    )) +
+    geom_point(size = 2) +
+    geom_line(show.legend = FALSE) +
+    labs(color = NULL) +
+    facet_wrap(
+      vars(age_group),
+      nrow = 1
+    ) +
+    scale_y_continuous(
+      limits = c(0, 0.4),
+      labels = percent_format(1)
+    ) +
+    scale_color_manual(
+      values = c(
+        "Hartford" = "#9f3515",
+        "Hartford County" = "#fbbfb8",
+        "Connecticut" = "#c4c4c4"
+      )
+    ) +
+    guides(color = guide_legend(reverse = TRUE)) +
+    theme_minimal() +
+    theme(
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank(),
+      legend.position = "bottom",
+      strip.text = element_text(
+        face = "italic",
+        size = 11
+      ),
+      axis.title = element_blank()
+    )
+}
+```
+
+```{r}
+#| echo: true
+#| eval: false
+population_projection_plot(
+  town_to_plot = "Hartford",
+  county_to_plot = "Hartford County"
+)
+```
+
+. . .
+
+```{r}
+population_projection_plot(
+  town_to_plot = "Hartford",
+  county_to_plot = "Hartford County"
+)
+```
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+population_projection_plot(
+  town_to_plot = "Hartford",
+  county_to_plot = "Hartford County"
+) +
+  geom_text(
+    aes(
+      label = pct_formatted
+    )
+  )
+```
+
+. . .
+
+```{r}
+#| fig-height: 4
+population_projection_plot(
+  town_to_plot = "Hartford",
+  county_to_plot = "Hartford County"
+) +
+  geom_text(
+    aes(
+      label = pct_formatted
+    ),
+    show.legend = FALSE
+  )
+```
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+population_projection_plot(
+  town_to_plot = "Hartford",
+  county_to_plot = "Hartford County"
+) +
+  geom_text_repel(
+    aes(
+      label = pct_formatted
+    )
+  )
+```
+
+. . .
+
+```{r}
+#| fig-height: 4
+population_projection_plot(
+  town_to_plot = "Hartford",
+  county_to_plot = "Hartford County"
+) +
+  geom_text_repel(
+    aes(
+      label = pct_formatted
+    ),
+    show.legend = FALSE
+  )
+```
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "6,7"
+population_projection_plot(
+  town_to_plot = "Hartford",
+  county_to_plot = "Hartford County"
+) +
+  geom_text(
+    data = population_projection |> filter(geography == "Hartford"),
+    vjust = -1,
+    aes(
+      label = pct_formatted
+    )
+  )
+```
+
+. . .
+
+```{r}
+#| fig-height: 4
+population_projection_plot(
+  town_to_plot = "Hartford",
+  county_to_plot = "Hartford County"
+) +
+  geom_text(
+    data = population_projection |> filter(geography == "Hartford"),
+    vjust = -1,
+    aes(
+      label = pct_formatted
+    ),
+    show.legend = FALSE
+  )
+```
+
+### Use shadowtext to make sure labels are visible
+
+https://show.rfor.us/sFSTz6qJ
+
+https://x.com/dgkeyes/status/1237812892189093888
+
+https://www.nytimes.com/2024/05/23/weather/noaa-atlantic-hurricane-forecast-prediction.html
+
+
+
+
 
 ## Hide labels below a certain percentage
 
+::: {.notes}
 TODO: Add image of PSC reports
+:::
 
 
 ---
@@ -701,9 +992,84 @@ pre_post_data <-
     growth = rating - lag(rating, 1),
     growth = if_else(timing == "Post", growth, NA),
     growth_formatted = number(growth, 0.1),
-    growth_formatted = str_glue("+{growth_formatted}")
+    growth_formatted = str_glue("+{growth_formatted}"),
+    growth_formatted = if_else(timing == "Post", growth, NA)
   )
 ```
+
+```{r}
+#| echo: true
+pre_post_data
+```
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+
+pre_post_plot <- function(df) {
+  df |>
+    ggplot(aes(
+      x = rating,
+      y = 1,
+      fill = timing
+    )) +
+    geom_line() +
+    geom_point(shape = 21) +
+    ...
+}
+```
+
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+pre_post_data |>
+  pre_post_plot()
+```
+
+. . .
+
+```{r}
+#| fig-height: 2
+pre_post_data |>
+  pre_post_plot()
+```
+
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: 3-7|8-14|15-21
+pre_post_data |>
+  pre_post_plot() +
+  # Ratings within points
+  geom_text(
+    aes(label = rating),
+    color = "white"
+  ) +
+  # Pre/post labels
+  geom_text(
+    aes(
+      label = timing,
+      color = timing
+    )
+  ) +
+  # Growth label
+  geom_text(
+    aes(
+      x = rating - growth / 2,
+      label = growth_formatted
+    )
+  )
+```
+
+. . .
 
 ```{r}
 #| fig-height: 2
@@ -746,10 +1112,17 @@ pre_post_data <-
     growth = rating - lag(rating, 1),
     growth = if_else(timing == "Post", growth, NA),
     growth_formatted = number(growth, 0.1),
-    growth_formatted = str_glue("+{growth_formatted}")
+    growth_formatted = str_glue("+{growth_formatted}"),
+    growth_formatted = if_else(timing == "Post", growth, NA)
   )
 ```
 
+```{r}
+#| echo: true
+pre_post_data
+```
+
+. . .
 
 
 ```{r}
@@ -777,31 +1150,67 @@ pre_post_data |>
 ---
 
 ```{r}
+#| echo: true
+#| code-line-numbers: 3-6
 pre_post_data <-
-  tribble(
-    ~question,
-    ~timing,
-    ~rating,
-    "Question 1",
-    "Pre",
-    3.5,
-    "Question 1",
-    "Post",
-    3.6
-  ) |>
-  mutate(
-    growth = rating - lag(rating, 1),
-    growth = if_else(timing == "Post", growth, NA),
-    growth_formatted = number(growth, 0.1),
-    growth_formatted = if_else(timing == "Pre", NA, str_glue("+{growth_formatted}"))
-  ) |>
+  pre_post_data |>
   mutate(rating_text_position = case_when(
     timing == "Pre" ~ rating - 0.15,
     timing == "Post" ~ rating + 0.15
   ))
 ```
 
+. . .
 
+```{r}
+#| echo: true
+pre_post_data
+```
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: 3-8|9-14
+pre_post_data |>
+  pre_post_plot() +
+  geom_text(
+    aes(
+      x = rating_text_position,
+      label = rating
+    )
+  ) +
+  geom_text(
+    aes(
+      x = rating_text_position,
+      label = timing
+    )
+  ) +
+  ...
+```
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+pre_post_data |>
+  pre_post_plot() +
+  geom_text(
+    aes(
+      x = rating_text_position,
+      label = rating
+    )
+  ) +
+  geom_text(
+    aes(
+      x = rating_text_position,
+      label = timing
+    )
+  ) +
+  ...
+```
 
 
 ```{r}
@@ -834,6 +1243,23 @@ pre_post_data |>
 ```
 
 ---
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: 3-8
+pre_post_data |>
+  pre_post_plot() +
+  geom_label(
+    aes(
+      x = 6,
+      label = growth_formatted
+    )
+  ) +
+  ...
+```
+
+. . .
 
 ```{r}
 #| fig-height: 2
@@ -899,6 +1325,8 @@ pre_post_data |>
 # Programmatically highlight things
 
 1. Color
+
+1. Size
 
 1. Outline
 
@@ -1076,16 +1504,14 @@ building_permits_by_county |>
   )
 ```
 
-## TODO: add country map with just outline before showing shadow
 
-## Shadow
+## Shadow {.inverse}
 
 ```{r}
 library(ggfx)
 library(sf)
 
 sf_region_ig1_2_map <- read_rds("data/sf_region_ig1_2_map.rds")
-country_filter <- "Saudi Arabia"
 
 ia2030_colors <- list(
   navy = "#1f4675",
@@ -1100,115 +1526,125 @@ ia2030_colors <- list(
   dark_grey = "#353535"
 )
 
-ggplot() +
-  geom_sf(
-    data = sf_region_ig1_2_map |>
-      filter(ind_region == 1) |>
-      add_row(status = "Achieved", disease = "Rubella") |>
-      add_row(status = "Re-established", disease = "Rubella") |>
-      add_row(status = "Not achieved", disease = "Rubella") |>
-      add_row(status = "No data", disease = "Rubella"),
-    aes(fill = status),
-    linewidth = 0.2,
-    color = "white",
-    alpha = 0.95
-  ) +
-  geom_sf(
-    data = sf_region_ig1_2_map |>
-      filter(ind_region == 0),
-    fill = "lightgrey",
-    color = "grey",
-    linewidth = 0,
-    alpha = 0.5
-  ) +
-  # shadow for the current country
-  ggfx::with_shadow(
+region_map <- function(opacity_level = 1) {
+  ggplot() +
     geom_sf(
       data = sf_region_ig1_2_map |>
-        filter(country_name == country_filter),
+        filter(ind_region == 1) |>
+        add_row(status = "Achieved", disease = "Rubella") |>
+        add_row(status = "Re-established", disease = "Rubella") |>
+        add_row(status = "Not achieved", disease = "Rubella") |>
+        add_row(status = "No data", disease = "Rubella"),
       aes(fill = status),
-      linewidth = 0.8,
+      linewidth = 0.2,
       color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  ) +
-  facet_wrap(
-    vars(disease),
-    labeller = labeller(disease = label_wrap_gen(20))
-  ) +
-  scale_fill_manual(
-    name = "",
-    values = c(
-      "Achieved" = ia2030_colors$navy,
-      "Re-established" = ia2030_colors$yellow,
-      "Not achieved" = ia2030_colors$red,
-      "No data" = ia2030_colors$light_grey
-    ),
-    drop = FALSE
-  ) +
-  theme_void() +
-  theme(
-    strip.text = element_text(
-      size = 9,
-      family = "Inter"
-    ),
-    plot.margin = margin(rep(20, 4)),
-    legend.position = "bottom"
-  )
+      alpha = opacity_level
+    ) +
+    geom_sf(
+      data = sf_region_ig1_2_map |>
+        filter(ind_region == 0),
+      fill = "lightgrey",
+      color = "grey",
+      linewidth = 0,
+      alpha = 0.5
+    ) +
+    facet_wrap(
+      vars(disease),
+      labeller = labeller(disease = label_wrap_gen(20))
+    ) +
+    scale_fill_manual(
+      name = "",
+      values = c(
+        "Achieved" = ia2030_colors$navy,
+        "Re-established" = ia2030_colors$yellow,
+        "Not achieved" = ia2030_colors$red,
+        "No data" = ia2030_colors$light_grey
+      ),
+      drop = FALSE
+    ) +
+    theme_void() +
+    theme(
+      strip.text = element_text(
+        size = 9,
+        family = "Inter"
+      ),
+      plot.margin = margin(rep(20, 4)),
+      legend.position = "bottom"
+    )
+}
 ```
+
+---
+
+```{r}
+region_map()
+```
+
 
 ::: {.notes}
 https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/
 :::
 
 
+
 ---
 
-### Use shadowtext to make sure labels are visible
+```{r}
+#| echo: true
+#| eval: false
 
-https://show.rfor.us/sFSTz6qJ
+region_map() +
+  with_shadow(
+    geom_sf(
+      data = sf_region_ig1_2_map |> filter(country_name == "Saudi Arabia")
+    ),
+    ...
+  )
+```
 
-https://x.com/dgkeyes/status/1237812892189093888
-
-
-::: {.notes}
-https://www.nytimes.com/2024/05/23/weather/noaa-atlantic-hurricane-forecast-prediction.html
-:::
-
-## Opacity
-
-Can't do it too much because then it looks like a different category
+. . .
 
 ```{r}
-ggplot() +
-  geom_sf(
-    data = sf_region_ig1_2_map |>
-      filter(ind_region == 1) |>
-      add_row(status = "Achieved", disease = "Rubella") |>
-      add_row(status = "Re-established", disease = "Rubella") |>
-      add_row(status = "Not achieved", disease = "Rubella") |>
-      add_row(status = "No data", disease = "Rubella"),
-    aes(fill = status),
-    linewidth = 0.2,
-    color = "white",
-    alpha = 0.75
-  ) +
-  geom_sf(
-    data = sf_region_ig1_2_map |>
-      filter(ind_region == 0),
-    fill = "lightgrey",
-    color = "grey",
-    linewidth = 0,
-    alpha = 0.5
-  ) +
+region_map() +
   # shadow for the current country
-  ggfx::with_shadow(
+  with_shadow(
     geom_sf(
-      data = sf_region_ig1_2_map |>
-        filter(country_name == country_filter),
+      data = sf_region_ig1_2_map |> filter(country_name == "Saudi Arabia"),
+      aes(fill = status),
+      alpha = 1,
+      color = "white",
+    ),
+    sigma = 0,
+    x_offset = 1,
+    y_offset = 1
+  )
+```
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "6"
+
+region_map() +
+  with_shadow(
+    geom_sf(
+      data = sf_region_ig1_2_map |> filter(country_name == "Saudi Arabia")
+    ),
+    linewidth = 0.8,
+    ...
+  )
+```
+
+. . .
+
+```{r}
+region_map() +
+  # shadow for the current country
+  with_shadow(
+    geom_sf(
+      data = sf_region_ig1_2_map |> filter(country_name == "Saudi Arabia"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
@@ -1217,29 +1653,95 @@ ggplot() +
     sigma = 0,
     x_offset = 1,
     y_offset = 1
-  ) +
-  facet_wrap(
-    vars(disease),
-    labeller = labeller(disease = label_wrap_gen(20))
-  ) +
-  scale_fill_manual(
-    name = "",
-    values = c(
-      "Achieved" = ia2030_colors$navy,
-      "Re-established" = ia2030_colors$yellow,
-      "Not achieved" = ia2030_colors$red,
-      "No data" = ia2030_colors$light_grey
+  )
+```
+
+::: {.notes}
+Add outline to make it pop even more
+:::
+
+
+## Opacity
+
+
+
+```{r}
+region_map(opacity_level = 0.75) +
+  # shadow for the current country
+  with_shadow(
+    geom_sf(
+      data = sf_region_ig1_2_map |> filter(country_name == "Saudi Arabia"),
+      aes(fill = status),
+      linewidth = 0.8,
+      color = "white",
+      alpha = 1
     ),
-    drop = FALSE
-  ) +
-  theme_void() +
-  theme(
-    strip.text = element_text(
-      size = 9,
-      family = "Inter"
+    sigma = 0,
+    x_offset = 1,
+    y_offset = 1
+  )
+```
+
+---
+
+```{r}
+region_map(opacity_level = 0.25) +
+  # shadow for the current country
+  with_shadow(
+    geom_sf(
+      data = sf_region_ig1_2_map |> filter(country_name == "Saudi Arabia"),
+      aes(fill = status),
+      linewidth = 0.8,
+      color = "white",
+      alpha = 1
     ),
-    plot.margin = margin(rep(20, 4)),
-    legend.position = "bottom"
+    sigma = 0,
+    x_offset = 1,
+    y_offset = 1
+  )
+```
+
+::: {.notes}
+Can't do it too much because then it looks like a different category
+:::
+
+---
+
+
+```{r}
+region_map(opacity_level = 0.75) +
+  # shadow for the current country
+  with_shadow(
+    geom_sf(
+      data = sf_region_ig1_2_map |> filter(country_name == "Iraq"),
+      aes(fill = status),
+      linewidth = 0.8,
+      color = "white",
+      alpha = 1
+    ),
+    sigma = 0,
+    x_offset = 1,
+    y_offset = 1
+  )
+```
+
+---
+
+
+```{r}
+region_map(opacity_level = 0.75) +
+  # shadow for the current country
+  with_shadow(
+    geom_sf(
+      data = sf_region_ig1_2_map |> filter(country_name == "Somalia"),
+      aes(fill = status),
+      linewidth = 0.8,
+      color = "white",
+      alpha = 1
+    ),
+    sigma = 0,
+    x_offset = 1,
+    y_offset = 1
   )
 ```
 
