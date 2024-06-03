@@ -396,11 +396,47 @@
 </div>
 
 </section>
+<section>
 <section id="intro" class="title-slide slide level1 inverse center">
 <h1>Intro</h1>
-
+<ul>
+<li class="fragment">Who I am</li>
+<li class="fragment">Who R for the Rest of Us is</li>
+</ul>
 </section>
+<section id="reports-weve-worked-on" class="slide level2 center">
+<h2>Reports we’ve worked on</h2>
+<p>TODO: Add snapshots</p>
+<aside class="notes">
+<p>Giving a talk on report design at posit::conf</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 center">
 
+
+<img data-src="assets/obtn-overview.png" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="assets/psc-overview.png" class="r-stretch"></section>
+<section class="slide level2 center">
+
+
+<img data-src="assets/ia2030-overview.png" class="r-stretch"></section>
+<section class="slide level2 center">
+
+<p>TODO: Add CWP</p>
+</section></section>
 <section>
 <section id="what-is-parameterized-reporting" class="title-slide slide level1 inverse center">
 <h1>What is parameterized reporting?</h1>
@@ -473,11 +509,11 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb4-2"><a href=""></a></span>
 <span id="cb4-3"><a href=""></a><span class="fu">life_expectancy_plot</span>()</span>
 <span id="cb4-4"><a href=""></a>gapminder <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href=""></a>  <span class="fu">filter</span>(country <span class="sc">==</span> params<span class="sc">$</span>country) <span class="sc">|&gt;</span> </span>
+<span id="cb4-5"><a href=""></a>  <span class="fu">filter</span>(country <span class="sc">==</span> params<span class="sc">$</span>country) <span class="sc">|&gt;</span></span>
 <span id="cb4-6"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
 <span id="cb4-7"><a href=""></a>    <span class="at">x =</span> year,</span>
 <span id="cb4-8"><a href=""></a>    <span class="at">y =</span> lifeExp</span>
@@ -512,7 +548,7 @@
 <div class="sourceCode cell-code" id="cb6" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb6-2"><a href=""></a></span>
 <span id="cb6-3"><a href=""></a>gapminder <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href=""></a>  <span class="fu">filter</span>(country <span class="sc">==</span> params<span class="sc">$</span>country) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href=""></a>  <span class="fu">filter</span>(country <span class="sc">==</span> params<span class="sc">$</span>country) <span class="sc">|&gt;</span></span>
 <span id="cb6-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
 <span id="cb6-6"><a href=""></a>    <span class="at">x =</span> year,</span>
 <span id="cb6-7"><a href=""></a>    <span class="at">y =</span> lifeExp</span>
@@ -532,11 +568,31 @@
 </div>
 </div>
 </section>
-<section id="show-snapshots-of-reports-im-giving-examples-from-obtn-psc-and-ivac" class="slide level2 center">
-<h2>Show snapshots of reports I’m giving examples from (OBTN, PSC, and IVAC)</h2>
-<p>TODO: Add snapshots</p>
+<section id="there-is-no-magic-package" class="slide level2 center">
+<h2>There is no magic package</h2>
+<div class="fragment">
+<p>You’ve got to think deeply about your data</p>
 <aside class="notes">
-<p>Giving a talk on report design at posit::conf</p>
+<p>There are packages to help with all of this, but nothing that can help you avoid thinking about your data</p>
+<p>With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section></section>
+<section>
+<section id="consider-the-outer-limits-of-your-data" class="title-slide slide level1 inverse center" data-background-image="assets/outer-limits.jpg">
+<h1>Consider the outer limits of your data</h1>
+<aside class="notes">
+<p>Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -549,24 +605,27 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="with-parameterized-reporting-data-viz-the-big-thing-is-everything-that-is-in-your-data-is-unknown-until-you-generate-all-reports" class="slide level2 center">
-<h2>With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports</h2>
-</section>
-<section id="there-are-packages-to-help-with-all-of-this-but-nothing-that-can-help-you-avoid-thinking-about-your-data" class="slide level2 center">
-<h2>There are packages to help with all of this, but nothing that can help you avoid thinking about your data</h2>
-</section></section>
-<section>
-<section id="think-about-min-and-max-of-all-data" class="title-slide slide level1 inverse center">
-<h1>Think about min and max of all data</h1>
+<section class="slide level2 center">
 
-</section>
-<section id="set-limits-as-100-when-working-with-percent-data" class="slide level2 inverse center">
-<h2>Set limits as 100% when working with percent data</h2>
+
+<img data-src="assets/obtn-multnomah-race-ethnicity.png" class="r-stretch"><aside class="notes">
+<p>Set limits as 100% when working with percent data</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section class="slide level2 center">
 
 
-<img data-src="assets/obtn-multnomah.png" class="r-stretch"></section>
+<img data-src="assets/obtn-race-ethnicity.png" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
@@ -577,13 +636,13 @@
   county    population                           pct pct_formatted
   &lt;chr&gt;     &lt;fct&gt;                              &lt;dbl&gt; &lt;chr&gt;        
 1 Multnomah American Indian/Alaska Native    0.00607 0.6%         
-2 Multnomah Asian                            0.0754  7.5%         
-3 Multnomah Black/African American           0.0526  5.3%         
-4 Multnomah Hispanic/Latino                  0.123   12.3%        
-5 Multnomah Native Hawaiian/Pacific Islander 0.00608 0.6%         
-6 Multnomah Some other race                  0.00447 0.4%         
-7 Multnomah Two or more races                0.0581  5.8%         
-8 Multnomah White                            0.674   67.4%        </code></pre>
+2 Multnomah Asian                            0.0758  7.6%         
+3 Multnomah Black/African American           0.0512  5.1%         
+4 Multnomah Hispanic/Latino                  0.121   12.1%        
+5 Multnomah Native Hawaiian/Pacific Islander 0.00630 0.6%         
+6 Multnomah Some other race                  0.00439 0.4%         
+7 Multnomah Two or more races                0.0546  5.5%         
+8 Multnomah White                            0.681   68.1%        </code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -693,10 +752,11 @@
       }</style></aside>
 </div>
 </section>
-<section id="set-limits-of-plot-based-on-max-of-all-data" class="slide level2 inverse center">
-<h2>Set limits of plot based on max of all data</h2>
-<aside class="notes">
-<p>Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports</p>
+<section class="slide level2 center">
+
+
+<img data-src="assets/obtn-multnomah-median-income.png" class="r-stretch"><aside class="notes">
+<p>Set limits of plot based on max of all data</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -875,8 +935,8 @@
 </div>
 </section></section>
 <section>
-<section id="minimize-text-and-think-about-how-to-position-it" class="title-slide slide level1 inverse center">
-<h1>Minimize text and think about how to position it</h1>
+<section id="minimize-text-and-position-it-carefully" class="title-slide slide level1 inverse center">
+<h1>Minimize text and position it carefully</h1>
 <aside class="notes">
 <p>Text WILL overlap so think proactively about how to avoid it</p>
 <p>The problem is, you never know how it will look for all of your plots</p>
@@ -892,8 +952,8 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="use-ggrepel-to-avoid-text-overlaps" class="slide level2 inverse center">
-<h2>Use ggrepel to avoid text overlaps</h2>
+<section id="heres-the-problem-with-text-and-one-solution" class="slide level2 inverse center">
+<h2>Here’s the problem with text (and one solution)</h2>
 </section>
 <section class="slide level2 center">
 
@@ -939,13 +999,13 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="dont-try-to-label-everything" class="slide level2 inverse center">
-<h2>Don’t try to label everything</h2>
+<section id="dont-label-everything" class="slide level2 inverse center">
+<h2>Don’t label everything</h2>
 </section>
 <section class="slide level2 center">
 
-<p>TODO: Add original image</p>
-</section>
+
+<img data-src="assets/psc-population-projection.png" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <aside class="notes">
@@ -1095,8 +1155,8 @@
 </div>
 </div>
 </section>
-<section id="hide-labels-below-a-certain-percentage" class="slide level2 center">
-<h2>Hide labels below a certain percentage</h2>
+<section id="dont-show-small-numbers" class="slide level2 center">
+<h2>Don’t show small numbers</h2>
 <aside class="notes">
 <p>TODO: Add image of PSC reports</p>
 <style type="text/css">
@@ -1114,7 +1174,7 @@
 <section class="slide level2 center">
 
 
-<img data-src="assets/psc-hide-numbers.png" class="r-stretch"></section>
+<img data-src="assets/psc-housing-cost-burden.png" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
@@ -1138,7 +1198,16 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> pct_formatted))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb32-3"><a href=""></a>    <span class="at">x =</span> pct,</span>
+<span id="cb32-4"><a href=""></a>    <span class="at">y =</span> location,</span>
+<span id="cb32-5"><a href=""></a>    <span class="at">fill =</span> burden_level,</span>
+<span id="cb32-6"><a href=""></a>    <span class="at">label =</span> pct_formatted</span>
+<span id="cb32-7"><a href=""></a>  )) <span class="sc">+</span></span>
+<span id="cb32-8"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb32-9"><a href=""></a>  <span class="fu">geom_text</span>(<span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb32-10"><a href=""></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1184,8 +1253,9 @@
 <p>See https://show.rfor.us/KZLV6HQW (https://www.nytimes.com/2024/06/02/realestate/housing-market-rates-prices-slow.html)</p>
 <p>https://linear.app/rfortherestofus/issue/R4-437/scale-n=1-inconsistency</p>
 </section>
-<section id="dont-put-text-where-it-could-be-obscured" class="slide level2 center">
+<section id="dont-put-text-where-it-could-be-obscured" class="slide level2 inverse center">
 <h2>Don’t put text where it could be obscured</h2>
+<p>TODO: Show original plot</p>
 </section>
 <section class="slide level2 center">
 
@@ -1383,8 +1453,8 @@
 </div>
 </section></section>
 <section>
-<section id="programmatically-highlight-things" class="title-slide slide level1 inverse center">
-<h1>Programmatically highlight things</h1>
+<section id="use-multiple-aesthetic-properties-to-highlight" class="title-slide slide level1 inverse center">
+<h1>Use multiple aesthetic properties to highlight</h1>
 
 </section>
 <section id="use-all-aesthetic-properties-at-your-disposal" class="slide level2 center">
@@ -1416,6 +1486,9 @@
 <img data-src="index_files/figure-revealjs/unnamed-chunk-83-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="shadow" class="slide level2 inverse center">
 <h2>Shadow</h2>
+</section>
+<section class="slide level2 center">
+
 <p>TODO: Add code to show how map is made</p>
 <aside class="notes">
 <p>Explain how we’re not using aesthetic properties here so much as putting another layer on top of existing layers</p>

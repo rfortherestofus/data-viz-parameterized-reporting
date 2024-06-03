@@ -34,6 +34,32 @@ library(patchwork)
 
 # Intro {.inverse}
 
+- Who I am
+- Who R for the Rest of Us is
+
+## Reports we've worked on
+
+TODO: Add snapshots
+
+::: {.notes}
+Giving a talk on report design at posit::conf
+:::
+
+---
+
+![](assets/obtn-overview.png)
+
+---
+
+![](assets/psc-overview.png)
+
+---
+
+![](assets/ia2030-overview.png)
+
+---
+
+TODO: Add CWP
 
 
 # What is parameterized reporting? {.inverse}
@@ -95,12 +121,12 @@ params:
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "4"
+#| code-line-numbers: "5"
 library(tidyverse)
 
 life_expectancy_plot()
 gapminder |>
-  filter(country == params$country) |> 
+  filter(country == params$country) |>
   ggplot(aes(
     x = year,
     y = lifeExp
@@ -145,7 +171,7 @@ params:
 library(tidyverse)
 
 gapminder |>
-  filter(country == params$country) |> 
+  filter(country == params$country) |>
   ggplot(aes(
     x = year,
     y = lifeExp
@@ -159,7 +185,7 @@ gapminder |>
 #| fig-height: 3
 
 gapminder |>
-  filter(country == "Albania") |> 
+  filter(country == "Albania") |>
   ggplot(aes(
     x = year,
     y = lifeExp
@@ -168,33 +194,41 @@ gapminder |>
 ```
 
 
-## Show snapshots of reports I'm giving examples from (OBTN, PSC, and IVAC)
 
-TODO: Add snapshots
+
+## There is no magic package
+
+. . .
+
+You've got to think deeply about your data
 
 ::: {.notes}
-Giving a talk on report design at posit::conf
+There are packages to help with all of this, but nothing that can help you avoid thinking about your data
+
+With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports
 :::
 
-## With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports
-
-
-## There are packages to help with all of this, but nothing that can help you avoid thinking about your data
-
-
-# Think about min and max of all data {.inverse}
 
 
 
-## Set limits as 100% when working with percent data {.inverse}
+# Consider the outer limits of your data {background-image="assets/outer-limits.jpg" .inverse}
+
+::: {.notes}
+Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports
+:::
+
 
 ---
 
-![](assets/obtn-multnomah.png)
+![](assets/obtn-multnomah-race-ethnicity.png)
+
+::: {.notes}
+Set limits as 100% when working with percent data
+:::
 
 ```{r}
 # obtn::obtn_race_ethnicity |>
-#   filter(year == 2024) |>
+#   filter(year == 2023) |>
 #   filter(geography %in% obtn::obtn_oregon_counties) |>
 #   select(geography:value) |>
 #   rename(
@@ -207,10 +241,8 @@ Giving a talk on report design at posit::conf
 ```
 
 ---
-![](assets/obtn-race-ethnicity-plots.png)
 
-
----
+![](assets/obtn-race-ethnicity.png)
 
 ```{r}
 obtn_race_ethnicity <-
@@ -363,15 +395,13 @@ race_ethnicity_bar_chart("Baker") +
 Could also do this with `scale_x_continous(limits = c(0, 1))`
 :::
 
-## Set limits of plot based on max of all data {.inverse}
-
-::: {.notes}
-Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports
-:::
-
 ---
 
-TODO: Add image of original plots
+![](assets/obtn-multnomah-median-income.png)
+
+::: {.notes}
+Set limits of plot based on max of all data
+:::
 
 ```{r}
 median_income <- read_csv("data/median_income.csv") |>
@@ -573,7 +603,7 @@ median_income_plot("Washington") +
 ```
 
 
-# Minimize text and think about how to position it {.inverse}
+# Minimize text and position it carefully {.inverse}
 
 ::: {.notes}
 Text WILL overlap so think proactively about how to avoid it
@@ -581,7 +611,7 @@ Text WILL overlap so think proactively about how to avoid it
 The problem is, you never know how it will look for all of your plots
 :::
 
-## Use ggrepel to avoid text overlaps {.inverse}
+## Here's the problem with text (and one solution) {.inverse}
 
 ```{r}
 library(ggrepel)
@@ -640,11 +670,11 @@ penguins_scatterplot(number_of_dots = 120) +
 But be careful because you don't know what you're going to get
 :::
 
-## Don't try to label everything {.inverse}
+## Don't label everything {.inverse}
 
 ---
 
-TODO: Add original image
+![](assets/psc-population-projection.png)
 
 ---
 
@@ -870,7 +900,7 @@ population_projection_plot(
 
 
 
-## Hide labels below a certain percentage
+## Don't show small numbers 
 
 ::: {.notes}
 TODO: Add image of PSC reports
@@ -879,7 +909,7 @@ TODO: Add image of PSC reports
 
 ---
 
-![](assets/psc-hide-numbers.png)
+![](assets/psc-housing-cost-burden.png)
 
 ---
 
@@ -949,7 +979,16 @@ housing_cost_burden
 ```{r}
 #| echo: true
 #| eval: false
-geom_text(aes(label = pct_formatted))
+housing_cost_burden |>
+  ggplot(aes(
+    x = pct,
+    y = location,
+    fill = burden_level,
+    label = pct_formatted
+  )) +
+  geom_col() +
+  geom_text(position = position_stack(vjust = 0.5)) +
+  ...
 ```
 
 ---
@@ -1473,7 +1512,7 @@ pre_post_data |>
 
 
 
-# Programmatically highlight things {.inverse}
+# Use multiple aesthetic properties to highlight {.inverse}
 
 ## Use all aesthetic properties at your disposal
 
