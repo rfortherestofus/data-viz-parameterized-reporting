@@ -20,6 +20,8 @@ knitr:
 title-slide-attributes:
   data-background-image: assets/rru-hex-bg-gradient-dark.svg
   data-background-size: cover
+params:
+  country: "Afghanistan"
 editor_options: 
   chunk_output_type: console
 ---
@@ -30,31 +32,165 @@ library(scales)
 library(patchwork)
 ```
 
-# Intro
+# Intro {.inverse}
 
 
 
-# What is parameterized reporting
+# What is parameterized reporting? {.inverse}
 
-Add animation here
+---
 
-With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports
+![](assets/parameterized-reporting-1.png)
 
-Show snapshots of reports I'm giving examples from (OBTN, PSC, and IVAC)
+---
 
-Show how you add parameter in YAML and then use it in plot functions throughout
+![](assets/parameterized-reporting-2.png)
 
-# There are packages to help with all of this, but nothing that can help you avoid thinking about your data
+---
+
+![](assets/parameterized-reporting-3.png)
+
+---
+
+![](assets/parameterized-reporting-4.png)
+
+---
+
+![](assets/parameterized-reporting-5.png)
+
+---
+
+![](assets/parameterized-reporting-6.png)
+
+---
+
+![](assets/parameterized-reporting-7.png)
+
+## How parameterized reporting works {.inverse}
+
+---
+
+```{r}
+#| echo: true
+library(gapminder)
+
+gapminder
+```
+
+---
+
+```{yaml}
+#| echo: true
+---
+title: "My report"
+format: html
+params:
+  country: "Afghanistan"
+---
+```
+
+. . .
+
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "4"
+library(tidyverse)
+
+life_expectancy_plot()
+gapminder |>
+  filter(country == params$country) |> 
+  ggplot(aes(
+    x = year,
+    y = lifeExp
+  )) +
+  geom_line()
+```
+
+. . .
+
+```{r}
+#| fig-height: 3
+
+gapminder |>
+  filter(country == params$country) |>
+  ggplot(aes(
+    x = year,
+    y = lifeExp
+  )) +
+  geom_line()
+```
+
+---
+
+```{yaml}
+#| echo: true
+#| eval: false
+---
+title: "My report"
+format: html
+params:
+  country: "Albania"
+---
+```
+
+. . .
+
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "4"
+library(tidyverse)
+
+gapminder |>
+  filter(country == params$country) |> 
+  ggplot(aes(
+    x = year,
+    y = lifeExp
+  )) +
+  geom_line()
+```
+
+. . .
+
+```{r}
+#| fig-height: 3
+
+gapminder |>
+  filter(country == "Albania") |> 
+  ggplot(aes(
+    x = year,
+    y = lifeExp
+  )) +
+  geom_line()
+```
+
+
+## Show snapshots of reports I'm giving examples from (OBTN, PSC, and IVAC)
+
+TODO: Add snapshots
+
+::: {.notes}
+Giving a talk on report design at posit::conf
+:::
+
+## With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports
+
+
+## There are packages to help with all of this, but nothing that can help you avoid thinking about your data
 
 
 # Think about min and max of all data {.inverse}
 
 
 
-## You can also just set limits as 100% when working with percentage data
+## Set limits as 100% when working with percent data {.inverse}
 
+---
 
-TODO: Add https://show.rfor.us/9V2Cxw00
+![](assets/obtn-multnomah.png)
 
 ```{r}
 # obtn::obtn_race_ethnicity |>
@@ -69,6 +205,12 @@ TODO: Add https://show.rfor.us/9V2Cxw00
 #   mutate(population = fct_rev(population)) |>
 #   write_rds("data/obtn_race_ethnicity.rds")
 ```
+
+---
+![](assets/obtn-race-ethnicity-plots.png)
+
+
+---
 
 ```{r}
 obtn_race_ethnicity <-
@@ -217,11 +359,19 @@ race_ethnicity_bar_chart("Baker") +
   )
 ```
 
-## Set limits of plot based on max of all data
+::: {.notes}
+Could also do this with `scale_x_continous(limits = c(0, 1))`
+:::
+
+## Set limits of plot based on max of all data {.inverse}
 
 ::: {.notes}
 Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports
 :::
+
+---
+
+TODO: Add image of original plots
 
 ```{r}
 median_income <- read_csv("data/median_income.csv") |>
@@ -377,7 +527,7 @@ median_income_plot("Jackson") +
   )
 ```
 
-. . . 
+. . .
 
 ```{r}
 #| fig-height: 3
@@ -494,9 +644,11 @@ But be careful because you don't know what you're going to get
 
 ---
 
-::: {.notes}
 TODO: Add original image
 
+---
+
+::: {.notes}
 https://show.rfor.us/QLbWktrG (but fix colors so Hartford is red)
 :::
 
@@ -712,13 +864,7 @@ population_projection_plot(
   )
 ```
 
-## Use shadowtext to make sure labels are visible
 
-https://show.rfor.us/sFSTz6qJ
-
-https://x.com/dgkeyes/status/1237812892189093888
-
-https://www.nytimes.com/2024/05/23/weather/noaa-atlantic-hurricane-forecast-prediction.html
 
 
 
@@ -902,10 +1048,16 @@ housing_cost_burden |>
 
 ## Put some labels inside bars and others outside it
 
+Change to "put text off of the panel?"
+
+See https://show.rfor.us/KZLV6HQW (https://www.nytimes.com/2024/06/02/realestate/housing-market-rates-prices-slow.html)
+
 https://linear.app/rfortherestofus/issue/R4-437/scale-n=1-inconsistency
 
 
-## Don't put text where it could be obscured
+## Don't put text where it could be obscured {.inverse}
+
+TODO: Show original plot
 
 ---
 
@@ -1321,19 +1473,21 @@ pre_post_data |>
 
 
 
-# Programmatically highlight things
+# Programmatically highlight things {.inverse}
+
+## Use all aesthetic properties at your disposal
 
 1. Color
 
 1. Size
 
-1. Outline
-
 1. Shadow
+
+1. Outline
 
 1. Opacity
 
-## Color and Size
+## Color and size
 
 ::: {.notes}
 TODO: Add https://show.rfor.us/VDbXYqcw
@@ -1412,125 +1566,11 @@ single_family_homes_plot(city_to_highlight = "Bethel")
 ```
 
 
-
----
-
-```{r}
-building_permits_by_county <-
-  pschousing::data_building_permits |>
-  filter(area_level == "County")
-
-building_permits_highlight_county <-
-  building_permits_by_county |>
-  filter(area_name == "Hartford County")
-```
-
-```{r}
-building_permits_by_county |>
-  ggplot(
-    aes(
-      x = year,
-      y = nb_building_permits,
-      group = area_name
-    )
-  ) +
-  geom_line(color = "grey90") +
-  geom_line(
-    data = building_permits_highlight_county,
-    color = "#15397f"
-  ) +
-  scale_y_continuous(
-    labels = comma_format()
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    axis.title = element_blank(),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.x = element_blank(),
-    panel.grid.major.y = element_line(
-      linetype = "dotted",
-      color = "grey80"
-    )
-  )
-```
-
----
-
-```{r}
-building_permits_by_county |>
-  ggplot(
-    aes(
-      x = year,
-      y = nb_building_permits,
-      group = area_name
-    )
-  ) +
-  geom_line(color = "grey90") +
-  geom_line(
-    data = building_permits_highlight_county,
-    color = "#15397f",
-    linewidth = 1
-  ) +
-  scale_y_continuous(
-    labels = comma_format()
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    axis.title = element_blank(),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.x = element_blank(),
-    panel.grid.major.y = element_line(
-      linetype = "dotted",
-      color = "grey80"
-    )
-  )
-```
-
-
-
-## Outlines {.inverse}
-
----
-
-```{r}
-library(ggborderline)
-
-building_permits_by_county |>
-  ggplot(
-    aes(
-      x = year,
-      y = nb_building_permits,
-      group = area_name
-    )
-  ) +
-  geom_line(color = "grey90") +
-  geom_borderline(
-    data = building_permits_highlight_county,
-    bordercolour = "white",
-    borderwidth = 0.75,
-    linewidth = 1,
-    color = "#15397f"
-  ) +
-  scale_y_continuous(
-    labels = comma_format()
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "none",
-    axis.title = element_blank(),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.x = element_blank(),
-    panel.grid.major.y = element_line(
-      linetype = "dotted",
-      color = "grey80"
-    )
-  )
-```
-
-
 ## Shadow {.inverse}
+
+---
+
+TODO: Add code to show how map is made
 
 ```{r}
 library(ggfx)
@@ -1599,6 +1639,10 @@ region_map <- function(opacity_level = 1) {
 }
 ```
 
+::: {.notes}
+Explain how we're not using aesthetic properties here so much as putting another layer on top of existing layers
+:::
+
 ---
 
 ```{r}
@@ -1617,6 +1661,7 @@ https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/
 ```{r}
 #| echo: true
 #| eval: false
+#| code-line-numbers: 2-7
 
 region_map() +
   with_shadow(
@@ -1644,6 +1689,8 @@ region_map() +
     y_offset = 1
   )
 ```
+
+## Outline {.inverse}
 
 ---
 
@@ -1686,8 +1733,9 @@ Add outline to make it pop even more
 :::
 
 
-## Opacity
+## Opacity {.inverse}
 
+---
 
 
 ```{r}
@@ -1783,3 +1831,7 @@ Show how to do each chart above with gghighlight
 1. Think carefully about text
 
 1. Highlight strategically and programatically
+
+::: {.notes}
+The solution is less code and more thinking about data
+:::
