@@ -911,7 +911,7 @@ population_projection_plot(
   county_to_plot = "Fairfield County"
 ) +
   geom_text(
-    data = population_projection |> filter(location == "Hartford"),
+    data = population_projection |> filter(location == "Stamford"),
     vjust = -1,
     aes(
       label = pct_formatted
@@ -938,9 +938,53 @@ population_projection_plot(
 ```
 
 
+## Add shadow behind text to make it visible
+
+---
+
+```{r}
+library(shadowtext)
+```
 
 
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1,7,9"
 
+library(shadowtext)
+
+population_projection_plot(
+  town_to_plot = "Stamford",
+  county_to_plot = "Fairfield County"
+) +
+  geom_shadowtext(
+    data = population_projection |> filter(location == "Stamford"),
+    bg.color = "white",
+    vjust = -1,
+    aes(
+      label = pct_formatted
+    )
+  )
+```
+
+. . .
+
+```{r}
+#| fig-height: 4
+population_projection_plot(
+  town_to_plot = "Stamford",
+  county_to_plot = "Fairfield County"
+) +
+  geom_text(
+    data = population_projection |> filter(location == "Stamford"),
+    vjust = -1,
+    aes(
+      label = pct_formatted
+    ),
+    show.legend = FALSE
+  )
+```
 
 
 
