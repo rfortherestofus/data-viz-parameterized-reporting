@@ -30,24 +30,15 @@ editor_options:
 library(tidyverse)
 library(scales)
 library(patchwork)
+library(ggfx)
+library(sf)
 ```
-
-# Intro {.inverse}
 
 ::: {.notes}
 - Who I am
 - Who R for the Rest of Us is
 :::
 
-## Reports we've worked on
-
-TODO: Add snapshots
-
-::: {.notes}
-Giving a talk on report design at posit::conf
-:::
-
----
 
 ![](assets/obtn-overview.png)
 
@@ -63,8 +54,12 @@ Giving a talk on report design at posit::conf
 
 TODO: Add CWP
 
+::: {.notes}
+- Giving a talk on report design at posit::conf
+:::
 
-# What is parameterized reporting? {.inverse}
+
+# What is Parameterized Reporting? {background-image="assets/books.jpg" .inverse}
 
 ---
 
@@ -94,7 +89,7 @@ TODO: Add CWP
 
 ![](assets/parameterized-reporting-7.png)
 
-## How parameterized reporting works {.inverse}
+## How Parameterized Reporting Works {background-image="assets/machine.jpg" background-position="top" .inverse}
 
 ---
 
@@ -123,10 +118,9 @@ params:
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "5"
+#| code-line-numbers: "4"
 library(tidyverse)
 
-life_expectancy_plot()
 gapminder |>
   filter(country == params$country) |>
   ggplot(aes(
@@ -195,10 +189,18 @@ gapminder |>
   geom_line()
 ```
 
+::: {.notes}
+I'm not going to show parameters throughout, but just know that's how this would work in reality
+:::
 
-# Data viz for parameterized reporting {.inverse}
 
-# There is no magic package {background-image="assets/magic-package.jpg" .inverse}
+# Data Viz Tips for Parameterized Reporting {background-image="assets/pencils.jpg" .inverse}
+
+::: {.notes}
+
+:::
+
+# There is No Magic Package {background-image="assets/magic-package.jpg" .inverse}
 
 ::: {.notes}
 You've got to think deeply about your data
@@ -211,7 +213,7 @@ With parameterized reporting data viz the big thing is everything that is in you
 
 
 
-# Consider the outer limits of your data {background-image="assets/outer-limits.jpg" .inverse}
+# Consider the Outer Limits of Your Data {background-image="assets/outer-limits.jpg" .inverse}
 
 ::: {.notes}
 Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports
@@ -605,15 +607,9 @@ median_income_plot("Washington") +
 ```
 
 
-# Minimize text and position it carefully {.inverse}
+# Minimize Text and Position it Carefully {background-image="assets/erase-text.jpg" .inverse}
 
-::: {.notes}
-Text WILL overlap so think proactively about how to avoid it
 
-The problem is, you never know how it will look for all of your plots
-:::
-
-## Here's the problem with text (and one solution) {.inverse}
 
 ```{r}
 library(ggrepel)
@@ -635,6 +631,15 @@ penguins_scatterplot <- function(number_of_dots) {
 }
 ```
 
+
+::: {.notes}
+Text WILL overlap so think proactively about how to avoid it
+
+The problem is, you never know how it will look for all of your plots
+
+Here's the problem with text
+:::
+
 ---
 
 ```{r}
@@ -649,6 +654,13 @@ penguins_scatterplot(number_of_dots = 36)
 penguins_scatterplot(number_of_dots = 36) +
   geom_text(aes(label = island))
 ```
+
+
+::: {.notes}
+Here's a potential solution: ggrepel
+:::
+
+
 
 ---
 
@@ -672,7 +684,7 @@ penguins_scatterplot(number_of_dots = 120) +
 But be careful because you don't know what you're going to get
 :::
 
-## Don't label everything {.inverse}
+## Don't Try to Label Everything {background-image="assets/label.jpg" .inverse}
 
 ---
 
@@ -777,7 +789,7 @@ population_projection_plot <- function(town_to_plot, county_to_plot) {
 }
 ```
 
-# TODO: Figure out why colors aren't working
+TODO: Figure out why colors aren't working
 
 ```{r}
 #| echo: true
@@ -938,7 +950,7 @@ population_projection_plot(
 ```
 
 
-## Add shadow behind text to make it visible
+## TODO: Add shadow behind text to make it visible
 
 ---
 
@@ -988,11 +1000,7 @@ population_projection_plot(
 
 
 
-## Hide small numbers 
-
-::: {.notes}
-TODO: Add image of PSC reports
-:::
+## Don't Show Small Values {background-image="assets/small-numbers.jpg" .inverse}
 
 
 ---
@@ -1179,7 +1187,7 @@ housing_cost_burden_plot(
 ```
 
 
-## Put some labels inside bars and others outside it
+## TODO: Put some labels inside bars and others outside it
 
 Change to "put text off of the panel?"
 
@@ -1188,7 +1196,7 @@ See https://show.rfor.us/KZLV6HQW (https://www.nytimes.com/2024/06/02/realestate
 https://linear.app/rfortherestofus/issue/R4-437/scale-n=1-inconsistency
 
 
-## Don't put text where it could be obscured {.inverse}
+## Don't Put Text Where it Could Be Obscured {background-image="assets/hidden.jpg" background-opacity="0.8" .inverse}
 
 ---
 
@@ -1605,31 +1613,45 @@ pre_post_data |>
 ```
 
 
-
-
-# Highlight your location (etc) of interest {.inverse}
+# Highlight Strategically and Programatically {background-image="assets/highlight.jpg" .inverse}
 
 ::: {.notes}
 TODO: Talk about how I'm adding layers on top of other layers here (make diagram)
 :::
 
-## Use all aesthetic properties at your disposal
+---
 
-1. Color
 
-1. Size
-
-1. Shadow
-
-1. Outline
-
-1. Opacity
-
-::: {.notes}
-TODO: Make each of the properties have properties show up in text (e.g. make color rainbow)
+::: {.rainbow}
+Color
 :::
 
-## Color {.inverse}
+. . .
+
+::: {.giant-text}
+Size
+:::
+
+. . .
+
+::: {.shadow-text}
+Shadow
+:::
+
+. . .
+
+::: {.outline-text}
+Outline
+:::
+
+. . .
+
+::: {.opacity-text}
+Opacity
+:::
+
+
+## Color {background-image="assets/color.jpg" .inverse}
 
 ---
 
@@ -1774,7 +1796,7 @@ single_family_homes_plot() +
 ```
 
 
-## Size {.inverse}
+## Size {background-image="assets/size.jpg" background-position="top" .inverse}
 
 ---
 
@@ -1834,7 +1856,7 @@ single_family_homes_plot() +
 
 
 
-## Shadow {.inverse}
+## Shadow {background-image="assets/shadow.jpg" .inverse}
 
 ---
 
@@ -1843,9 +1865,6 @@ single_family_homes_plot() +
 ---
 
 ```{r}
-library(ggfx)
-library(sf)
-
 read_rds("data/sf_region_ig1_2_map.rds") |>
   select(country_name, ind_region, disease, status) |>
   rename(
@@ -1854,7 +1873,8 @@ read_rds("data/sf_region_ig1_2_map.rds") |>
   ) |>
   write_rds("data/vaccine_preventable_disease.rds")
 
-vaccine_preventable_disease <- read_rds("data/vaccine_preventable_disease.rds")
+vaccine_preventable_disease <- read_rds("data/vaccine_preventable_disease.rds") |> 
+  as_tibble()
 
 ia2030_colors <- list(
   navy = "#1f4675",
@@ -1923,7 +1943,7 @@ Explain how we're not using aesthetic properties here so much as putting another
 
 ```{r}
 #| echo: true
-vaccine_preventable_disease
+vaccine_preventable_disease 
 ```
 
 . . .
@@ -1949,6 +1969,11 @@ region_map <- function() {
 
 
 ---
+
+```{r}
+vaccine_preventable_disease <- read_rds("data/vaccine_preventable_disease.rds")
+```
+
 
 
 ```{r}
@@ -1998,7 +2023,7 @@ region_map() +
   )
 ```
 
-## Outline {.inverse}
+## Outline {background-image="assets/outline.jpg" .inverse}
 
 ---
 
@@ -2041,7 +2066,7 @@ Add outline to make it pop even more
 :::
 
 
-## Opacity {.inverse}
+## Opacity {background-image="assets/opacity.jpg" .inverse}
 
 ---
 
@@ -2201,7 +2226,7 @@ region_map(opacity_level = 0.75) +
 
 
 
-## Use gghighlight to programmatically do this highlighting
+## TODO: Use gghighlight to programmatically do this highlighting
 
 Show how to do each chart above with gghighlight
 

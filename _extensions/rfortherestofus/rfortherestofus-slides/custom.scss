@@ -298,3 +298,68 @@ img {
   background-color: #ffffff;
   padding: 0.15rem;
 }
+
+.rainbow {
+		animation: rainbow 2.5s linear;
+		animation-iteration-count: infinite;
+		font-size: 75px;
+}
+
+@keyframes rainbow{
+		100%,0%{
+			color: rgb(255,0,0);
+		}
+		8%{
+			color: rgb(255,127,0);
+		}
+		16%{
+			color: rgb(255,255,0);
+		}
+		25%{
+			color: rgb(127,255,0);
+		}
+		33%{
+			color: rgb(0,255,0);
+		}
+		41%{
+			color: rgb(0,255,127);
+		}
+		50%{
+			color: rgb(0,255,255);
+		}
+		58%{
+			color: rgb(0,127,255);
+		}
+		66%{
+			color: rgb(0,0,255);
+		}
+		75%{
+			color: rgb(127,0,255);
+		}
+		83%{
+			color: rgb(255,0,255);
+		}
+		91%{
+			color: rgb(255,0,127);
+		}
+}
+
+.giant-text {
+  font-size: 150px;
+}
+
+.shadow-text {
+  filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.1)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.2));
+  font-size: 75px;
+}
+
+.outline-text {
+  -webkit-text-stroke: 3px red;
+  font-size: 75px;
+  color: #ffffff;
+}
+
+.opacity-text {
+  font-size: 75px;
+  opacity: 0.1;
+}

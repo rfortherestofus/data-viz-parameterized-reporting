@@ -396,9 +396,8 @@
 </div>
 
 </section>
-<section>
-<section id="intro" class="title-slide slide level1 inverse center">
-<h1>Intro</h1>
+<section class="slide level2 center">
+
 <aside class="notes">
 <ul>
 <li>Who I am</li>
@@ -415,26 +414,6 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="reports-weve-worked-on" class="slide level2 center">
-<h2>Reports we’ve worked on</h2>
-<p>TODO: Add snapshots</p>
-<aside class="notes">
-<p>Giving a talk on report design at posit::conf</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section class="slide level2 center">
-
 
 <img data-src="assets/obtn-overview.png" class="r-stretch"></section>
 <section class="slide level2 center">
@@ -448,10 +427,25 @@
 <section class="slide level2 center">
 
 <p>TODO: Add CWP</p>
-</section></section>
+<aside class="notes">
+<ul>
+<li>Giving a talk on report design at posit::conf</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section>
-<section id="what-is-parameterized-reporting" class="title-slide slide level1 inverse center">
-<h1>What is parameterized reporting?</h1>
+<section id="what-is-parameterized-reporting" class="title-slide slide level1 inverse center" data-background-image="assets/books.jpg">
+<h1>What is Parameterized Reporting?</h1>
 
 </section>
 <section class="slide level2 center">
@@ -482,8 +476,8 @@
 
 
 <img data-src="assets/parameterized-reporting-7.png" class="r-stretch"></section>
-<section id="how-parameterized-reporting-works" class="slide level2 inverse center">
-<h2>How parameterized reporting works</h2>
+<section id="how-parameterized-reporting-works" class="slide level2 inverse center" data-background-image="assets/machine.jpg" data-background-position="top">
+<h2>How Parameterized Reporting Works</h2>
 </section>
 <section class="slide level2 center">
 
@@ -521,16 +515,15 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb4-2"><a href=""></a></span>
-<span id="cb4-3"><a href=""></a><span class="fu">life_expectancy_plot</span>()</span>
-<span id="cb4-4"><a href=""></a>gapminder <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href=""></a>  <span class="fu">filter</span>(country <span class="sc">==</span> params<span class="sc">$</span>country) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb4-7"><a href=""></a>    <span class="at">x =</span> year,</span>
-<span id="cb4-8"><a href=""></a>    <span class="at">y =</span> lifeExp</span>
-<span id="cb4-9"><a href=""></a>  )) <span class="sc">+</span></span>
-<span id="cb4-10"><a href=""></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href=""></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href=""></a>  <span class="fu">filter</span>(country <span class="sc">==</span> params<span class="sc">$</span>country) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb4-6"><a href=""></a>    <span class="at">x =</span> year,</span>
+<span id="cb4-7"><a href=""></a>    <span class="at">y =</span> lifeExp</span>
+<span id="cb4-8"><a href=""></a>  )) <span class="sc">+</span></span>
+<span id="cb4-9"><a href=""></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -578,15 +571,40 @@
 </div>
 </div>
 </div>
+<aside class="notes">
+<p>I’m not going to show parameters throughout, but just know that’s how this would work in reality</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </div>
 </section></section>
-<section id="data-viz-for-parameterized-reporting" class="title-slide slide level1 inverse center">
-<h1>Data viz for parameterized reporting</h1>
+<section id="data-viz-tips-for-parameterized-reporting" class="title-slide slide level1 inverse center" data-background-image="assets/pencils.jpg">
+<h1>Data Viz Tips for Parameterized Reporting</h1>
+<aside class="notes">
 
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 
 <section id="there-is-no-magic-package" class="title-slide slide level1 inverse center" data-background-image="assets/magic-package.jpg">
-<h1>There is no magic package</h1>
+<h1>There is No Magic Package</h1>
 <aside class="notes">
 <p>You’ve got to think deeply about your data</p>
 <p>There are packages to help with all of this, but nothing that can help you avoid thinking about your data</p>
@@ -606,7 +624,7 @@
 
 <section>
 <section id="consider-the-outer-limits-of-your-data" class="title-slide slide level1 inverse center" data-background-image="assets/outer-limits.jpg">
-<h1>Consider the outer limits of your data</h1>
+<h1>Consider the Outer Limits of Your Data</h1>
 <aside class="notes">
 <p>Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports</p>
 <style type="text/css">
@@ -951,11 +969,12 @@
 </div>
 </section></section>
 <section>
-<section id="minimize-text-and-position-it-carefully" class="title-slide slide level1 inverse center">
-<h1>Minimize text and position it carefully</h1>
+<section id="minimize-text-and-position-it-carefully" class="title-slide slide level1 inverse center" data-background-image="assets/erase-text.jpg">
+<h1>Minimize Text and Position it Carefully</h1>
 <aside class="notes">
 <p>Text WILL overlap so think proactively about how to avoid it</p>
 <p>The problem is, you never know how it will look for all of your plots</p>
+<p>Here’s the problem with text</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -967,9 +986,6 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
-<section id="heres-the-problem-with-text-and-one-solution" class="slide level2 inverse center">
-<h2>Here’s the problem with text (and one solution)</h2>
 </section>
 <section class="slide level2 center">
 
@@ -985,7 +1001,20 @@
 <span id="cb21-2"><a href=""></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> island))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-39-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-39-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
+<p>Here’s a potential solution: ggrepel</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
 <section class="slide level2 center">
 
 <div class="cell">
@@ -1015,8 +1044,8 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="dont-label-everything" class="slide level2 inverse center">
-<h2>Don’t label everything</h2>
+<section id="dont-try-to-label-everything" class="slide level2 inverse center" data-background-image="assets/label.jpg">
+<h2>Don’t Try to Label Everything</h2>
 </section>
 <section class="slide level2 center">
 
@@ -1076,10 +1105,7 @@
 </section>
 <section class="slide level2 center">
 
-</section></section>
-<section>
-<section id="todo-figure-out-why-colors-arent-working" class="title-slide slide level1 center">
-<h1>TODO: Figure out why colors aren’t working</h1>
+<p>TODO: Figure out why colors aren’t working</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
 <span id="cb27-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
@@ -1202,13 +1228,13 @@
 </div>
 </div>
 </section>
-<section id="add-shadow-behind-text-to-make-it-visible" class="slide level2 center">
-<h2>Add shadow behind text to make it visible</h2>
+<section id="todo-add-shadow-behind-text-to-make-it-visible" class="slide level2 center">
+<h2>TODO: Add shadow behind text to make it visible</h2>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="1,7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">library</span>(shadowtext)</span>
+<div class="sourceCode cell-code" id="cb32" data-code-line-numbers="1,7,9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">library</span>(shadowtext)</span>
 <span id="cb32-2"><a href=""></a></span>
 <span id="cb32-3"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
 <span id="cb32-4"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Stamford"</span>,</span>
@@ -1235,8 +1261,8 @@
 </div>
 </div>
 </section>
-<section id="hide-small-numbers" class="slide level2 center">
-<h2>Hide small numbers</h2>
+<section id="dont-show-small-values" class="slide level2 inverse center" data-background-image="assets/small-numbers.jpg">
+<h2>Don’t Show Small Values</h2>
 <aside class="notes">
 <p>TODO: Add image of PSC reports</p>
 <style type="text/css">
@@ -1382,14 +1408,14 @@
 </div>
 </div>
 </section>
-<section id="put-some-labels-inside-bars-and-others-outside-it" class="slide level2 center">
-<h2>Put some labels inside bars and others outside it</h2>
+<section id="todo-put-some-labels-inside-bars-and-others-outside-it" class="slide level2 center">
+<h2>TODO: Put some labels inside bars and others outside it</h2>
 <p>Change to “put text off of the panel?”</p>
 <p>See https://show.rfor.us/KZLV6HQW (https://www.nytimes.com/2024/06/02/realestate/housing-market-rates-prices-slow.html)</p>
 <p>https://linear.app/rfortherestofus/issue/R4-437/scale-n=1-inconsistency</p>
 </section>
-<section id="dont-put-text-where-it-could-be-obscured" class="slide level2 inverse center">
-<h2>Don’t put text where it could be obscured</h2>
+<section id="dont-put-text-where-it-could-be-obscured" class="slide level2 inverse center" data-background-image="assets/hidden.jpg" data-background-opacity="0.8">
+<h2>Don’t Put Text Where it Could Be Obscured</h2>
 </section>
 <section class="slide level2 center">
 
@@ -1591,8 +1617,8 @@
 </div>
 </section></section>
 <section>
-<section id="highlight-your-location-etc-of-interest" class="title-slide slide level1 inverse center">
-<h1>Highlight your location (etc) of interest</h1>
+<section id="highlight-strategically-and-programatically" class="title-slide slide level1 inverse center" data-background-image="assets/highlight.jpg">
+<h1>Highlight Strategically and Programatically</h1>
 <aside class="notes">
 <p>TODO: Talk about how I’m adding layers on top of other layers here (make diagram)</p>
 <style type="text/css">
@@ -1607,30 +1633,33 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="use-all-aesthetic-properties-at-your-disposal" class="slide level2 center">
-<h2>Use all aesthetic properties at your disposal</h2>
-<ol type="1">
-<li class="fragment"><p>Color</p></li>
-<li class="fragment"><p>Size</p></li>
-<li class="fragment"><p>Shadow</p></li>
-<li class="fragment"><p>Outline</p></li>
-<li class="fragment"><p>Opacity</p></li>
-</ol>
-<aside class="notes">
-<p>TODO: Make each of the properties have properties show up in text (e.g.&nbsp;make color rainbow)</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<section class="slide level2 center">
+
+<div class="rainbow">
+<p>Color</p>
+</div>
+<div class="fragment">
+<div class="giant-text">
+<p>Size</p>
+</div>
+</div>
+<div class="fragment">
+<div class="shadow-text">
+<p>Shadow</p>
+</div>
+</div>
+<div class="fragment">
+<div class="outline-text">
+<p>Outline</p>
+</div>
+</div>
+<div class="fragment">
+<div class="opacity-text">
+<p>Opacity</p>
+</div>
+</div>
 </section>
-<section id="color" class="slide level2 inverse center">
+<section id="color" class="slide level2 inverse center" data-background-image="assets/color.jpg">
 <h2>Color</h2>
 </section>
 <section class="slide level2 center">
@@ -1716,7 +1745,7 @@
 </div>
 </div>
 </section>
-<section id="size" class="slide level2 inverse center">
+<section id="size" class="slide level2 inverse center" data-background-image="assets/size.jpg" data-background-position="top">
 <h2>Size</h2>
 </section>
 <section class="slide level2 center">
@@ -1765,7 +1794,7 @@
 </div>
 </div>
 </section>
-<section id="shadow" class="slide level2 inverse center">
+<section id="shadow" class="slide level2 inverse center" data-background-image="assets/shadow.jpg">
 <h2>Shadow</h2>
 </section>
 <section class="slide level2 center">
@@ -1788,36 +1817,22 @@
           display:block!important;
       }</style></aside>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>vaccine_preventable_disease</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>vaccine_preventable_disease </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simple feature collection with 276 features and 4 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: -1466635 ymin: -185219 xmax: 8649202 ymax: 4806756
-Projected CRS: WGS 84 / World Mercator
-First 10 features:
-                country region                     disease       status
-1           Afghanistan      1                     Measles Not achieved
-2           Afghanistan      1 Maternal &amp; Neonatal Tetanus Not achieved
-3           Afghanistan      1             Wild Poliovirus Not achieved
-4           Afghanistan      1                     Rubella Not achieved
-5  United Arab Emirates      1                     Measles Not achieved
-6  United Arab Emirates      1 Maternal &amp; Neonatal Tetanus     Achieved
-7  United Arab Emirates      1             Wild Poliovirus     Achieved
-8  United Arab Emirates      1                     Rubella Not achieved
-9                 Benin      0                     Measles Not achieved
-10                Benin      0 Maternal &amp; Neonatal Tetanus     Achieved
-                         geometry
-1  MULTIPOLYGON (((8328599 444...
-2  MULTIPOLYGON (((8328599 444...
-3  MULTIPOLYGON (((8328599 444...
-4  MULTIPOLYGON (((8328599 444...
-5  MULTIPOLYGON (((6004988 275...
-6  MULTIPOLYGON (((6004988 275...
-7  MULTIPOLYGON (((6004988 275...
-8  MULTIPOLYGON (((6004988 275...
-9  MULTIPOLYGON (((392437.9 12...
-10 MULTIPOLYGON (((392437.9 12...</code></pre>
+<pre><code># A tibble: 276 × 5
+   country              region disease          status                  geometry
+   &lt;fct&gt;                 &lt;dbl&gt; &lt;fct&gt;            &lt;fct&gt;         &lt;MULTIPOLYGON [m]&gt;
+ 1 Afghanistan               1 Measles          Not a… (((8328599 4443845, 8322…
+ 2 Afghanistan               1 Maternal &amp; Neon… Not a… (((8328599 4443845, 8322…
+ 3 Afghanistan               1 Wild Poliovirus  Not a… (((8328599 4443845, 8322…
+ 4 Afghanistan               1 Rubella          Not a… (((8328599 4443845, 8322…
+ 5 United Arab Emirates      1 Measles          Not a… (((6004988 2752921, 5987…
+ 6 United Arab Emirates      1 Maternal &amp; Neon… Achie… (((6004988 2752921, 5987…
+ 7 United Arab Emirates      1 Wild Poliovirus  Achie… (((6004988 2752921, 5987…
+ 8 United Arab Emirates      1 Rubella          Not a… (((6004988 2752921, 5987…
+ 9 Benin                     0 Measles          Not a… (((392437.9 1287537, 386…
+10 Benin                     0 Maternal &amp; Neon… Achie… (((392437.9 1287537, 386…
+# ℹ 266 more rows</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -1844,7 +1859,7 @@ First 10 features:
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a><span class="fu">region_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-107-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
+<img data-src="index_files/figure-revealjs/unnamed-chunk-108-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
 <p>https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1876,14 +1891,14 @@ First 10 features:
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-109-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-110-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="outline" class="slide level2 inverse center">
+<section id="outline" class="slide level2 inverse center" data-background-image="assets/outline.jpg">
 <h2>Outline</h2>
 </section>
 <section class="slide level2 center">
@@ -1903,7 +1918,7 @@ First 10 features:
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-111-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-112-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1923,7 +1938,7 @@ First 10 features:
       }</style></aside>
 </div>
 </section>
-<section id="opacity" class="slide level2 inverse center">
+<section id="opacity" class="slide level2 inverse center" data-background-image="assets/opacity.jpg">
 <h2>Opacity</h2>
 </section>
 <section class="slide level2 center">
@@ -1951,14 +1966,14 @@ First 10 features:
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-114-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-115-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-116-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
+<img data-src="index_files/figure-revealjs/unnamed-chunk-117-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
 <p>Can’t do it too much because then it looks like a different category</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1978,23 +1993,23 @@ First 10 features:
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-118-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-119-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-120-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-121-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-122-1.png" style="width:100.0%" class="r-stretch"></section>
-<section id="use-gghighlight-to-programmatically-do-this-highlighting" class="slide level2 center">
-<h2>Use gghighlight to programmatically do this highlighting</h2>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-123-1.png" style="width:100.0%" class="r-stretch"></section>
+<section id="todo-use-gghighlight-to-programmatically-do-this-highlighting" class="slide level2 center">
+<h2>TODO: Use gghighlight to programmatically do this highlighting</h2>
 <p>Show how to do each chart above with gghighlight</p>
 </section></section>
 <section id="conclusion" class="title-slide slide level1 center">
