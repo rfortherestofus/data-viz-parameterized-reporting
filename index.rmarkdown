@@ -32,6 +32,7 @@ library(scales)
 library(patchwork)
 ```
 
+
 # Intro {.inverse}
 
 ::: {.notes}
@@ -98,6 +99,7 @@ TODO: Add CWP
 
 ---
 
+
 ```{r}
 #| echo: true
 library(gapminder)
@@ -105,7 +107,9 @@ library(gapminder)
 gapminder
 ```
 
+
 ---
+
 
 ```{yaml}
 #| echo: true
@@ -117,7 +121,9 @@ params:
 ---
 ```
 
+
 . . .
+
 
 
 ```{r}
@@ -136,7 +142,9 @@ gapminder |>
   geom_line()
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3
@@ -150,7 +158,9 @@ gapminder |>
   geom_line()
 ```
 
+
 ---
+
 
 ```{yaml}
 #| echo: true
@@ -163,7 +173,9 @@ params:
 ---
 ```
 
+
 . . .
+
 
 
 ```{r}
@@ -181,7 +193,9 @@ gapminder |>
   geom_line()
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3
@@ -194,6 +208,7 @@ gapminder |>
   )) +
   geom_line()
 ```
+
 
 
 # Data viz for parameterized reporting {.inverse}
@@ -226,6 +241,7 @@ Give example of Aaron Williams talking about using states with longest and short
 Set limits as 100% when working with percent data
 :::
 
+
 ```{r}
 # obtn::obtn_race_ethnicity |>
 #   filter(year == 2023) |>
@@ -240,16 +256,20 @@ Set limits as 100% when working with percent data
 #   write_rds("data/obtn_race_ethnicity.rds")
 ```
 
+
 ---
 
 ![](assets/obtn-race-ethnicity.png)
+
 
 ```{r}
 obtn_race_ethnicity <-
   read_rds("data/obtn_race_ethnicity.rds")
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -257,7 +277,9 @@ obtn_race_ethnicity |>
   filter(county == "Multnomah")
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
@@ -277,7 +299,9 @@ race_ethnicity_bar_chart <- function(county_to_plot) {
 ```
 
 
+
 ---
+
 
 ```{r}
 race_ethnicity_bar_chart <- function(county_to_plot) {
@@ -316,27 +340,32 @@ race_ethnicity_bar_chart <- function(county_to_plot) {
 }
 ```
 
-
 ```{r}
 #| echo: true
 #| eval: false
 race_ethnicity_bar_chart("Multnomah")
 ```
 
+
 . . .
+
 
 ```{r}
 race_ethnicity_bar_chart("Multnomah")
 ```
 
+
 ---
+
 
 ```{r}
 #| fig-height: 3
 race_ethnicity_bar_chart("Multnomah")
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3
@@ -344,7 +373,9 @@ race_ethnicity_bar_chart("Baker")
 ```
 
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -362,7 +393,9 @@ race_ethnicity_bar_chart("Multnomah") +
 ```
 
 
+
 ---
+
 
 ```{r}
 #| fig-height: 3.25
@@ -377,7 +410,9 @@ race_ethnicity_bar_chart("Multnomah") +
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3.25
@@ -392,6 +427,7 @@ race_ethnicity_bar_chart("Baker") +
   )
 ```
 
+
 ::: {.notes}
 Could also do this with `scale_x_continous(limits = c(0, 1))`
 :::
@@ -403,6 +439,7 @@ Could also do this with `scale_x_continous(limits = c(0, 1))`
 ::: {.notes}
 Set limits of plot based on max of all data
 :::
+
 
 ```{r}
 median_income <- read_csv("data/median_income.csv") |>
@@ -455,14 +492,18 @@ median_income_plot <- function(county_to_plot) {
 }
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
 median_income
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
@@ -485,7 +526,9 @@ median_income_plot <- function(county_to_plot) {
 
 
 
+
 ---
+
 
 ```{r}
 #| eval: false
@@ -493,23 +536,29 @@ median_income_plot <- function(county_to_plot) {
 median_income_plot("Jackson")
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Jackson")
 ```
+
 
 ---
 
+
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Jackson")
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3
@@ -517,7 +566,9 @@ median_income_plot("Jackson")
 median_income_plot("Harney")
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3
@@ -526,7 +577,9 @@ median_income_plot("Washington")
 ```
 
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -539,14 +592,18 @@ max_median_income <-
   pull(amount)
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
 max_median_income
 ```
 
+
 ---
+
 
 
 ```{r}
@@ -559,7 +616,9 @@ median_income_plot("Jackson") +
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3
@@ -569,10 +628,12 @@ median_income_plot("Jackson") +
     limits = c(0, max_median_income)
   )
 ```
+
 
 
 ---
 
+
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
@@ -582,7 +643,9 @@ median_income_plot("Jackson") +
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3
@@ -593,7 +656,9 @@ median_income_plot("Harney") +
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 3
@@ -605,6 +670,7 @@ median_income_plot("Washington") +
 ```
 
 
+
 # Minimize text and position it carefully {.inverse}
 
 ::: {.notes}
@@ -614,6 +680,7 @@ The problem is, you never know how it will look for all of your plots
 :::
 
 ## Here's the problem with text (and one solution) {.inverse}
+
 
 ```{r}
 library(ggrepel)
@@ -635,14 +702,18 @@ penguins_scatterplot <- function(number_of_dots) {
 }
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
 penguins_scatterplot(number_of_dots = 36)
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -650,7 +721,9 @@ penguins_scatterplot(number_of_dots = 36) +
   geom_text(aes(label = island))
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -658,13 +731,16 @@ penguins_scatterplot(number_of_dots = 36) +
   geom_text_repel(aes(label = island))
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
 penguins_scatterplot(number_of_dots = 120) +
   geom_text_repel(aes(label = island))
 ```
+
 
 
 
@@ -684,6 +760,7 @@ But be careful because you don't know what you're going to get
 https://show.rfor.us/QLbWktrG (but fix colors so Hartford is red)
 :::
 
+
 ```{r}
 # pschousing::data_population_projection |>
 #   select(area_name:age_cohort_grp, perc_proj) |>
@@ -696,7 +773,6 @@ https://show.rfor.us/QLbWktrG (but fix colors so Hartford is red)
 #   write_rds("data/population_projection.rds")
 ```
 
-
 ```{r}
 population_projection <-
   read_rds("data/population_projection.rds")
@@ -708,7 +784,9 @@ population_projection |>
   filter(location == "Hartford")
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
@@ -728,7 +806,9 @@ population_projection_plot <- function(town_to_plot, county_to_plot) {
 }
 ```
 
+
 ---
+
 
 ```{r}
 population_projection_plot <- function(town_to_plot, county_to_plot) {
@@ -777,8 +857,10 @@ population_projection_plot <- function(town_to_plot, county_to_plot) {
 }
 ```
 
+
 # TODO: Figure out why colors aren't working
 
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -788,7 +870,9 @@ population_projection_plot(
 )
 ```
 
+
 . . .
+
 
 ```{r}
 population_projection_plot(
@@ -797,7 +881,9 @@ population_projection_plot(
 )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -814,7 +900,9 @@ population_projection_plot(
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 4
@@ -830,7 +918,9 @@ population_projection_plot(
   )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -847,7 +937,9 @@ population_projection_plot(
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 4
@@ -863,7 +955,9 @@ population_projection_plot(
   )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -882,7 +976,9 @@ population_projection_plot(
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 4
@@ -900,7 +996,9 @@ population_projection_plot(
   )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -919,7 +1017,9 @@ population_projection_plot(
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 4
@@ -944,6 +1044,7 @@ population_projection_plot(
 
 
 
+
 ## Hide small numbers 
 
 ::: {.notes}
@@ -956,6 +1057,7 @@ TODO: Add image of PSC reports
 ![](assets/psc-housing-cost-burden.png)
 
 ---
+
 
 ```{r}
 # pschousing::data_acs$affordability_occupancy_status |>
@@ -988,7 +1090,6 @@ TODO: Add image of PSC reports
 #   write_rds("data/housing_cost_burden.rds")
 ```
 
-
 ```{r}
 housing_cost_burden <-
   read_rds("data/housing_cost_burden.rds")
@@ -998,7 +1099,9 @@ housing_cost_burden <-
 housing_cost_burden
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
@@ -1019,7 +1122,9 @@ housing_cost_burden_plot <- function(town_to_plot, county_to_plot) {
 }
 ```
 
+
 ---
+
 
 ```{r}
 housing_cost_burden_plot <- function(town_to_plot, county_to_plot) {
@@ -1067,7 +1172,9 @@ housing_cost_burden_plot(
 )
 ```
 
+
 . . .
+
 
 ```{r}
 housing_cost_burden_plot(
@@ -1078,7 +1185,9 @@ housing_cost_burden_plot(
 
 
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -1087,14 +1196,18 @@ housing_cost_burden <-
   mutate(pct_formatted = if_else(pct > 0.07, pct_formatted, NA))
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
 housing_cost_burden
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -1105,7 +1218,9 @@ housing_cost_burden_plot(
 )
 ```
 
+
 . . .
+
 
 ```{r}
 housing_cost_burden_plot(
@@ -1114,7 +1229,9 @@ housing_cost_burden_plot(
 )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -1125,7 +1242,9 @@ housing_cost_burden_plot(
 )
 ```
 
+
 . . .
+
 
 ```{r}
 housing_cost_burden_plot(
@@ -1133,6 +1252,7 @@ housing_cost_burden_plot(
   county_to_plot = "Fairfield County"
 )
 ```
+
 
 
 ## Put some labels inside bars and others outside it
@@ -1151,6 +1271,7 @@ https://linear.app/rfortherestofus/issue/R4-437/scale-n=1-inconsistency
 TODO: Show original plot
 
 ---
+
 
 ```{r}
 pre_post_plot <- function(df) {
@@ -1215,7 +1336,6 @@ pre_post_plot <- function(df) {
 }
 ```
 
-
 ```{r}
 pre_post_data <-
   tribble(
@@ -1243,7 +1363,9 @@ pre_post_data <-
 pre_post_data
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
@@ -1263,7 +1385,9 @@ pre_post_plot <- function(df) {
 ```
 
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -1272,7 +1396,9 @@ pre_post_data |>
   pre_post_plot()
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 2
@@ -1281,7 +1407,9 @@ pre_post_data |>
 ```
 
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -1310,7 +1438,9 @@ pre_post_data |>
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 2
@@ -1334,7 +1464,9 @@ pre_post_data |>
   )
 ```
 
+
 ---
+
 
 ```{r}
 pre_post_data <-
@@ -1363,7 +1495,9 @@ pre_post_data <-
 pre_post_data
 ```
 
+
 . . .
+
 
 
 ```{r}
@@ -1388,7 +1522,9 @@ pre_post_data |>
   )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -1401,14 +1537,18 @@ pre_post_data <-
   ))
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
 pre_post_data
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
@@ -1431,7 +1571,9 @@ pre_post_data |>
   ...
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -1452,7 +1594,6 @@ pre_post_data |>
   ) +
   ...
 ```
-
 
 ```{r}
 #| fig-height: 2
@@ -1483,7 +1624,9 @@ pre_post_data |>
   )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -1500,7 +1643,9 @@ pre_post_data |>
   ...
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 2
@@ -1563,6 +1708,7 @@ pre_post_data |>
 
 
 
+
 # Highlight your location (etc) of interest {.inverse}
 
 ::: {.notes}
@@ -1594,6 +1740,7 @@ TODO: Make each of the properties have properties show up in text (e.g. make col
 
 ---
 
+
 ```{r}
 # pschousing::data_acs$units_structure_occupancy_status |>
 #   filter(area_level == "Town") |>
@@ -1617,7 +1764,9 @@ single_family_homes <-
 single_family_homes
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
@@ -1639,7 +1788,9 @@ single_family_homes_plot <- function() {
 ```
 
 
+
 ---
+
 
 
 
@@ -1694,7 +1845,9 @@ single_family_homes_plot <- function() {
 single_family_homes_plot()
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 2
@@ -1702,7 +1855,9 @@ single_family_homes_plot()
 ```
 
 
+
 ---
+
 
 
 ```{r}
@@ -1716,7 +1871,9 @@ single_family_homes_plot() +
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 2
@@ -1730,9 +1887,11 @@ single_family_homes_plot() +
 ```
 
 
+
 ## Size {.inverse}
 
 ---
+
 
 ```{r}
 #| echo: true
@@ -1747,7 +1906,9 @@ single_family_homes_plot() +
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 2
@@ -1760,7 +1921,9 @@ single_family_homes_plot() +
   )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -1775,7 +1938,9 @@ single_family_homes_plot() +
   )
 ```
 
+
 . . .
+
 
 ```{r}
 #| fig-height: 2
@@ -1790,6 +1955,7 @@ single_family_homes_plot() +
 
 
 
+
 ## Shadow {.inverse}
 
 ---
@@ -1797,6 +1963,7 @@ single_family_homes_plot() +
 ![](assets/ia2030-region-map.png)
 
 ---
+
 
 ```{r}
 library(ggfx)
@@ -1873,16 +2040,20 @@ region_map <- function(opacity_level = 1) {
 }
 ```
 
+
 ::: {.notes}
 Explain how we're not using aesthetic properties here so much as putting another layer on top of existing layers
 :::
+
 
 ```{r}
 #| echo: true
 vaccine_preventable_disease
 ```
 
+
 . . .
+
 
 ```{r}
 #| echo: true
@@ -1904,13 +2075,16 @@ region_map <- function() {
 
 
 
+
 ---
+
 
 
 ```{r}
 #| echo: true
 region_map()
 ```
+
 
 
 ::: {.notes}
@@ -1920,6 +2094,7 @@ https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/
 
 
 ---
+
 
 ```{r}
 #| echo: true
@@ -1936,7 +2111,9 @@ region_map() +
   )
 ```
 
+
 . . .
+
 
 ```{r}
 region_map() +
@@ -1954,9 +2131,11 @@ region_map() +
   )
 ```
 
+
 ## Outline {.inverse}
 
 ---
+
 
 ```{r}
 #| echo: true
@@ -1973,7 +2152,9 @@ region_map() +
   )
 ```
 
+
 . . .
+
 
 ```{r}
 region_map() +
@@ -1992,6 +2173,7 @@ region_map() +
   )
 ```
 
+
 ::: {.notes}
 Add outline to make it pop even more
 :::
@@ -2000,6 +2182,7 @@ Add outline to make it pop even more
 ## Opacity {.inverse}
 
 ---
+
 
 ```{r}
 #| echo: true
@@ -2022,14 +2205,15 @@ region_map <- function(opacity_level = 1) {
 ```
 
 
+
 ---
+
 
 ```{r}
 #| echo: true
 #| eval: false
 region_map(opacity_level = 0.75)
 ```
-
 
 ```{r}
 region_map(opacity_level = 0.75) +
@@ -2048,7 +2232,9 @@ region_map(opacity_level = 0.75) +
   )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
@@ -2073,18 +2259,19 @@ region_map(opacity_level = 0.25) +
   )
 ```
 
+
 ::: {.notes}
 Can't do it too much because then it looks like a different category
 :::
 
 ---
 
+
 ```{r}
 #| echo: true
 #| eval: false
 region_map(opacity_level = 0.75)
 ```
-
 
 ```{r}
 region_map(opacity_level = 0.75) +
@@ -2103,14 +2290,15 @@ region_map(opacity_level = 0.75) +
   )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
 #| eval: false
 region_map(opacity_level = 0.75)
 ```
-
 
 ```{r}
 region_map(opacity_level = 0.75) +
@@ -2129,14 +2317,15 @@ region_map(opacity_level = 0.75) +
   )
 ```
 
+
 ---
+
 
 ```{r}
 #| echo: true
 #| eval: false
 region_map(opacity_level = 0.75)
 ```
-
 
 ```{r}
 region_map(opacity_level = 0.75) +
@@ -2157,6 +2346,7 @@ region_map(opacity_level = 0.75) +
 
 
 
+
 ## Use gghighlight to programmatically do this highlighting
 
 Show how to do each chart above with gghighlight
@@ -2173,3 +2363,4 @@ Show how to do each chart above with gghighlight
 ::: {.notes}
 The solution is less code and more thinking about data
 :::
+
