@@ -401,7 +401,7 @@
 <aside class="notes">
 <ul>
 <li>Who I am</li>
-<li>Who R for the Rest of Us is TODO: Add link to slides on first slide</li>
+<li>Who R for the Rest of Us is</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -414,6 +414,14 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section>
+<section id="follow-along" class="title-slide slide level1 center">
+<h1>Follow Along!</h1>
+<p>https://rfor.us/cascadia2024</p>
+</section>
+<section class="slide level2 center">
+
 
 <img data-src="assets/obtn-overview.png" class="r-stretch"></section>
 <section class="slide level2 center">
@@ -442,7 +450,7 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
+</section></section>
 <section>
 <section id="what-is-parameterized-reporting" class="title-slide slide level1 inverse center" data-background-image="assets/books.jpg">
 <h1>What is Parameterized Reporting?</h1>
@@ -1257,8 +1265,8 @@
 </div>
 </div>
 </section>
-<section id="dont-show-small-values" class="slide level2 inverse center" data-background-image="assets/small-numbers.jpg">
-<h2>Don’t Show Small Values</h2>
+<section id="hide-small-values" class="slide level2 inverse center" data-background-image="assets/small-numbers.jpg">
+<h2>Hide Small Values</h2>
 </section>
 <section class="slide level2 center">
 
@@ -1801,22 +1809,27 @@
           display:block!important;
       }</style></aside>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>vaccine_preventable_disease</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>rubella</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 276 × 5
-   country              region disease          status                  geometry
-   &lt;fct&gt;                 &lt;dbl&gt; &lt;fct&gt;            &lt;fct&gt;         &lt;MULTIPOLYGON [m]&gt;
- 1 Afghanistan               1 Measles          Not a… (((8328599 4443845, 8322…
- 2 Afghanistan               1 Maternal &amp; Neon… Not a… (((8328599 4443845, 8322…
- 3 Afghanistan               1 Wild Poliovirus  Not a… (((8328599 4443845, 8322…
- 4 Afghanistan               1 Rubella          Not a… (((8328599 4443845, 8322…
- 5 United Arab Emirates      1 Measles          Not a… (((6004988 2752921, 5987…
- 6 United Arab Emirates      1 Maternal &amp; Neon… Achie… (((6004988 2752921, 5987…
- 7 United Arab Emirates      1 Wild Poliovirus  Achie… (((6004988 2752921, 5987…
- 8 United Arab Emirates      1 Rubella          Not a… (((6004988 2752921, 5987…
- 9 Benin                     0 Measles          Not a… (((392437.9 1287537, 386…
-10 Benin                     0 Maternal &amp; Neon… Achie… (((392437.9 1287537, 386…
-# ℹ 266 more rows</code></pre>
+<pre><code>Simple feature collection with 69 features and 3 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -1466635 ymin: -185219 xmax: 8649202 ymax: 4806756
+Projected CRS: WGS 84 / World Mercator
+First 10 features:
+                    country region       status                       geometry
+1               Afghanistan      1 Not achieved MULTIPOLYGON (((8328599 444...
+2      United Arab Emirates      1 Not achieved MULTIPOLYGON (((6004988 275...
+3                     Benin      0 Not achieved MULTIPOLYGON (((392437.9 12...
+4              Burkina Faso      0 Not achieved MULTIPOLYGON (((21538.26 16...
+5                   Bahrain      1     Achieved MULTIPOLYGON (((5634224 299...
+6  Central African Republic      0 Not achieved MULTIPOLYGON (((2701448 953...
+7                     China      0 Not achieved MULTIPOLYGON (((8649200 420...
+8                  Cameroon      0 Not achieved MULTIPOLYGON (((1719405 819...
+9                  Djibouti      1 Not achieved MULTIPOLYGON (((4780514 122...
+10                  Algeria      0 Not achieved MULTIPOLYGON (((961591.4 43...</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -1824,11 +1837,11 @@
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a>region_map <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb63-2"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb63-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb63-4"><a href=""></a>      <span class="at">data =</span> vaccine_preventable_disease <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb63-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">1</span>),</span>
 <span id="cb63-5"><a href=""></a>      <span class="fu">aes</span>(<span class="at">fill =</span> status)</span>
 <span id="cb63-6"><a href=""></a>    ) <span class="sc">+</span></span>
 <span id="cb63-7"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb63-8"><a href=""></a>      <span class="at">data =</span> vaccine_preventable_disease <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb63-8"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">0</span>),</span>
 <span id="cb63-9"><a href=""></a>      <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
 <span id="cb63-10"><a href=""></a>      <span class="at">alpha =</span> <span class="fl">0.5</span></span>
 <span id="cb63-11"><a href=""></a>    ) <span class="sc">+</span></span>
@@ -1843,7 +1856,7 @@
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a><span class="fu">region_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-108-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
+<img data-src="index_files/figure-revealjs/unnamed-chunk-109-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
 <p>https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1865,7 +1878,7 @@
 <span id="cb65-3"><a href=""></a><span class="fu">region_map</span>() <span class="sc">+</span></span>
 <span id="cb65-4"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
 <span id="cb65-5"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb65-6"><a href=""></a>      <span class="at">data =</span> vaccine_preventable_disease <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Saudi Arabia"</span>)</span>
+<span id="cb65-6"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Saudi Arabia"</span>)</span>
 <span id="cb65-7"><a href=""></a>    ),</span>
 <span id="cb65-8"><a href=""></a>    ...</span>
 <span id="cb65-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1875,7 +1888,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-110-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-111-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1888,21 +1901,22 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a><span class="fu">region_map</span>() <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb66" data-code-line-numbers="6-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a><span class="fu">region_map</span>() <span class="sc">+</span></span>
 <span id="cb66-2"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
 <span id="cb66-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb66-4"><a href=""></a>      <span class="at">data =</span> vaccine_preventable_disease <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Saudi Arabia"</span>)</span>
+<span id="cb66-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Saudi Arabia"</span>)</span>
 <span id="cb66-5"><a href=""></a>    ),</span>
 <span id="cb66-6"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
-<span id="cb66-7"><a href=""></a>    ...</span>
-<span id="cb66-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb66-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb66-8"><a href=""></a>    ...</span>
+<span id="cb66-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-112-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-113-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1931,12 +1945,12 @@
 <div class="sourceCode cell-code" id="cb67" data-code-line-numbers="1,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a>region_map <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">opacity_level =</span> <span class="dv">1</span>) {</span>
 <span id="cb67-2"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb67-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb67-4"><a href=""></a>      <span class="at">data =</span> vaccine_preventable_disease <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb67-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">1</span>),</span>
 <span id="cb67-5"><a href=""></a>      <span class="fu">aes</span>(<span class="at">fill =</span> status),</span>
 <span id="cb67-6"><a href=""></a>      <span class="at">alpha =</span> opacity_level</span>
 <span id="cb67-7"><a href=""></a>    ) <span class="sc">+</span></span>
 <span id="cb67-8"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb67-9"><a href=""></a>      <span class="at">data =</span> vaccine_preventable_disease <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb67-9"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">0</span>),</span>
 <span id="cb67-10"><a href=""></a>      <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
 <span id="cb67-11"><a href=""></a>      <span class="at">alpha =</span> <span class="fl">0.5</span></span>
 <span id="cb67-12"><a href=""></a>    ) <span class="sc">+</span></span>
@@ -1950,14 +1964,14 @@
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-115-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-116-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-117-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
+<img data-src="index_files/figure-revealjs/unnamed-chunk-118-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
 <p>Can’t do it too much because then it looks like a different category</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1977,21 +1991,21 @@
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-119-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-120-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-121-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-122-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-123-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-124-1.png" style="width:100.0%" class="r-stretch"></section>
 <section id="todo-use-gghighlight-to-programmatically-do-this-highlighting" class="slide level2 center">
 <h2>TODO: Use gghighlight to programmatically do this highlighting</h2>
 <p>Show how to do each chart above with gghighlight</p>

@@ -37,8 +37,13 @@ library(sf)
 ::: {.notes}
 - Who I am
 - Who R for the Rest of Us is
-TODO: Add link to slides on first slide
 :::
+
+# Follow Along!
+
+https://rfor.us/cascadia2024
+
+---
 
 
 ![](assets/obtn-overview.png)
@@ -1001,7 +1006,7 @@ population_projection_plot(
 
 
 
-## Don't Show Small Values {background-image="assets/small-numbers.jpg" .inverse}
+## Hide Small Values {background-image="assets/small-numbers.jpg" .inverse}
 
 
 ---
@@ -1874,10 +1879,11 @@ read_rds("data/sf_region_ig1_2_map.rds") |>
     "country" = "country_name",
     "region" = "ind_region"
   ) |>
-  write_rds("data/vaccine_preventable_disease.rds")
+  filter(disease == "Rubella") |> 
+  # select(-disease) |> 
+  write_rds("data/rubella.rds")
 
-vaccine_preventable_disease <- read_rds("data/vaccine_preventable_disease.rds") |>
-  as_tibble()
+rubella <- read_rds("data/rubella.rds")
 
 ia2030_colors <- list(
   navy = "#1f4675",
@@ -1895,7 +1901,7 @@ ia2030_colors <- list(
 region_map <- function(opacity_level = 1) {
   ggplot() +
     geom_sf(
-      data = vaccine_preventable_disease |>
+      data = rubella |>
         filter(region == 1) |>
         add_row(status = "Achieved", disease = "Rubella") |>
         add_row(status = "Re-established", disease = "Rubella") |>
@@ -1907,17 +1913,17 @@ region_map <- function(opacity_level = 1) {
       alpha = opacity_level
     ) +
     geom_sf(
-      data = vaccine_preventable_disease |>
+      data = rubella |>
         filter(region == 0),
       fill = "lightgrey",
       color = "grey",
       linewidth = 0,
       alpha = 0.5
     ) +
-    facet_wrap(
-      vars(disease),
-      labeller = labeller(disease = label_wrap_gen(20))
-    ) +
+    # facet_wrap(
+    #   vars(disease),
+    #   labeller = labeller(disease = label_wrap_gen(20))
+    # ) +
     scale_fill_manual(
       name = "",
       values = c(
@@ -1946,8 +1952,15 @@ Explain how we're not using aesthetic properties here so much as putting another
 
 ```{r}
 #| echo: true
-vaccine_preventable_disease
+#| eval: false
+rubella
 ```
+
+```{r}
+rubella |> 
+  select(-disease)
+```
+
 
 . . .
 
@@ -1957,11 +1970,11 @@ vaccine_preventable_disease
 region_map <- function() {
   ggplot() +
     geom_sf(
-      data = vaccine_preventable_disease |> filter(region == 1),
+      data = rubella |> filter(region == 1),
       aes(fill = status)
     ) +
     geom_sf(
-      data = vaccine_preventable_disease |> filter(region == 0),
+      data = rubella |> filter(region == 0),
       fill = "lightgrey",
       alpha = 0.5
     ) +
@@ -1974,7 +1987,7 @@ region_map <- function() {
 ---
 
 ```{r}
-vaccine_preventable_disease <- read_rds("data/vaccine_preventable_disease.rds")
+# rubella <- read_rds("data/rubella.rds")
 ```
 
 
@@ -2002,7 +2015,7 @@ library(ggfx)
 region_map() +
   with_shadow(
     geom_sf(
-      data = vaccine_preventable_disease |> filter(country == "Saudi Arabia")
+      data = rubella |> filter(country == "Saudi Arabia")
     ),
     ...
   )
@@ -2015,7 +2028,7 @@ region_map() +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = vaccine_preventable_disease |> filter(country == "Saudi Arabia"),
+      data = rubella |> filter(country == "Saudi Arabia"),
       aes(fill = status),
       alpha = 1,
       color = "white",
@@ -2033,14 +2046,15 @@ region_map() +
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "6"
+#| code-line-numbers: "6-7"
 
 region_map() +
   with_shadow(
     geom_sf(
-      data = vaccine_preventable_disease |> filter(country == "Saudi Arabia")
+      data = rubella |> filter(country == "Saudi Arabia")
     ),
     linewidth = 0.8,
+    color = "white",
     ...
   )
 ```
@@ -2052,7 +2066,7 @@ region_map() +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = vaccine_preventable_disease |> filter(country == "Saudi Arabia"),
+      data = rubella |> filter(country == "Saudi Arabia"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
@@ -2080,12 +2094,12 @@ Add outline to make it pop even more
 region_map <- function(opacity_level = 1) {
   ggplot() +
     geom_sf(
-      data = vaccine_preventable_disease |> filter(region == 1),
+      data = rubella |> filter(region == 1),
       aes(fill = status),
       alpha = opacity_level
     ) +
     geom_sf(
-      data = vaccine_preventable_disease |> filter(region == 0),
+      data = rubella |> filter(region == 0),
       fill = "lightgrey",
       alpha = 0.5
     ) +
@@ -2108,7 +2122,7 @@ region_map(opacity_level = 0.75) +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = vaccine_preventable_disease |> filter(country == "Saudi Arabia"),
+      data = rubella |> filter(country == "Saudi Arabia"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
@@ -2133,7 +2147,7 @@ region_map(opacity_level = 0.25) +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = vaccine_preventable_disease |> filter(country == "Saudi Arabia"),
+      data = rubella |> filter(country == "Saudi Arabia"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
@@ -2163,7 +2177,7 @@ region_map(opacity_level = 0.75) +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = vaccine_preventable_disease |> filter(country == "Iraq"),
+      data = rubella |> filter(country == "Iraq"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
@@ -2189,7 +2203,7 @@ region_map(opacity_level = 0.75) +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = vaccine_preventable_disease |> filter(country == "Somalia"),
+      data = rubella |> filter(country == "Iran (Islamic Republic of)"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
@@ -2215,7 +2229,7 @@ region_map(opacity_level = 0.75) +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = vaccine_preventable_disease |> filter(country == "Libya"),
+      data = rubella |> filter(country == "Libya"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
