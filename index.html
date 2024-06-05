@@ -401,7 +401,7 @@
 <aside class="notes">
 <ul>
 <li>Who I am</li>
-<li>Who R for the Rest of Us is</li>
+<li>Who R for the Rest of Us is TODO: Add link to slides on first slide</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -506,12 +506,12 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb3-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My report"</span></span>
-<span id="cb3-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb3-4"><a href=""></a><span class="fu">params</span><span class="kw">:</span></span>
-<span id="cb3-5"><a href=""></a><span class="at">  </span><span class="fu">country</span><span class="kw">:</span><span class="at"> </span><span class="st">"Afghanistan"</span></span>
-<span id="cb3-6"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="co"># ---</span></span>
+<span id="cb3-2"><a href=""></a><span class="co"># title: "My report"</span></span>
+<span id="cb3-3"><a href=""></a><span class="co"># format: html</span></span>
+<span id="cb3-4"><a href=""></a><span class="co"># params:</span></span>
+<span id="cb3-5"><a href=""></a><span class="co">#   country: "Afghanistan"</span></span>
+<span id="cb3-6"><a href=""></a><span class="co"># ---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -541,12 +541,12 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb5-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My report"</span></span>
-<span id="cb5-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb5-4"><a href=""></a><span class="fu">params</span><span class="kw">:</span></span>
-<span id="cb5-5"><a href=""></a><span class="at">  </span><span class="fu">country</span><span class="kw">:</span><span class="at"> </span><span class="st">"Albania"</span></span>
-<span id="cb5-6"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href=""></a><span class="co"># ---</span></span>
+<span id="cb5-2"><a href=""></a><span class="co"># title: "My report"</span></span>
+<span id="cb5-3"><a href=""></a><span class="co"># format: html</span></span>
+<span id="cb5-4"><a href=""></a><span class="co"># params:</span></span>
+<span id="cb5-5"><a href=""></a><span class="co">#   country: "Albania"</span></span>
+<span id="cb5-6"><a href=""></a><span class="co"># ---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -1105,7 +1105,6 @@
 </section>
 <section class="slide level2 center">
 
-<p>TODO: Figure out why colors aren’t working</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
 <span id="cb27-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
@@ -1183,7 +1182,7 @@
 <span id="cb30-4"><a href=""></a>) <span class="sc">+</span></span>
 <span id="cb30-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
 <span id="cb30-6"><a href=""></a>    <span class="at">data =</span> population_projection <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>),</span>
-<span id="cb30-7"><a href=""></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb30-7"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">0.02</span>,</span>
 <span id="cb30-8"><a href=""></a>    <span class="fu">aes</span>(</span>
 <span id="cb30-9"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
 <span id="cb30-10"><a href=""></a>    )</span>
@@ -1210,7 +1209,7 @@
 <span id="cb31-4"><a href=""></a>) <span class="sc">+</span></span>
 <span id="cb31-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
 <span id="cb31-6"><a href=""></a>    <span class="at">data =</span> population_projection <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Stamford"</span>),</span>
-<span id="cb31-7"><a href=""></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb31-7"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">0.02</span>,</span>
 <span id="cb31-8"><a href=""></a>    <span class="fu">aes</span>(</span>
 <span id="cb31-9"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
 <span id="cb31-10"><a href=""></a>    )</span>
@@ -1228,9 +1227,6 @@
 </div>
 </div>
 </section>
-<section id="todo-add-shadow-behind-text-to-make-it-visible" class="slide level2 center">
-<h2>TODO: Add shadow behind text to make it visible</h2>
-</section>
 <section class="slide level2 center">
 
 <div class="cell">
@@ -1243,7 +1239,7 @@
 <span id="cb32-7"><a href=""></a>  <span class="fu">geom_shadowtext</span>(</span>
 <span id="cb32-8"><a href=""></a>    <span class="at">data =</span> population_projection <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Stamford"</span>),</span>
 <span id="cb32-9"><a href=""></a>    <span class="at">bg.color =</span> <span class="st">"white"</span>,</span>
-<span id="cb32-10"><a href=""></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>,</span>
+<span id="cb32-10"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">0.02</span>,</span>
 <span id="cb32-11"><a href=""></a>    <span class="fu">aes</span>(</span>
 <span id="cb32-12"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
 <span id="cb32-13"><a href=""></a>    )</span>
@@ -1263,19 +1259,6 @@
 </section>
 <section id="dont-show-small-values" class="slide level2 inverse center" data-background-image="assets/small-numbers.jpg">
 <h2>Don’t Show Small Values</h2>
-<aside class="notes">
-<p>TODO: Add image of PSC reports</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 center">
 
@@ -1426,11 +1409,11 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>pre_post_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  question                            timing rating growth growth_formatted
-  &lt;chr&gt;                               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;
-1 How much did you improve in X area? Pre       1.6   NA               NA  
-2 How much did you improve in X area? Post      4.2    2.6              2.6</code></pre>
+<pre><code># A tibble: 2 × 6
+  question            timing rating growth growth_formatted growth_text_position
+  &lt;chr&gt;               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
+1 How much did you i… Pre       1.6   NA               NA                   NA  
+2 How much did you i… Post      4.2    2.6              2.6                  2.9</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -1487,7 +1470,7 @@
 <span id="cb45-15"><a href=""></a>  <span class="co"># Growth label</span></span>
 <span id="cb45-16"><a href=""></a>  <span class="fu">geom_text</span>(</span>
 <span id="cb45-17"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb45-18"><a href=""></a>      <span class="at">x =</span> rating <span class="sc">-</span> growth <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb45-18"><a href=""></a>      <span class="at">x =</span> growth_text_position,</span>
 <span id="cb45-19"><a href=""></a>      <span class="at">label =</span> growth_formatted</span>
 <span id="cb45-20"><a href=""></a>    )</span>
 <span id="cb45-21"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1509,11 +1492,11 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>pre_post_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 5
-  question                            timing rating growth growth_formatted
-  &lt;chr&gt;                               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;
-1 How much did you improve in X area? Pre       3.5 NA               NA    
-2 How much did you improve in X area? Post      3.6  0.100            0.100</code></pre>
+<pre><code># A tibble: 2 × 6
+  question            timing rating growth growth_formatted growth_text_position
+  &lt;chr&gt;               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
+1 How much did you i… Pre       3.5 NA               NA                    NA   
+2 How much did you i… Post      3.6  0.100            0.100                 3.55</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -1542,11 +1525,12 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>pre_post_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 6
-  question            timing rating growth growth_formatted rating_text_position
+<pre><code># A tibble: 2 × 7
+  question            timing rating growth growth_formatted growth_text_position
   &lt;chr&gt;               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
-1 How much did you i… Pre       3.5 NA               NA                      3.3
-2 How much did you i… Post      3.6  0.100            0.100                  3.8</code></pre>
+1 How much did you i… Pre       3.5 NA               NA                    NA   
+2 How much did you i… Post      3.6  0.100            0.100                 3.55
+# ℹ 1 more variable: rating_text_position &lt;dbl&gt;</code></pre>
 </div>
 </div>
 </div>
@@ -1817,7 +1801,7 @@
           display:block!important;
       }</style></aside>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>vaccine_preventable_disease </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>vaccine_preventable_disease</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 276 × 5
    country              region disease          status                  geometry

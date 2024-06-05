@@ -12,7 +12,7 @@ format:
 execute: 
   message: false
   warning: false
-  cache: false
+  cache: true
 knitr:
   opts_chunk:
     dev: "ragg_png"
@@ -37,6 +37,7 @@ library(sf)
 ::: {.notes}
 - Who I am
 - Who R for the Rest of Us is
+TODO: Add link to slides on first slide
 :::
 
 
@@ -104,12 +105,13 @@ gapminder
 
 ```{yaml}
 #| echo: true
----
-title: "My report"
-format: html
-params:
-  country: "Afghanistan"
----
+#| eval: false
+# ---
+# title: "My report"
+# format: html
+# params:
+#   country: "Afghanistan"
+# ---
 ```
 
 . . .
@@ -149,12 +151,12 @@ gapminder |>
 ```{yaml}
 #| echo: true
 #| eval: false
----
-title: "My report"
-format: html
-params:
-  country: "Albania"
----
+# ---
+# title: "My report"
+# format: html
+# params:
+#   country: "Albania"
+# ---
 ```
 
 . . .
@@ -769,9 +771,12 @@ population_projection_plot <- function(town_to_plot, county_to_plot) {
     ) +
     scale_color_manual(
       values = c(
-        town_to_plot = "#9f3515",
-        county_to_plot = "#fbbfb8",
-        "Connecticut" = "#c4c4c4"
+        # town_to_plot = "#9f3515",
+        # county_to_plot = "#fbbfb8",
+        # "Connecticut" = "#c4c4c4"
+        "#c4c4c4",
+        "#fbbfb8",
+        "#9f3515"
       )
     ) +
     guides(color = guide_legend(reverse = TRUE)) +
@@ -789,8 +794,6 @@ population_projection_plot <- function(town_to_plot, county_to_plot) {
 }
 ```
 
-TODO: Figure out why colors aren't working
-
 ```{r}
 #| echo: true
 #| eval: false
@@ -887,7 +890,7 @@ population_projection_plot(
 ) +
   geom_text(
     data = population_projection |> filter(location == "Hartford"),
-    vjust = -1,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     )
@@ -904,7 +907,7 @@ population_projection_plot(
 ) +
   geom_text(
     data = population_projection |> filter(location == "Hartford"),
-    vjust = -1,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     ),
@@ -924,7 +927,7 @@ population_projection_plot(
 ) +
   geom_text(
     data = population_projection |> filter(location == "Stamford"),
-    vjust = -1,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     )
@@ -941,16 +944,13 @@ population_projection_plot(
 ) +
   geom_text(
     data = population_projection |> filter(location == "Stamford"),
-    vjust = -1,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     ),
     show.legend = FALSE
   )
 ```
-
-
-## TODO: Add shadow behind text to make it visible
 
 ---
 
@@ -973,7 +973,7 @@ population_projection_plot(
   geom_shadowtext(
     data = population_projection |> filter(location == "Stamford"),
     bg.color = "white",
-    vjust = -1,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     )
@@ -988,9 +988,10 @@ population_projection_plot(
   town_to_plot = "Stamford",
   county_to_plot = "Fairfield County"
 ) +
-  geom_text(
+  geom_shadowtext(
     data = population_projection |> filter(location == "Stamford"),
-    vjust = -1,
+    bg.color = "white",
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     ),
@@ -1286,7 +1287,8 @@ pre_post_data <-
     growth = if_else(timing == "Post", growth, NA),
     growth_formatted = number(growth, 0.1),
     growth_formatted = str_glue("+{growth_formatted}"),
-    growth_formatted = if_else(timing == "Post", growth, NA)
+    growth_formatted = if_else(timing == "Post", growth, NA),
+    growth_text_position = rating - growth / 2
   )
 ```
 
@@ -1356,7 +1358,7 @@ pre_post_data |>
   # Growth label
   geom_text(
     aes(
-      x = rating - growth / 2,
+      x = growth_text_position,
       label = growth_formatted
     )
   )
@@ -1406,7 +1408,8 @@ pre_post_data <-
     growth = if_else(timing == "Post", growth, NA),
     growth_formatted = number(growth, 0.1),
     growth_formatted = str_glue("+{growth_formatted}"),
-    growth_formatted = if_else(timing == "Post", growth, NA)
+    growth_formatted = if_else(timing == "Post", growth, NA),
+    growth_text_position = rating - growth / 2
   )
 ```
 
@@ -1433,7 +1436,7 @@ pre_post_data |>
   ) +
   geom_text(
     aes(
-      x = rating - growth / 2,
+      x = growth_text_position,
       label = growth_formatted
     ),
     vjust = -1
@@ -1873,7 +1876,7 @@ read_rds("data/sf_region_ig1_2_map.rds") |>
   ) |>
   write_rds("data/vaccine_preventable_disease.rds")
 
-vaccine_preventable_disease <- read_rds("data/vaccine_preventable_disease.rds") |> 
+vaccine_preventable_disease <- read_rds("data/vaccine_preventable_disease.rds") |>
   as_tibble()
 
 ia2030_colors <- list(
@@ -1943,7 +1946,7 @@ Explain how we're not using aesthetic properties here so much as putting another
 
 ```{r}
 #| echo: true
-vaccine_preventable_disease 
+vaccine_preventable_disease
 ```
 
 . . .
