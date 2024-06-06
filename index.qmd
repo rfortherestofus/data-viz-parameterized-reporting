@@ -16,6 +16,7 @@ execute:
 knitr:
   opts_chunk:
     dev: "ragg_png"
+    dpi: 150
     out.width: 100%
 title-slide-attributes:
   data-background-image: assets/rru-hex-bg-gradient-dark.svg
@@ -32,6 +33,8 @@ library(scales)
 library(patchwork)
 library(ggfx)
 library(sf)
+library(ggchicklet)
+library(ggtext)
 ```
 
 ::: {.notes}
@@ -58,7 +61,7 @@ https://rfor.us/cascadia2024
 
 ---
 
-TODO: Add CWP
+![](assets/cwp-overview.png)
 
 ::: {.notes}
 - Giving a talk on report design at posit::conf
@@ -111,12 +114,12 @@ gapminder
 ```{yaml}
 #| echo: true
 #| eval: false
-# ---
-# title: "My report"
-# format: html
-# params:
-#   country: "Afghanistan"
-# ---
+---
+title: "My report"
+format: html
+params:
+  country: "Afghanistan"
+---
 ```
 
 . . .
@@ -156,12 +159,12 @@ gapminder |>
 ```{yaml}
 #| echo: true
 #| eval: false
-# ---
-# title: "My report"
-# format: html
-# params:
-#   country: "Albania"
-# ---
+---
+title: "My report"
+format: html
+params:
+  country: "Albania"
+---
 ```
 
 . . .
@@ -615,8 +618,6 @@ median_income_plot("Washington") +
 
 
 # Minimize Text and Position it Carefully {background-image="assets/erase-text.jpg" .inverse}
-
-
 
 ```{r}
 library(ggrepel)
@@ -1193,20 +1194,13 @@ housing_cost_burden_plot(
 ```
 
 
-## TODO: Put some labels inside bars and others outside it
-
-Change to "put text off of the panel?"
-
-See https://show.rfor.us/KZLV6HQW (https://www.nytimes.com/2024/06/02/realestate/housing-market-rates-prices-slow.html)
-
-https://linear.app/rfortherestofus/issue/R4-437/scale-n=1-inconsistency
 
 
 ## Don't Put Text Where it Could Be Obscured {background-image="assets/hidden.jpg" background-opacity="0.8" .inverse}
 
 ---
 
-TODO: Show original plot
+![](assets/cwp-pre-post.png)
 
 ---
 
@@ -1255,7 +1249,7 @@ pre_post_plot <- function(df) {
       guide = guide_legend(reverse = TRUE)
     ) +
     labs(
-      title = "How much do you understand thing X?",
+      title = "Consider the limits of your data",
       fill = NULL
     ) +
     theme_minimal(base_size = 16) +
@@ -1280,10 +1274,10 @@ pre_post_data <-
     ~question,
     ~timing,
     ~rating,
-    "How much did you improve in X area?",
+    "Consider the limits of your data",
     "Pre",
     1.6,
-    "How much did you improve in X area?",
+    "Consider the limits of your data",
     "Post",
     4.2
   ) |>
@@ -1401,10 +1395,10 @@ pre_post_data <-
     ~question,
     ~timing,
     ~rating,
-    "How much did you improve in X area?",
+    "Consider the limits of your data",
     "Pre",
     3.5,
-    "How much did you improve in X area?",
+    "Consider the limits of your data",
     "Post",
     3.6
   ) |>
@@ -1465,7 +1459,8 @@ pre_post_data <-
 
 ```{r}
 #| echo: true
-pre_post_data
+pre_post_data |> 
+  select(question, timing, rating_text_position)
 ```
 
 . . .
@@ -1879,8 +1874,8 @@ read_rds("data/sf_region_ig1_2_map.rds") |>
     "country" = "country_name",
     "region" = "ind_region"
   ) |>
-  filter(disease == "Rubella") |> 
-  # select(-disease) |> 
+  filter(disease == "Rubella") |>
+  # select(-disease) |>
   write_rds("data/rubella.rds")
 
 rubella <- read_rds("data/rubella.rds")
@@ -1957,7 +1952,7 @@ rubella
 ```
 
 ```{r}
-rubella |> 
+rubella |>
   select(-disease)
 ```
 
@@ -2243,18 +2238,13 @@ region_map(opacity_level = 0.75) +
 
 
 
-## TODO: Use gghighlight to programmatically do this highlighting
-
-Show how to do each chart above with gghighlight
-
-
 # Conclusion
 
-1. Account for outer limits of your data
+1. Consider the Outer Limits of Your Data
 
-1. Think carefully about text
+1. Minimize Text and Position it Carefully
 
-1. Highlight strategically and programatically
+1. Highlight Strategically and Programatically
 
 ::: {.notes}
 The solution is less code and more thinking about data

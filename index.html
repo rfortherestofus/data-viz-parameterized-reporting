@@ -434,8 +434,8 @@
 <img data-src="assets/ia2030-overview.png" class="r-stretch"></section>
 <section class="slide level2 center">
 
-<p>TODO: Add CWP</p>
-<aside class="notes">
+
+<img data-src="assets/cwp-overview.png" class="r-stretch"><aside class="notes">
 <ul>
 <li>Giving a talk on report design at posit::conf</li>
 </ul>
@@ -514,12 +514,12 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="co"># ---</span></span>
-<span id="cb3-2"><a href=""></a><span class="co"># title: "My report"</span></span>
-<span id="cb3-3"><a href=""></a><span class="co"># format: html</span></span>
-<span id="cb3-4"><a href=""></a><span class="co"># params:</span></span>
-<span id="cb3-5"><a href=""></a><span class="co">#   country: "Afghanistan"</span></span>
-<span id="cb3-6"><a href=""></a><span class="co"># ---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb3-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My report"</span></span>
+<span id="cb3-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb3-4"><a href=""></a><span class="fu">params</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href=""></a><span class="at">  </span><span class="fu">country</span><span class="kw">:</span><span class="at"> </span><span class="st">"Afghanistan"</span></span>
+<span id="cb3-6"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -549,12 +549,12 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href=""></a><span class="co"># ---</span></span>
-<span id="cb5-2"><a href=""></a><span class="co"># title: "My report"</span></span>
-<span id="cb5-3"><a href=""></a><span class="co"># format: html</span></span>
-<span id="cb5-4"><a href=""></a><span class="co"># params:</span></span>
-<span id="cb5-5"><a href=""></a><span class="co">#   country: "Albania"</span></span>
-<span id="cb5-6"><a href=""></a><span class="co"># ---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href=""></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My report"</span></span>
+<span id="cb5-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb5-4"><a href=""></a><span class="fu">params</span><span class="kw">:</span></span>
+<span id="cb5-5"><a href=""></a><span class="at">  </span><span class="fu">country</span><span class="kw">:</span><span class="at"> </span><span class="st">"Albania"</span></span>
+<span id="cb5-6"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -1399,19 +1399,13 @@
 </div>
 </div>
 </section>
-<section id="todo-put-some-labels-inside-bars-and-others-outside-it" class="slide level2 center">
-<h2>TODO: Put some labels inside bars and others outside it</h2>
-<p>Change to “put text off of the panel?”</p>
-<p>See https://show.rfor.us/KZLV6HQW (https://www.nytimes.com/2024/06/02/realestate/housing-market-rates-prices-slow.html)</p>
-<p>https://linear.app/rfortherestofus/issue/R4-437/scale-n=1-inconsistency</p>
-</section>
 <section id="dont-put-text-where-it-could-be-obscured" class="slide level2 inverse center" data-background-image="assets/hidden.jpg" data-background-opacity="0.8">
 <h2>Don’t Put Text Where it Could Be Obscured</h2>
 </section>
 <section class="slide level2 center">
 
-<p>TODO: Show original plot</p>
-</section>
+
+<img data-src="assets/cwp-pre-post.png" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
@@ -1420,8 +1414,8 @@
 <pre><code># A tibble: 2 × 6
   question            timing rating growth growth_formatted growth_text_position
   &lt;chr&gt;               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
-1 How much did you i… Pre       1.6   NA               NA                   NA  
-2 How much did you i… Post      4.2    2.6              2.6                  2.9</code></pre>
+1 Consider the limit… Pre       1.6   NA               NA                   NA  
+2 Consider the limit… Post      4.2    2.6              2.6                  2.9</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -1503,8 +1497,8 @@
 <pre><code># A tibble: 2 × 6
   question            timing rating growth growth_formatted growth_text_position
   &lt;chr&gt;               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
-1 How much did you i… Pre       3.5 NA               NA                    NA   
-2 How much did you i… Post      3.6  0.100            0.100                 3.55</code></pre>
+1 Consider the limit… Pre       1.6   NA               NA                   NA  
+2 Consider the limit… Post      4.2    2.6              2.6                  2.9</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -1531,14 +1525,14 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>pre_post_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span> </span>
+<span id="cb49-2"><a href=""></a>  <span class="fu">select</span>(question, timing, rating_text_position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 7
-  question            timing rating growth growth_formatted growth_text_position
-  &lt;chr&gt;               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
-1 How much did you i… Pre       3.5 NA               NA                    NA   
-2 How much did you i… Post      3.6  0.100            0.100                 3.55
-# ℹ 1 more variable: rating_text_position &lt;dbl&gt;</code></pre>
+<pre><code># A tibble: 2 × 3
+  question                         timing rating_text_position
+  &lt;chr&gt;                            &lt;chr&gt;                 &lt;dbl&gt;
+1 Consider the limits of your data Pre                     3.3
+2 Consider the limits of your data Post                    3.8</code></pre>
 </div>
 </div>
 </div>
@@ -2005,17 +1999,13 @@ First 10 features:
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-124-1.png" style="width:100.0%" class="r-stretch"></section>
-<section id="todo-use-gghighlight-to-programmatically-do-this-highlighting" class="slide level2 center">
-<h2>TODO: Use gghighlight to programmatically do this highlighting</h2>
-<p>Show how to do each chart above with gghighlight</p>
-</section></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-124-1.png" style="width:100.0%" class="r-stretch"></section></section>
 <section id="conclusion" class="title-slide slide level1 center">
 <h1>Conclusion</h1>
 <ol type="1">
-<li class="fragment"><p>Account for outer limits of your data</p></li>
-<li class="fragment"><p>Think carefully about text</p></li>
-<li class="fragment"><p>Highlight strategically and programatically</p></li>
+<li class="fragment"><p>Consider the Outer Limits of Your Data</p></li>
+<li class="fragment"><p>Minimize Text and Position it Carefully</p></li>
+<li class="fragment"><p>Highlight Strategically and Programatically</p></li>
 </ol>
 <aside class="notes">
 <p>The solution is less code and more thinking about data</p>
