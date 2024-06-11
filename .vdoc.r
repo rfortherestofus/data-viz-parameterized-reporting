@@ -1,33 +1,33 @@
----
-title: "How to Make a Thousand Plots Look Good: Data Viz Tips for Parameterized Reporting"
-format:
-  rfortherestofus-slides-revealjs:
-    menu: false
-    progress: false
-    slide-number: true
-    show-slide-number: print
-    center: true
-    incremental: true
-    auto-animate: true
-execute: 
-  message: false
-  warning: false
-  cache: false
-knitr:
-  opts_chunk:
-    dev: "ragg_png"
-    dpi: 150
-    out.width: 100%
-title-slide-attributes:
-  data-background-image: assets/rru-hex-bg-gradient-dark.svg
-  data-background-size: cover
-params:
-  country: "Afghanistan"
-editor_options: 
-  chunk_output_type: console
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 library(tidyverse)
 library(scales)
 library(patchwork)
@@ -35,97 +35,97 @@ library(ggfx)
 library(sf)
 library(ggchicklet)
 library(ggtext)
-```
-
-# Follow Along!
-
-https://rfor.us/cascadia2024
-
-::: {.notes}
-- Who I am
-- Who R for the Rest of Us is
-:::
-
----
-
-
-![](assets/obtn-overview.png)
-
----
-
-![](assets/psc-overview.png)
-
----
-
-![](assets/ia2030-overview.png)
-
----
-
-![](assets/cwp-overview.png)
-
-::: {.notes}
-- Giving a talk on report design at posit::conf
-:::
-
-
-# What is Parameterized Reporting? {background-image="assets/books.jpg" .inverse}
-
----
-
-![](assets/parameterized-reporting-1.png)
-
----
-
-![](assets/parameterized-reporting-2.png)
-
----
-
-![](assets/parameterized-reporting-3.png)
-
----
-
-![](assets/parameterized-reporting-4.png)
-
----
-
-![](assets/parameterized-reporting-5.png)
-
----
-
-![](assets/parameterized-reporting-6.png)
-
----
-
-![](assets/parameterized-reporting-7.png)
-
-## How Parameterized Reporting Works {background-image="assets/machine.jpg" background-position="top" .inverse}
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #| echo: true
 library(gapminder)
 
 gapminder
-```
-
----
-
-```{yaml}
-#| echo: true
-#| eval: false
----
-title: "My report"
-format: html
-params:
-  country: "Afghanistan"
----
-```
-
-. . .
-
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: "4"
@@ -138,11 +138,11 @@ gapminder |>
     y = lifeExp
   )) +
   geom_line()
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 
 gapminder |>
@@ -152,29 +152,27 @@ gapminder |>
     y = lifeExp
   )) +
   geom_line() +
-  theme(
-    axis.text = element_text(size = 14),
-    axis.title = element_text(size = 14)
-  )
-```
-
----
-
-```{yaml}
-#| echo: true
-#| eval: false
----
-title: "My report"
-format: html
-params:
-  country: "Albania"
----
-```
-
-. . .
-
-
-```{r}
+  theme(axis.text = element_text(size = 14),
+  axis.title = element_text(size = 14))
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: "4"
@@ -187,11 +185,11 @@ gapminder |>
     y = lifeExp
   )) +
   geom_line()
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 
 gapminder |>
@@ -200,53 +198,49 @@ gapminder |>
     x = year,
     y = lifeExp
   )) +
-  geom_line() +
-  theme(
-    axis.text = element_text(size = 14),
-    axis.title = element_text(size = 14)
-  )
-```
-
-::: {.notes}
-I'm not going to show parameters throughout, but just know that's how this would work in reality
-:::
-
-
-# Data Viz Tips for Parameterized Reporting {background-image="assets/pencils.jpg" .inverse}
-
-::: {.notes}
-
-:::
-
-# There is No Magic Package {background-image="assets/magic-package.jpg" .inverse}
-
-::: {.notes}
-You've got to think deeply about your data
-
-There are packages to help with all of this, but nothing that can help you avoid thinking about your data
-
-With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports
-:::
-
-
-
-
-# Consider the Outer Limits of Your Data {background-image="assets/outer-limits.jpg" .inverse}
-
-::: {.notes}
-Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports
-:::
-
-
----
-
-![](assets/obtn-multnomah-race-ethnicity.png)
-
-::: {.notes}
-Set limits as 100% when working with percent data
-:::
-
-```{r}
+  geom_line()
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 # obtn::obtn_race_ethnicity |>
 #   filter(year == 2023) |>
 #   filter(geography %in% obtn::obtn_oregon_counties) |>
@@ -258,28 +252,28 @@ Set limits as 100% when working with percent data
 #   mutate(pct_formatted = percent(pct, 0.1)) |>
 #   mutate(population = fct_rev(population)) |>
 #   write_rds("data/obtn_race_ethnicity.rds")
-```
-
----
-
-![](assets/obtn-race-ethnicity.png)
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
 obtn_race_ethnicity <-
   read_rds("data/obtn_race_ethnicity.rds")
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 obtn_race_ethnicity |>
   filter(county == "Multnomah")
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 race_ethnicity_bar_chart <- function(county_to_plot) {
@@ -294,12 +288,12 @@ race_ethnicity_bar_chart <- function(county_to_plot) {
     geom_col(fill = "#004f39") +
     ...
 }
-```
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
 race_ethnicity_bar_chart <- function(county_to_plot) {
   obtn_race_ethnicity_filtered <-
     obtn_race_ethnicity |>
@@ -319,8 +313,7 @@ race_ethnicity_bar_chart <- function(county_to_plot) {
         label = pct_formatted
       ),
       color = "white",
-      hjust = 1.1,
-      size = 6
+      hjust = 1.1
     ) +
     scale_x_continuous(
       expand = expansion(0, 0)
@@ -329,45 +322,45 @@ race_ethnicity_bar_chart <- function(county_to_plot) {
     theme_void() +
     theme(
       plot.title = element_text(
-        size = 20,
+        size = 14,
         face = "bold"
       ),
       plot.margin = margin(rep(10, 4))
     )
 }
-```
-
-
-```{r}
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 race_ethnicity_bar_chart("Multnomah")
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 race_ethnicity_bar_chart("Multnomah")
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 race_ethnicity_bar_chart("Multnomah")
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 race_ethnicity_bar_chart("Baker")
-```
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| echo: true
 #| output: false
 #| code-line-numbers: "2-9"
@@ -380,12 +373,12 @@ race_ethnicity_bar_chart("Multnomah") +
     color = "#A9C27F",
     linetype = "dotted"
   )
-```
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| fig-height: 3.25
 race_ethnicity_bar_chart("Multnomah") +
   geom_col(
@@ -396,11 +389,11 @@ race_ethnicity_bar_chart("Multnomah") +
     color = "#A9C27F",
     linetype = "dotted"
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3.25
 race_ethnicity_bar_chart("Baker") +
   geom_col(
@@ -411,21 +404,21 @@ race_ethnicity_bar_chart("Baker") +
     color = "#A9C27F",
     linetype = "dotted"
   )
-```
-
-::: {.notes}
-Could also do this with `scale_x_continous(limits = c(0, 1))`
-:::
-
----
-
-![](assets/obtn-multnomah-median-income.png)
-
-::: {.notes}
-Set limits of plot based on max of all data
-:::
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 median_income <- read_csv("data/median_income.csv") |>
   rename("amount" = "value") |>
   mutate(amount_formatted = dollar(amount, 1)) |>
@@ -437,9 +430,9 @@ oregon_counties <-
   distinct(geography) |>
   filter(!geography %in% c("Oregon", "Rural", "Urban")) |>
   pull(geography)
-```
-
-```{r}
+#
+#
+#
 median_income_plot <- function(county_to_plot) {
   median_income |>
     filter(geography %in% c(county_to_plot, "Oregon")) |>
@@ -456,7 +449,7 @@ median_income_plot <- function(county_to_plot) {
     geom_text(
       color = "white",
       hjust = 1.2,
-      size = 16
+      size = 12
     ) +
     geom_text(
       aes(
@@ -465,7 +458,7 @@ median_income_plot <- function(county_to_plot) {
       ),
       color = "white",
       hjust = 0,
-      size = 16
+      size = 12
     ) +
     scale_fill_manual(values = c(
       "gray",
@@ -474,18 +467,18 @@ median_income_plot <- function(county_to_plot) {
     theme_void() +
     theme(plot.margin = margin(rep(20, 4)))
 }
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 median_income
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 median_income_plot <- function(county_to_plot) {
@@ -502,54 +495,54 @@ median_income_plot <- function(county_to_plot) {
     geom_col() +
     ...
 }
-```
-
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
 #| eval: false
 #| echo: true
 median_income_plot("Jackson")
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Jackson")
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Jackson")
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Harney")
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Washington")
-```
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| echo: true
 max_median_income <-
   median_income |>
@@ -558,19 +551,19 @@ max_median_income <-
     n = 1
   ) |>
   pull(amount)
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 max_median_income
-```
-
----
-
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| eval: false
 #| echo: true
 #| code-line-numbers: "2-4"
@@ -578,83 +571,83 @@ median_income_plot("Jackson") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Jackson") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
-```
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Jackson") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Harney") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 3
 #| fig-width: 20
 median_income_plot("Washington") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
-```
-
-
-# Minimize Text and Position it Carefully {background-image="assets/erase-text.jpg" .inverse}
-
-```{r}
+#
+#
+#
+#
+#
+#
 library(palmerpenguins)
 
 set.seed(1234)
-```
-
-
-::: {.notes}
-Text WILL overlap so think proactively about how to avoid it
-
-The problem is, you never know how it will look for all of your plots
-
-Here's the problem with text
-:::
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #| echo: true
 library(palmerpenguins)
 
 penguins
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 penguins_scatterplot <- function(number_of_dots) {
   penguins |>
@@ -666,79 +659,78 @@ penguins_scatterplot <- function(number_of_dots) {
       bill_depth_mm
     )) +
     geom_point() +
-    theme_minimal(base_size = 16)
+    theme_minimal()
 }
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 penguins_scatterplot(number_of_dots = 36)
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
-#| eval: false
 penguins_scatterplot(number_of_dots = 36) +
   geom_text(aes(label = island))
-```
-
-
-::: {.notes}
-Here's a potential solution: ggrepel
-:::
-
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #| echo: true
-#| output: false
+#| eval: false
 #| code-line-numbers: "4"
 library(ggrepel)
 
 penguins_scatterplot(number_of_dots = 36) +
   geom_text_repel(aes(label = island))
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 penguins_scatterplot(number_of_dots = 36) +
   geom_text_repel(aes(label = island))
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 penguins_scatterplot(number_of_dots = 120) +
   geom_text_repel(aes(label = island))
-```
-
-
-
-::: {.notes}
-But be careful because you don't know what you're going to get
-:::
-
-## Don't Try to Label Everything {background-image="assets/label.jpg" .inverse}
-
----
-
-![](assets/psc-population-projection.png)
-
----
-
-::: {.notes}
-https://show.rfor.us/QLbWktrG (but fix colors so Hartford is red)
-:::
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 # pschousing::data_population_projection |>
 #   select(area_name:age_cohort_grp, perc_proj) |>
 #   rename(
@@ -748,23 +740,23 @@ https://show.rfor.us/QLbWktrG (but fix colors so Hartford is red)
 #   ) |>
 #   mutate(pct_formatted = percent(pct, 1)) |>
 #   write_rds("data/population_projection.rds")
-```
-
-
-```{r}
+#
+#
+#
+#
 population_projection <-
   read_rds("data/population_projection.rds")
-```
-
-```{r}
+#
+#
+#
 #| echo: true
 population_projection |>
   filter(location == "Hartford")
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 population_projection_plot <- function(town_to_plot, county_to_plot) {
@@ -780,11 +772,11 @@ population_projection_plot <- function(town_to_plot, county_to_plot) {
     geom_line() +
     ...
 }
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 population_projection_plot <- function(town_to_plot, county_to_plot) {
   population_projection |>
     filter(location %in% c(town_to_plot, county_to_plot, "Connecticut")) |>
@@ -827,36 +819,34 @@ population_projection_plot <- function(town_to_plot, county_to_plot) {
       legend.position = "bottom",
       strip.text = element_text(
         face = "italic",
-        size = 12
+        size = 11
       ),
-      legend.text = element_text(size = 12),
-      axis.title = element_blank(),
-      axis.text = element_text(size = 12)
+      axis.title = element_blank()
     )
 }
-```
-
-```{r}
+#
+#
+#
 #| echo: true
 #| eval: false
 population_projection_plot(
   town_to_plot = "Hartford",
   county_to_plot = "Hartford County"
 )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 population_projection_plot(
   town_to_plot = "Hartford",
   county_to_plot = "Hartford County"
 )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: "5-9"
@@ -869,11 +859,11 @@ population_projection_plot(
       label = pct_formatted
     )
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 4
 population_projection_plot(
   town_to_plot = "Hartford",
@@ -883,14 +873,13 @@ population_projection_plot(
     aes(
       label = pct_formatted
     ),
-    size = 6,
     show.legend = FALSE
   )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: "5-9"
@@ -903,11 +892,11 @@ population_projection_plot(
       label = pct_formatted
     )
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 4
 population_projection_plot(
   town_to_plot = "Hartford",
@@ -917,14 +906,13 @@ population_projection_plot(
     aes(
       label = pct_formatted
     ),
-    size = 6,
     show.legend = FALSE
   )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: "6,7"
@@ -934,16 +922,16 @@ population_projection_plot(
 ) +
   geom_text(
     data = population_projection |> filter(location == "Hartford"),
-    nudge_y = 0.03,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     )
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 4
 population_projection_plot(
   town_to_plot = "Hartford",
@@ -951,18 +939,17 @@ population_projection_plot(
 ) +
   geom_text(
     data = population_projection |> filter(location == "Hartford"),
-    nudge_y = 0.03,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     ),
-    size = 6,
     show.legend = FALSE
   )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: "6,7"
@@ -972,16 +959,16 @@ population_projection_plot(
 ) +
   geom_text(
     data = population_projection |> filter(location == "Stamford"),
-    nudge_y = 0.03,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     )
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 4
 population_projection_plot(
   town_to_plot = "Stamford",
@@ -989,23 +976,22 @@ population_projection_plot(
 ) +
   geom_text(
     data = population_projection |> filter(location == "Stamford"),
-    nudge_y = 0.03,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     ),
-    size = 6,
     show.legend = FALSE
   )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 library(shadowtext)
-```
-
-
-```{r}
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: "1,7,9"
@@ -1019,16 +1005,16 @@ population_projection_plot(
   geom_shadowtext(
     data = population_projection |> filter(location == "Stamford"),
     bg.color = "white",
-    nudge_y = 0.03,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     )
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 4
 population_projection_plot(
   town_to_plot = "Stamford",
@@ -1037,27 +1023,26 @@ population_projection_plot(
   geom_shadowtext(
     data = population_projection |> filter(location == "Stamford"),
     bg.color = "white",
-    nudge_y = 0.03,
+    nudge_y = 0.02,
     aes(
       label = pct_formatted
     ),
-    size = 6,
     show.legend = FALSE
   )
-```
-
-
-
-## Hide Small Values {background-image="assets/small-numbers.jpg" .inverse}
-
-
----
-
-![](assets/psc-housing-cost-burden.png)
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 # pschousing::data_acs$affordability_occupancy_status |>
 #   filter(occupancy_status == "Renter") |>
 #   select(area_name, spending_to_income_grp, perc_spending) |>
@@ -1086,21 +1071,21 @@ population_projection_plot(
 #   mutate(location = fct_inorder(location)) |>
 #   mutate(location = fct_rev(location)) |>
 #   write_rds("data/housing_cost_burden.rds")
-```
-
-
-```{r}
+#
+#
+#
+#
 housing_cost_burden <-
   read_rds("data/housing_cost_burden.rds")
-```
-
-```{r}
+#
+#
+#
 housing_cost_burden
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 
@@ -1117,11 +1102,11 @@ housing_cost_burden_plot <- function(town_to_plot, county_to_plot) {
     geom_text(position = position_stack(vjust = 0.5)) +
     ...
 }
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 housing_cost_burden_plot <- function(town_to_plot, county_to_plot) {
   housing_cost_burden |>
     filter(location %in% c(town_to_plot, county_to_plot, "Connecticut")) |>
@@ -1156,96 +1141,96 @@ housing_cost_burden_plot <- function(town_to_plot, county_to_plot) {
       plot.margin = margin(rep(20, 4))
     )
 }
-```
-
-```{r}
+#
+#
+#
 #| echo: true
 #| eval: false
 housing_cost_burden_plot(
   town_to_plot = "Hartford",
   county_to_plot = "Hartford County"
 )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 housing_cost_burden_plot(
   town_to_plot = "Hartford",
   county_to_plot = "Hartford County"
 )
-```
-
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
 #| echo: true
 housing_cost_burden <-
   housing_cost_burden |>
   mutate(pct_formatted = if_else(pct > 0.07, pct_formatted, NA))
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 housing_cost_burden
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 housing_cost_burden_plot(
   town_to_plot = "Hartford",
   county_to_plot = "Hartford County"
 )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 housing_cost_burden_plot(
   town_to_plot = "Hartford",
   county_to_plot = "Hartford County"
 )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 housing_cost_burden_plot(
   town_to_plot = "Stamford",
   county_to_plot = "Fairfield County"
 )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 housing_cost_burden_plot(
   town_to_plot = "Stamford",
   county_to_plot = "Fairfield County"
 )
-```
-
-
-
-
-## Don't Put Text Where it Could Be Obscured {background-image="assets/hidden.jpg" background-opacity="0.8" .inverse}
-
----
-
-![](assets/cwp-pre-post.png)
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 pre_post_plot <- function(df) {
   df |>
     ggplot(aes(
@@ -1267,7 +1252,7 @@ pre_post_plot <- function(df) {
     geom_point(
       shape = 21,
       color = "white",
-      size = 14,
+      size = 12,
       stroke = 2
     ) +
     scale_x_continuous(
@@ -1303,20 +1288,13 @@ pre_post_plot <- function(df) {
       plot.title = element_blank(),
       plot.title.position = "plot",
       legend.position = "none",
-      axis.text.x = element_text(
-        color = "grey40",
-        size = 12
-      ),
-      axis.text.y = element_text(
-        color = "grey40",
-        size = 12
-      )
+      axis.text.x = element_text(color = "grey40")
     )
 }
-```
-
-
-```{r}
+#
+#
+#
+#
 pre_post_data <-
   tribble(
     ~question,
@@ -1337,16 +1315,16 @@ pre_post_data <-
     growth_formatted = if_else(timing == "Post", growth, NA),
     growth_text_position = rating - growth / 2
   )
-```
-
-```{r}
+#
+#
+#
 #| echo: true
 pre_post_data
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 
@@ -1361,30 +1339,30 @@ pre_post_plot <- function(df) {
     geom_point(shape = 21) +
     ...
 }
-```
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 pre_post_data |>
   pre_post_plot()
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 2
 pre_post_data |>
   pre_post_plot()
-```
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: 3-7|8-14|15-21
@@ -1409,24 +1387,20 @@ pre_post_data |>
       label = growth_formatted
     )
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 2
 pre_post_data |>
   pre_post_plot() +
-  geom_text(
-    color = "white",
-    size = 5
-  ) +
+  geom_text(color = "white") +
   geom_text(
     aes(
       label = timing,
       color = timing
     ),
-    size = 5,
     vjust = -2,
     fontface = "bold"
   ) +
@@ -1435,14 +1409,13 @@ pre_post_data |>
       x = rating - growth / 2,
       label = growth_formatted
     ),
-    size = 5,
     vjust = -1
   )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 pre_post_data <-
   tribble(
     ~question,
@@ -1463,30 +1436,26 @@ pre_post_data <-
     growth_formatted = if_else(timing == "Post", growth, NA),
     growth_text_position = rating - growth / 2
   )
-```
-
-```{r}
+#
+#
+#
 #| echo: true
 pre_post_data
-```
-
-. . .
-
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| fig-height: 2
 pre_post_data |>
   pre_post_plot() +
-  geom_text(
-    color = "white",
-    size = 5
-  ) +
+  geom_text(color = "white") +
   geom_text(
     aes(
       label = timing,
       color = timing
     ),
-    size = 5,
     vjust = -2,
     fontface = "bold"
   ) +
@@ -1495,14 +1464,13 @@ pre_post_data |>
       x = growth_text_position,
       label = growth_formatted
     ),
-    size = 5,
     vjust = -1
   )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| code-line-numbers: 3-6
 pre_post_data <-
@@ -1511,19 +1479,19 @@ pre_post_data <-
     timing == "Pre" ~ rating - 0.2,
     timing == "Post" ~ rating + 0.2
   ))
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
-pre_post_data |>
+pre_post_data |> 
   select(question, timing, rating_text_position)
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: 3-8|9-14
@@ -1542,11 +1510,11 @@ pre_post_data |>
     )
   ) +
   ...
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 pre_post_data |>
@@ -1564,10 +1532,10 @@ pre_post_data |>
     )
   ) +
   ...
-```
-
-
-```{r}
+#
+#
+#
+#
 #| fig-height: 2
 pre_post_data |>
   pre_post_plot() +
@@ -1576,7 +1544,6 @@ pre_post_data |>
       x = rating_text_position,
       color = timing
     ),
-    size = 5,
     fontface = "bold"
   ) +
   geom_text(
@@ -1585,7 +1552,6 @@ pre_post_data |>
       label = timing,
       color = timing
     ),
-    size = 5,
     vjust = -2,
     fontface = "bold"
   ) +
@@ -1594,14 +1560,13 @@ pre_post_data |>
       x = rating - growth / 2,
       label = growth_formatted
     ),
-    size = 5,
     vjust = -1
   )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: 3-8
@@ -1614,11 +1579,11 @@ pre_post_data |>
     )
   ) +
   ...
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 2
 pre_post_data |>
   mutate(rating_text_position = case_when(
@@ -1631,8 +1596,7 @@ pre_post_data |>
       x = rating_text_position,
       color = timing
     ),
-    fontface = "bold",
-    size = 5
+    fontface = "bold"
   ) +
   geom_text(
     aes(
@@ -1641,8 +1605,7 @@ pre_post_data |>
       color = timing
     ),
     vjust = -2,
-    fontface = "bold",
-    size = 5
+    fontface = "bold"
   ) +
   geom_label(
     aes(
@@ -1654,8 +1617,7 @@ pre_post_data |>
     label.padding = unit(4, "pt"),
     label.r = unit(3, "pt"),
     color = "grey30",
-    fontface = "bold",
-    size = 5
+    fontface = "bold"
   ) +
   scale_x_continuous(
     position = "top",
@@ -1677,57 +1639,57 @@ pre_post_data |>
       "Growth"
     )
   )
-```
-
-
-# Highlight Strategically and Programatically {background-image="assets/highlight.jpg" .inverse}
-
-::: {.notes}
-TODO: Talk about how I'm adding layers on top of other layers here (make diagram)
-:::
-
----
-
-
-::: {.rainbow}
-Color
-:::
-
-. . .
-
-::: {.giant-text}
-Size
-:::
-
-. . .
-
-::: {.shadow-text}
-Shadow
-:::
-
-. . .
-
-::: {.outline-text}
-Outline
-:::
-
-. . .
-
-::: {.opacity-text}
-Opacity
-:::
-
-
-## Color {background-image="assets/color.jpg" .inverse}
-
----
-
-![](assets/psc-single-family-homes.png)
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 # pschousing::data_acs$units_structure_occupancy_status |>
 #   filter(area_level == "Town") |>
 #   group_by(area_name, units_structure_grp) |>
@@ -1738,21 +1700,21 @@ Opacity
 #   select(area_name, pct) |>
 #   rename("location" = "area_name") |>
 #   write_rds("data/single_family_homes.rds")
-```
-
-```{r}
+#
+#
+#
 single_family_homes <-
   read_rds("data/single_family_homes.rds")
-```
-
-```{r}
+#
+#
+#
 #| echo: true
 single_family_homes
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 single_family_homes_plot <- function() {
@@ -1769,14 +1731,14 @@ single_family_homes_plot <- function() {
     ) +
     ...
 }
-```
-
-
----
-
-
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
 single_family_homes_plot <- function() {
   single_family_homes |>
     ggplot(
@@ -1814,32 +1776,31 @@ single_family_homes_plot <- function() {
     ) +
     theme_void() +
     theme(
-      axis.text.x = element_text(size = 13,
-                                 color = "grey40"),
+      axis.text.x = element_text(),
       legend.position = "none",
       plot.margin = margin(rep(20, 4))
     )
 }
-```
-
-```{r}
+#
+#
+#
 #| echo: true
 #| eval: false
 single_family_homes_plot()
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 2
 single_family_homes_plot()
-```
-
-
----
-
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 single_family_homes_plot() +
@@ -1848,11 +1809,11 @@ single_family_homes_plot() +
     shape = 124,
     color = "#15397f"
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 2
 single_family_homes_plot() +
   geom_point(
@@ -1861,14 +1822,14 @@ single_family_homes_plot() +
     color = "#15397f",
     size = 5
   )
-```
-
-
-## Size {background-image="assets/size.jpg" background-position="top" .inverse}
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: "6"
@@ -1879,11 +1840,11 @@ single_family_homes_plot() +
     color = "#15397f",
     size = 15
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 2
 single_family_homes_plot() +
   geom_point(
@@ -1892,11 +1853,11 @@ single_family_homes_plot() +
     color = "#15397f",
     size = 15
   )
-```
-
----
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 #| code-line-numbers: "3"
@@ -1907,11 +1868,11 @@ single_family_homes_plot() +
     color = "#15397f",
     size = 15
   )
-```
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
 #| fig-height: 2
 single_family_homes_plot() +
   geom_point(
@@ -1920,19 +1881,19 @@ single_family_homes_plot() +
     color = "#15397f",
     size = 15
   )
-```
-
-
-
-## Shadow {background-image="assets/shadow.jpg" .inverse}
-
----
-
-![](assets/ia2030-region-map.png)
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 read_rds("data/sf_region_ig1_2_map.rds") |>
   select(country_name, ind_region, disease, status) |>
   rename(
@@ -1994,37 +1955,37 @@ region_map <- function(opacity_level = 1) {
       ),
       drop = FALSE
     ) +
-    guides(color = "none") +
     theme_void() +
     theme(
-      legend.text = element_text(size = 12,
-                                 color = "grey40",
-                                 family = "Inter"),
+      strip.text = element_text(
+        size = 9,
+        family = "Inter"
+      ),
       plot.margin = margin(rep(20, 4)),
       legend.position = "bottom"
     )
 }
-```
-
-::: {.notes}
-Explain how we're not using aesthetic properties here so much as putting another layer on top of existing layers
-:::
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 rubella
-```
-
-```{r}
+#
+#
+#
 rubella |>
   select(-disease)
-```
-
-
-. . .
-
-```{r}
+#
+#
+#
+#
+#
+#
 #| echo: true
 #| eval: false
 region_map <- function() {
@@ -2040,277 +2001,280 @@ region_map <- function() {
     ) +
     ...
 }
-```
-
-
-
----
-
-```{r}
+#
+#
+#
+#
+#
+#
+#
 # rubella <- read_rds("data/rubella.rds")
-```
-
-
-
-```{r}
+#
+#
+#
+#
+#
 #| echo: true
 region_map()
-```
-
-
-::: {.notes}
-https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/
-:::
-
-
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "1,4-9"
-library(ggfx)
-
-region_map() +
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia")
-    ),
-    ...
-  )
-```
-
-. . .
-
-```{r}
-region_map() +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia"),
-      aes(fill = status),
-      alpha = 1,
-      color = "white",
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  )
-```
-
-## Outline {background-image="assets/outline.jpg" .inverse}
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "6-7"
-
-region_map() +
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia")
-    ),
-    linewidth = 0.8,
-    color = "white",
-    ...
-  )
-```
-
-. . .
-
-```{r}
-region_map() +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  )
-```
-
-::: {.notes}
-Add outline to make it pop even more
-:::
-
-
-## Opacity {background-image="assets/opacity.jpg" .inverse}
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "1,6"
-region_map <- function(opacity_level = 1) {
-  ggplot() +
-    geom_sf(
-      data = rubella |> filter(region == 1),
-      aes(fill = status),
-      alpha = opacity_level
-    ) +
-    geom_sf(
-      data = rubella |> filter(region == 0),
-      fill = "lightgrey",
-      alpha = 0.5
-    ) +
-    ...
-}
-```
-
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-region_map(opacity_level = 0.75)
-```
-
-
-```{r}
-region_map(opacity_level = 0.75) +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  )
-```
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-region_map(opacity_level = 0.25)
-```
-
-```{r}
-region_map(opacity_level = 0.25) +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  )
-```
-
-::: {.notes}
-Can't do it too much because then it looks like a different category
-:::
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-region_map(opacity_level = 0.75)
-```
-
-
-```{r}
-region_map(opacity_level = 0.75) +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Iraq"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  )
-```
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-region_map(opacity_level = 0.75)
-```
-
-
-```{r}
-region_map(opacity_level = 0.75) +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Iran (Islamic Republic of)"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  )
-```
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-region_map(opacity_level = 0.75)
-```
-
-
-```{r}
-region_map(opacity_level = 0.75) +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Libya"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  )
-```
-
-
-
-# Conclusion
-
-1. Consider the Outer Limits of Your Data
-
-1. Minimize Text and Position it Carefully
-
-1. Highlight Strategically and Programatically
-
-::: {.notes}
-The solution is less code and more thinking about data
-:::
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
