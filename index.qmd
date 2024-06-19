@@ -286,6 +286,7 @@ race_ethnicity
 ```{r}
 #| echo: true
 #| eval: false
+#| code-line-numbers: "3"
 race_ethnicity_bar_chart <- function(county_to_plot) {
   race_ethnicity |>
     filter(county == county_to_plot) |>
@@ -423,51 +424,6 @@ race_ethnicity_bar_chart(county_to_plot = "Baker") +
   )
 ```
 
-::: {.notes}
-Could also do this with `scale_x_continuous(limits = c(0, 1))`
-:::
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "2"
-race_ethnicity_bar_chart(county_to_plot = "Multnomah") +
-  scale_x_continuous(limits = c(0, 1))
-```
-
-. . .
-
-```{r}
-#| fig-height: 3
-race_ethnicity_bar_chart(county_to_plot = "Multnomah") +
-  scale_x_continuous(
-    limits = c(0, 1),
-    expand = expansion(0, 0)
-  )
-```
-
-. . .
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "2"
-race_ethnicity_bar_chart(county_to_plot = "Baker") +
-  scale_x_continuous(limits = c(0, 1))
-```
-
-. . .
-
-```{r}
-#| fig-height: 3
-race_ethnicity_bar_chart(county_to_plot = "Baker") +
-  scale_x_continuous(
-    limits = c(0, 1),
-    expand = expansion(0, 0)
-  )
-```
 
 ---
 
@@ -540,6 +496,7 @@ median_income
 ```{r}
 #| echo: true
 #| eval: false
+#| code-line-numbers: "3"
 median_income_plot <- function(county_to_plot) {
   median_income |>
     filter(geography %in% c(county_to_plot, "Oregon")) |>
@@ -693,95 +650,6 @@ Text WILL overlap so think proactively about how to avoid it
 The problem is, you never know how it will look for all of your plots
 
 Here's the problem with text
-:::
-
----
-
-```{r}
-#| echo: true
-library(palmerpenguins)
-
-penguins
-```
-
-. . .
-
-```{r}
-#| echo: true
-penguins_scatterplot <- function(number_of_dots) {
-  penguins |>
-    slice_sample(n = number_of_dots) |>
-    ggplot(aes(
-      x = bill_length_mm,
-      y = bill_depth_mm
-    )) +
-    geom_point() +
-    theme_minimal(base_size = 16)
-}
-```
-
----
-
-```{r}
-#| echo: true
-penguins_scatterplot(number_of_dots = 36)
-```
-
----
-
-```{r}
-#| echo: true
-penguins_scatterplot(number_of_dots = 36) +
-  geom_text(aes(label = island))
-```
-
-
-::: {.notes}
-Here's a potential solution: ggrepel
-:::
-
-
-
----
-
-```{r}
-#| echo: true
-#| output: false
-#| code-line-numbers: "4"
-library(ggrepel)
-
-penguins_scatterplot(number_of_dots = 36) +
-  geom_text_repel(aes(label = island))
-```
-
-. . .
-
-```{r}
-penguins_scatterplot(number_of_dots = 36) +
-  geom_text_repel(aes(label = island))
-```
-
----
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: "1"
-penguins_scatterplot(number_of_dots = 120) +
-  geom_text_repel(aes(label = island))
-```
-
-. . .
-
-```{r}
-penguins_scatterplot(number_of_dots = 120) +
-  geom_text_repel(aes(label = island))
-```
-
-
-
-::: {.notes}
-But be careful because you don't know what you're going to get
 :::
 
 ## Don't Try to Label Everything {background-image="assets/label.jpg" .inverse}
@@ -1026,7 +894,7 @@ population_projection_plot(
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "6,7"
+#| code-line-numbers: "6"
 population_projection_plot(
   town_to_plot = "Stamford",
   county_to_plot = "Fairfield County"
@@ -1165,7 +1033,7 @@ housing_cost_burden
 ```{r}
 #| echo: true
 #| eval: false
-
+#| code-line-numbers: "3"
 housing_cost_burden_plot <- function(town_to_plot, county_to_plot) {
   housing_cost_burden |>
     filter(location %in% c(town_to_plot, county_to_plot, "Connecticut")) |>
@@ -1254,6 +1122,7 @@ housing_cost_burden |>
 
 ```{r}
 #| echo: true
+#| code-line-numbers: "3"
 housing_cost_burden <-
   housing_cost_burden |>
   mutate(pct_formatted = if_else(pct > 0.07, pct_formatted, NA))
@@ -2112,6 +1981,7 @@ rubella |>
 ```{r}
 #| echo: true
 #| eval: false
+#| code-line-numbers: "3-6|7-11"
 region_map <- function() {
   ggplot() +
     geom_sf(
@@ -2235,13 +2105,13 @@ Add outline to make it pop even more
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "1,6"
-region_map <- function(opacity_level = 1) {
+#| code-line-numbers: "6"
+region_map <- function() {
   ggplot() +
     geom_sf(
       data = rubella |> filter(region == 1),
       aes(fill = status),
-      alpha = opacity_level
+      alpha = 0.75
     ) +
     geom_sf(
       data = rubella |> filter(region == 0),
@@ -2287,44 +2157,6 @@ region_map(opacity_level = 0.75) +
     y_offset = 4
   )
 ```
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "1"
-region_map(opacity_level = 0.25) +
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Afghanistan")
-    ),
-    linewidth = 0.8,
-    color = "white",
-    ...
-  )
-```
-
-```{r}
-region_map(opacity_level = 0.25) +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Afghanistan"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 4,
-    y_offset = 4
-  )
-```
-
-::: {.notes}
-Can't do it too much because then it looks like a different category
-:::
 
 ---
 
