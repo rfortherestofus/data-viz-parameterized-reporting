@@ -37,6 +37,7 @@ library(ggchicklet)
 library(ggtext)
 library(qrcode)
 library(gapminder)
+library(ggrepel)
 ```
 
 # Follow Along! {.center-slide}
@@ -77,143 +78,10 @@ https://rfor.us/cascadia2024
 
 ::: {.notes}
 - Giving a talk on report design at posit::conf
+- If you're interested in parameterized reporting, chat with Jadey
 :::
 
 
-# What is Parameterized Reporting? {background-image="assets/books.jpg" .inverse}
-
----
-
-![](assets/parameterized-reporting-1.png)
-
----
-
-![](assets/parameterized-reporting-2.png)
-
----
-
-![](assets/parameterized-reporting-3.png)
-
----
-
-![](assets/parameterized-reporting-4.png)
-
----
-
-![](assets/parameterized-reporting-5.png)
-
----
-
-![](assets/parameterized-reporting-6.png)
-
----
-
-![](assets/parameterized-reporting-7.png)
-
-## How Parameterized Reporting Works {background-image="assets/machine.jpg" background-position="top" .inverse}
-
----
-
-```{yaml}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "4-5"
----
-title: "My report"
-format: html
-params:
-  country: "Afghanistan"
----
-```
-
-. . .
-
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "5"
-library(tidyverse)
-library(gapminder)
-
-gapminder |>
-  filter(country == params$country) |>
-  ggplot(aes(
-    x = year,
-    y = lifeExp
-  )) +
-  geom_line()
-```
-
-. . .
-
-```{r}
-#| fig-height: 3
-
-gapminder |>
-  filter(country == params$country) |>
-  ggplot(aes(
-    x = year,
-    y = lifeExp
-  )) +
-  geom_line() +
-  theme(
-    axis.text = element_text(size = 14),
-    axis.title = element_text(size = 14)
-  )
-```
-
----
-
-```{yaml}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "4-5"
----
-title: "My report"
-format: html
-params:
-  country: "Albania"
----
-```
-
-. . .
-
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "2"
-gapminder |>
-  filter(country == params$country) |>
-  ggplot(aes(
-    x = year,
-    y = lifeExp
-  )) +
-  geom_line()
-```
-
-. . .
-
-```{r}
-#| fig-height: 3
-
-gapminder |>
-  filter(country == "Albania") |>
-  ggplot(aes(
-    x = year,
-    y = lifeExp
-  )) +
-  geom_line() +
-  theme(
-    axis.text = element_text(size = 14),
-    axis.title = element_text(size = 14)
-  )
-```
-
-::: {.notes}
-I'm not going to show parameters throughout, but just know that's how this would work in reality
-:::
 
 
 # Data Viz Tips for Parameterized Reporting {background-image="assets/pencils.jpg" .inverse}
@@ -225,21 +93,13 @@ I'm not going to show parameters throughout, but just know that's how this would
 # There is No Magic Package {background-image="assets/magic-package.jpg" .inverse}
 
 ::: {.notes}
-You've got to think deeply about your data
-
-There are packages to help with all of this, but nothing that can help you avoid thinking about your data
-
-With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports
+There are packages to help with all of this, but nothing that can help you avoid thinking deeply about your data
 :::
 
 
 
 
 # Consider the Outer Limits of Your Data {background-image="assets/outer-limits.jpg" .inverse}
-
-::: {.notes}
-Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports
-:::
 
 
 ---
@@ -264,9 +124,6 @@ Set limits as 100% when working with percent data
 #   write_rds("data/obtn_race_ethnicity.rds")
 ```
 
----
-
-![](assets/obtn-race-ethnicity.png)
 
 ```{r}
 race_ethnicity <-
@@ -381,7 +238,7 @@ race_ethnicity_bar_chart(county_to_plot = "Baker")
 ```{r}
 #| echo: true
 #| output: false
-#| code-line-numbers: "2-9"
+#| code-line-numbers: "2-5|6|7|8"
 race_ethnicity_bar_chart(county_to_plot = "Multnomah") +
   geom_col(
     aes(
@@ -437,8 +294,8 @@ Set limits of plot based on max of all data
 median_income <- read_csv("data/median_income.csv") |>
   rename("amount" = "value") |>
   mutate(amount_formatted = dollar(amount, 1)) |>
-  select(geography, year, amount, amount_formatted) |>
-  filter(year == 2024)
+  filter(year == 2024) |> 
+  select(geography, amount, amount_formatted)
 
 oregon_counties <-
   median_income |>
@@ -646,10 +503,6 @@ set.seed(1234)
 
 ::: {.notes}
 Text WILL overlap so think proactively about how to avoid it
-
-The problem is, you never know how it will look for all of your plots
-
-Here's the problem with text
 :::
 
 ## Don't Try to Label Everything {background-image="assets/label.jpg" .inverse}
@@ -689,6 +542,7 @@ population_projection |>
 ```{r}
 #| echo: true
 #| eval: false
+#| code-line-numbers: "3"
 population_projection_plot <- function(town_to_plot, county_to_plot) {
   population_projection |>
     filter(location %in% c(town_to_plot, county_to_plot, "Connecticut")) |>
@@ -822,7 +676,9 @@ population_projection_plot(
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "5-9"
+#| code-line-numbers: "1,7-10"
+library(ggrepel)
+
 population_projection_plot(
   town_to_plot = "Hartford",
   county_to_plot = "Hartford County"
@@ -856,7 +712,7 @@ population_projection_plot(
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "6,7"
+#| code-line-numbers: "6|7"
 population_projection_plot(
   town_to_plot = "Hartford",
   county_to_plot = "Hartford County"
@@ -1232,7 +1088,7 @@ pre_post_plot <- function(df) {
       guide = guide_legend(reverse = TRUE)
     ) +
     labs(
-      title = "Consider the limits of your data",
+      title = "Question 1",
       fill = NULL
     ) +
     theme_minimal(base_size = 16) +
@@ -1264,10 +1120,10 @@ pre_post_data <-
     ~question,
     ~timing,
     ~rating,
-    "Consider the limits of your data",
+    "Question 1",
     "Pre",
     1.6,
-    "Consider the limits of your data",
+    "Question 1",
     "Post",
     4.2
   ) |>
@@ -1390,10 +1246,10 @@ pre_post_data <-
     ~question,
     ~timing,
     ~rating,
-    "Consider the limits of your data",
+    "Question 2",
     "Pre",
     3.5,
-    "Consider the limits of your data",
+    "Question 2",
     "Post",
     3.6
   ) |>
@@ -1450,8 +1306,8 @@ pre_post_data |>
 pre_post_data <-
   pre_post_data |>
   mutate(rating_text_position = case_when(
-    timing == "Pre" ~ rating - 0.3,
-    timing == "Post" ~ rating + 0.3
+    timing == "Pre" ~ rating - 0.2,
+    timing == "Post" ~ rating + 0.2
   ))
 ```
 
@@ -1625,7 +1481,7 @@ pre_post_data |>
 # Highlight Strategically and Programatically {background-image="assets/highlight.jpg" .inverse}
 
 ::: {.notes}
-TODO: Talk about how I'm adding layers on top of other layers here (make diagram)
+Use a range of aesthetic properties
 :::
 
 ---
@@ -1697,6 +1553,7 @@ single_family_homes
 ```{r}
 #| echo: true
 #| eval: false
+#| code-line-numbers: "10"
 single_family_homes_plot <- function() {
   single_family_homes |>
     ggplot(
@@ -1772,8 +1629,6 @@ single_family_homes_plot <- function() {
 single_family_homes_plot()
 ```
 
-. . .
-
 ```{r}
 #| fig-height: 2
 single_family_homes_plot()
@@ -1786,6 +1641,7 @@ single_family_homes_plot()
 ```{r}
 #| echo: true
 #| eval: false
+#| code-line-numbers: "3,5"
 single_family_homes_plot() +
   geom_point(
     data = single_family_homes |> filter(location == "Hartford"),
@@ -1793,6 +1649,10 @@ single_family_homes_plot() +
     color = "#15397f"
   )
 ```
+
+::: {.notes}
+Talk about how I'm adding layers on top of other layers here
+:::
 
 . . .
 
@@ -1930,7 +1790,7 @@ region_map <- function(opacity_level = 1) {
         filter(region == 0),
       fill = "lightgrey",
       color = "grey",
-      linewidth = 0,
+      linewidth = 0.2,
       alpha = 0.5
     ) +
     scale_fill_manual(
@@ -2129,7 +1989,7 @@ region_map <- function() {
 #| echo: true
 #| eval: false
 #| code-line-numbers: "1"
-region_map(opacity_level = 0.75) +
+region_map() +
   with_shadow(
     geom_sf(
       data = rubella |> filter(country == "Afghanistan")
@@ -2160,46 +2020,11 @@ region_map(opacity_level = 0.75) +
 
 ---
 
-
 ```{r}
 #| echo: true
 #| eval: false
 #| code-line-numbers: "1"
-region_map(opacity_level = 0.75) +
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Afghanistan")
-    ),
-    linewidth = 0.8,
-    color = "white",
-    ...
-  )
-```
-
-```{r}
-region_map(opacity_level = 0.75) +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Afghanistan"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 4,
-    y_offset = 4
-  )
-```
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "1"
-region_map(opacity_level = 0.75) +
+region_map() +
   with_shadow(
     geom_sf(
       data = rubella |> filter(country == "Iraq")
@@ -2232,11 +2057,13 @@ region_map(opacity_level = 0.75) +
 
 # Conclusion
 
-1. Consider the Outer Limits of Your Data
+1. Consider the outer limits of your data
 
-1. Minimize Text and Position it Carefully
+1. Minimize text and position it carefully
 
-1. Highlight Strategically and Programatically with a Range of Aesthetic Properties
+1. Highlight strategically and programatically with a range of aesthetic properties
+
+1. Packages are helpers, but you are the one who has to do the thinking
 
 ::: {.notes}
 The solution is less code and more thinking about data

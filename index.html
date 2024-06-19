@@ -436,6 +436,7 @@
 <img data-src="assets/cwp-overview.png" class="r-stretch"><aside class="notes">
 <ul>
 <li>Giving a talk on report design at posit::conf</li>
+<li>If you’re interested in parameterized reporting, chat with Jadey</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -448,124 +449,6 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section></section>
-<section>
-<section id="what-is-parameterized-reporting" class="title-slide slide level1 inverse center" data-background-image="assets/books.jpg">
-<h1>What is Parameterized Reporting?</h1>
-
-</section>
-<section class="slide level2 center">
-
-
-<img data-src="assets/parameterized-reporting-1.png" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="assets/parameterized-reporting-2.png" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="assets/parameterized-reporting-3.png" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="assets/parameterized-reporting-4.png" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="assets/parameterized-reporting-5.png" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="assets/parameterized-reporting-6.png" class="r-stretch"></section>
-<section class="slide level2 center">
-
-
-<img data-src="assets/parameterized-reporting-7.png" class="r-stretch"></section>
-<section id="how-parameterized-reporting-works" class="slide level2 inverse center" data-background-image="assets/machine.jpg" data-background-position="top">
-<h2>How Parameterized Reporting Works</h2>
-</section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="4-5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb1-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My report"</span></span>
-<span id="cb1-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb1-4"><a href=""></a><span class="fu">params</span><span class="kw">:</span></span>
-<span id="cb1-5"><a href=""></a><span class="at">  </span><span class="fu">country</span><span class="kw">:</span><span class="at"> </span><span class="st">"Afghanistan"</span></span>
-<span id="cb1-6"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href=""></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb2-3"><a href=""></a></span>
-<span id="cb2-4"><a href=""></a>gapminder <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href=""></a>  <span class="fu">filter</span>(country <span class="sc">==</span> params<span class="sc">$</span>country) <span class="sc">|&gt;</span></span>
-<span id="cb2-6"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb2-7"><a href=""></a>    <span class="at">x =</span> year,</span>
-<span id="cb2-8"><a href=""></a>    <span class="at">y =</span> lifeExp</span>
-<span id="cb2-9"><a href=""></a>  )) <span class="sc">+</span></span>
-<span id="cb2-10"><a href=""></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-5-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="4-5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href=""></a><span class="pp">---</span></span>
-<span id="cb3-2"><a href=""></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My report"</span></span>
-<span id="cb3-3"><a href=""></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb3-4"><a href=""></a><span class="fu">params</span><span class="kw">:</span></span>
-<span id="cb3-5"><a href=""></a><span class="at">  </span><span class="fu">country</span><span class="kw">:</span><span class="at"> </span><span class="st">"Albania"</span></span>
-<span id="cb3-6"><a href=""></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>gapminder <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href=""></a>  <span class="fu">filter</span>(country <span class="sc">==</span> params<span class="sc">$</span>country) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb4-4"><a href=""></a>    <span class="at">x =</span> year,</span>
-<span id="cb4-5"><a href=""></a>    <span class="at">y =</span> lifeExp</span>
-<span id="cb4-6"><a href=""></a>  )) <span class="sc">+</span></span>
-<span id="cb4-7"><a href=""></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-8-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<aside class="notes">
-<p>I’m not going to show parameters throughout, but just know that’s how this would work in reality</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</div>
 </section></section>
 <section id="data-viz-tips-for-parameterized-reporting" class="title-slide slide level1 inverse center" data-background-image="assets/pencils.jpg">
 <h1>Data Viz Tips for Parameterized Reporting</h1>
@@ -587,9 +470,7 @@
 <section id="there-is-no-magic-package" class="title-slide slide level1 inverse center" data-background-image="assets/magic-package.jpg">
 <h1>There is No Magic Package</h1>
 <aside class="notes">
-<p>You’ve got to think deeply about your data</p>
-<p>There are packages to help with all of this, but nothing that can help you avoid thinking about your data</p>
-<p>With parameterized reporting data viz the big thing is everything that is in your data is unknown until you generate all reports</p>
+<p>There are packages to help with all of this, but nothing that can help you avoid thinking deeply about your data</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -606,19 +487,7 @@
 <section>
 <section id="consider-the-outer-limits-of-your-data" class="title-slide slide level1 inverse center" data-background-image="assets/outer-limits.jpg">
 <h1>Consider the Outer Limits of Your Data</h1>
-<aside class="notes">
-<p>Give example of Aaron Williams talking about using states with longest and shortest names when making parameterized reports</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section class="slide level2 center">
 
@@ -639,12 +508,8 @@
 </section>
 <section class="slide level2 center">
 
-
-<img data-src="assets/obtn-race-ethnicity.png" class="r-stretch"></section>
-<section class="slide level2 center">
-
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>race_ethnicity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>race_ethnicity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 288 × 4
    county population                            pct pct_formatted
@@ -664,32 +529,32 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>race_ethnicity_bar_chart <span class="ot">&lt;-</span> <span class="cf">function</span>(county_to_plot) {</span>
-<span id="cb7-2"><a href=""></a>  race_ethnicity <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href=""></a>    <span class="fu">filter</span>(county <span class="sc">==</span> county_to_plot) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href=""></a>    <span class="fu">ggplot</span>(</span>
-<span id="cb7-5"><a href=""></a>      <span class="fu">aes</span>(</span>
-<span id="cb7-6"><a href=""></a>        <span class="at">x =</span> pct,</span>
-<span id="cb7-7"><a href=""></a>        <span class="at">y =</span> population</span>
-<span id="cb7-8"><a href=""></a>      )</span>
-<span id="cb7-9"><a href=""></a>    ) <span class="sc">+</span></span>
-<span id="cb7-10"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#004f39"</span>) <span class="sc">+</span></span>
-<span id="cb7-11"><a href=""></a>    ...</span>
-<span id="cb7-12"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>race_ethnicity_bar_chart <span class="ot">&lt;-</span> <span class="cf">function</span>(county_to_plot) {</span>
+<span id="cb3-2"><a href=""></a>  race_ethnicity <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href=""></a>    <span class="fu">filter</span>(county <span class="sc">==</span> county_to_plot) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href=""></a>    <span class="fu">ggplot</span>(</span>
+<span id="cb3-5"><a href=""></a>      <span class="fu">aes</span>(</span>
+<span id="cb3-6"><a href=""></a>        <span class="at">x =</span> pct,</span>
+<span id="cb3-7"><a href=""></a>        <span class="at">y =</span> population</span>
+<span id="cb3-8"><a href=""></a>      )</span>
+<span id="cb3-9"><a href=""></a>    ) <span class="sc">+</span></span>
+<span id="cb3-10"><a href=""></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#004f39"</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href=""></a>    ...</span>
+<span id="cb3-12"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="at">county_to_plot =</span> <span class="st">"Multnomah"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="at">county_to_plot =</span> <span class="st">"Multnomah"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-15-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-9-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -699,22 +564,22 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="at">county_to_plot =</span> <span class="st">"Multnomah"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="at">county_to_plot =</span> <span class="st">"Multnomah"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-16-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-10-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="at">county_to_plot =</span> <span class="st">"Baker"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="at">county_to_plot =</span> <span class="st">"Baker"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-17-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-11-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -728,15 +593,15 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="2-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="at">county_to_plot =</span> <span class="st">"Multnomah"</span>) <span class="sc">+</span></span>
-<span id="cb11-2"><a href=""></a>  <span class="fu">geom_col</span>(</span>
-<span id="cb11-3"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb11-4"><a href=""></a>      <span class="at">x =</span> <span class="dv">1</span></span>
-<span id="cb11-5"><a href=""></a>    ),</span>
-<span id="cb11-6"><a href=""></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
-<span id="cb11-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"#A9C27F"</span>,</span>
-<span id="cb11-8"><a href=""></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
-<span id="cb11-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="2-5|6|7|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">race_ethnicity_bar_chart</span>(<span class="at">county_to_plot =</span> <span class="st">"Multnomah"</span>) <span class="sc">+</span></span>
+<span id="cb7-2"><a href=""></a>  <span class="fu">geom_col</span>(</span>
+<span id="cb7-3"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb7-4"><a href=""></a>      <span class="at">x =</span> <span class="dv">1</span></span>
+<span id="cb7-5"><a href=""></a>    ),</span>
+<span id="cb7-6"><a href=""></a>    <span class="at">fill =</span> <span class="st">"transparent"</span>,</span>
+<span id="cb7-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"#A9C27F"</span>,</span>
+<span id="cb7-8"><a href=""></a>    <span class="at">linetype =</span> <span class="st">"dotted"</span></span>
+<span id="cb7-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 center">
@@ -745,7 +610,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-19-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-13-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -755,7 +620,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-20-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-14-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -782,54 +647,54 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>median_income</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>median_income</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 37 × 4
-   geography  year amount amount_formatted
-   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;           
- 1 Oregon     2024  76632 $76,632         
- 2 Baker      2024  51657 $51,657         
- 3 Benton     2024  72882 $72,882         
- 4 Clackamas  2024  95740 $95,740         
- 5 Clatsop    2024  68025 $68,025         
- 6 Columbia   2024  83265 $83,265         
- 7 Coos       2024  57563 $57,563         
- 8 Crook      2024  74969 $74,969         
- 9 Curry      2024  64300 $64,300         
-10 Deschutes  2024  82042 $82,042         
+<pre><code># A tibble: 37 × 3
+   geography amount amount_formatted
+   &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;           
+ 1 Oregon     76632 $76,632         
+ 2 Baker      51657 $51,657         
+ 3 Benton     72882 $72,882         
+ 4 Clackamas  95740 $95,740         
+ 5 Clatsop    68025 $68,025         
+ 6 Columbia   83265 $83,265         
+ 7 Coos       57563 $57,563         
+ 8 Crook      74969 $74,969         
+ 9 Curry      64300 $64,300         
+10 Deschutes  82042 $82,042         
 # ℹ 27 more rows</code></pre>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>median_income_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(county_to_plot) {</span>
-<span id="cb14-2"><a href=""></a>  median_income <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href=""></a>    <span class="fu">filter</span>(geography <span class="sc">%in%</span> <span class="fu">c</span>(county_to_plot, <span class="st">"Oregon"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb14-4"><a href=""></a>    <span class="fu">ggplot</span>(</span>
-<span id="cb14-5"><a href=""></a>      <span class="fu">aes</span>(</span>
-<span id="cb14-6"><a href=""></a>        <span class="at">x =</span> amount,</span>
-<span id="cb14-7"><a href=""></a>        <span class="at">y =</span> geography,</span>
-<span id="cb14-8"><a href=""></a>        <span class="at">label =</span> amount_formatted,</span>
-<span id="cb14-9"><a href=""></a>        <span class="at">fill =</span> geography</span>
-<span id="cb14-10"><a href=""></a>      )</span>
-<span id="cb14-11"><a href=""></a>    ) <span class="sc">+</span></span>
-<span id="cb14-12"><a href=""></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb14-13"><a href=""></a>    ...</span>
-<span id="cb14-14"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>median_income_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(county_to_plot) {</span>
+<span id="cb10-2"><a href=""></a>  median_income <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href=""></a>    <span class="fu">filter</span>(geography <span class="sc">%in%</span> <span class="fu">c</span>(county_to_plot, <span class="st">"Oregon"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href=""></a>    <span class="fu">ggplot</span>(</span>
+<span id="cb10-5"><a href=""></a>      <span class="fu">aes</span>(</span>
+<span id="cb10-6"><a href=""></a>        <span class="at">x =</span> amount,</span>
+<span id="cb10-7"><a href=""></a>        <span class="at">y =</span> geography,</span>
+<span id="cb10-8"><a href=""></a>        <span class="at">label =</span> amount_formatted,</span>
+<span id="cb10-9"><a href=""></a>        <span class="at">fill =</span> geography</span>
+<span id="cb10-10"><a href=""></a>      )</span>
+<span id="cb10-11"><a href=""></a>    ) <span class="sc">+</span></span>
+<span id="cb10-12"><a href=""></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb10-13"><a href=""></a>    ...</span>
+<span id="cb10-14"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">median_income_plot</span>(<span class="at">county_to_plot =</span> <span class="st">"Jackson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">median_income_plot</span>(<span class="at">county_to_plot =</span> <span class="st">"Jackson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-26-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-20-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -838,6 +703,67 @@
 </section>
 <section class="slide level2 center">
 
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-21-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-22-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-23-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>max_median_income <span class="ot">&lt;-</span></span>
+<span id="cb12-2"><a href=""></a>  median_income <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href=""></a>  <span class="fu">slice_max</span>(</span>
+<span id="cb12-4"><a href=""></a>    <span class="at">order_by =</span> amount,</span>
+<span id="cb12-5"><a href=""></a>    <span class="at">n =</span> <span class="dv">1</span></span>
+<span id="cb12-6"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href=""></a>  <span class="fu">pull</span>(amount)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>max_median_income</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100121</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="2-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="fu">median_income_plot</span>(<span class="at">county_to_plot =</span> <span class="st">"Jackson"</span>) <span class="sc">+</span></span>
+<span id="cb15-2"><a href=""></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb15-3"><a href=""></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, max_median_income)</span>
+<span id="cb15-4"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -847,14 +773,16 @@
 </div>
 </div>
 </div>
-<div class="fragment">
+</div>
+</section>
+<section class="slide level2 center">
+
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
 <p><img data-src="index_files/figure-revealjs/unnamed-chunk-28-1.png" style="width:100.0%"></p>
 </figure>
-</div>
 </div>
 </div>
 </div>
@@ -869,75 +797,12 @@
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>max_median_income <span class="ot">&lt;-</span></span>
-<span id="cb16-2"><a href=""></a>  median_income <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href=""></a>  <span class="fu">slice_max</span>(</span>
-<span id="cb16-4"><a href=""></a>    <span class="at">order_by =</span> amount,</span>
-<span id="cb16-5"><a href=""></a>    <span class="at">n =</span> <span class="dv">1</span></span>
-<span id="cb16-6"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb16-7"><a href=""></a>  <span class="fu">pull</span>(amount)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>max_median_income</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 100121</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="2-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">median_income_plot</span>(<span class="at">county_to_plot =</span> <span class="st">"Jackson"</span>) <span class="sc">+</span></span>
-<span id="cb19-2"><a href=""></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb19-3"><a href=""></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, max_median_income)</span>
-<span id="cb19-4"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-33-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-34-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-35-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-36-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-30-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -949,8 +814,6 @@
 <h1>Minimize Text and Position it Carefully</h1>
 <aside class="notes">
 <p>Text WILL overlap so think proactively about how to avoid it</p>
-<p>The problem is, you never know how it will look for all of your plots</p>
-<p>Here’s the problem with text</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -973,8 +836,8 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>population_projection <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href=""></a>  <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>population_projection <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href=""></a>  <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
    location year  age_group    pct pct_formatted
@@ -993,29 +856,108 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>population_projection_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(town_to_plot, county_to_plot) {</span>
-<span id="cb22-2"><a href=""></a>  population_projection <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href=""></a>    <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(town_to_plot, county_to_plot, <span class="st">"Connecticut"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb22-5"><a href=""></a>      <span class="at">x =</span> year,</span>
-<span id="cb22-6"><a href=""></a>      <span class="at">y =</span> pct,</span>
-<span id="cb22-7"><a href=""></a>      <span class="at">color =</span> location,</span>
-<span id="cb22-8"><a href=""></a>      <span class="at">group =</span> location</span>
-<span id="cb22-9"><a href=""></a>    )) <span class="sc">+</span></span>
-<span id="cb22-10"><a href=""></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb22-11"><a href=""></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb22-12"><a href=""></a>    ...</span>
-<span id="cb22-13"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>population_projection_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(town_to_plot, county_to_plot) {</span>
+<span id="cb18-2"><a href=""></a>  population_projection <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href=""></a>    <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(town_to_plot, county_to_plot, <span class="st">"Connecticut"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb18-5"><a href=""></a>      <span class="at">x =</span> year,</span>
+<span id="cb18-6"><a href=""></a>      <span class="at">y =</span> pct,</span>
+<span id="cb18-7"><a href=""></a>      <span class="at">color =</span> location,</span>
+<span id="cb18-8"><a href=""></a>      <span class="at">group =</span> location</span>
+<span id="cb18-9"><a href=""></a>    )) <span class="sc">+</span></span>
+<span id="cb18-10"><a href=""></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-11"><a href=""></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb18-12"><a href=""></a>    ...</span>
+<span id="cb18-13"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
-<span id="cb23-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
-<span id="cb23-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
-<span id="cb23-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
+<span id="cb19-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
+<span id="cb19-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
+<span id="cb19-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-38-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="5-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
+<span id="cb20-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
+<span id="cb20-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
+<span id="cb20-4"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb20-6"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb20-7"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
+<span id="cb20-8"><a href=""></a>    )</span>
+<span id="cb20-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-40-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="1,7-10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb21-2"><a href=""></a></span>
+<span id="cb21-3"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
+<span id="cb21-4"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
+<span id="cb21-5"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
+<span id="cb21-6"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb21-7"><a href=""></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb21-8"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb21-9"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
+<span id="cb21-10"><a href=""></a>    )</span>
+<span id="cb21-11"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-42-1.png" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
+<span id="cb22-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
+<span id="cb22-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
+<span id="cb22-4"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb22-6"><a href=""></a>    <span class="at">data =</span> population_projection <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>),</span>
+<span id="cb22-7"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">0.03</span>,</span>
+<span id="cb22-8"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb22-9"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
+<span id="cb22-10"><a href=""></a>    )</span>
+<span id="cb22-11"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -1032,15 +974,17 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="5-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
-<span id="cb24-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
-<span id="cb24-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
-<span id="cb24-4"><a href=""></a>) <span class="sc">+</span></span>
-<span id="cb24-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb24-6"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb24-7"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
-<span id="cb24-8"><a href=""></a>    )</span>
-<span id="cb24-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
+<span id="cb23-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Stamford"</span>,</span>
+<span id="cb23-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Fairfield County"</span></span>
+<span id="cb23-4"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb23-6"><a href=""></a>    <span class="at">data =</span> population_projection <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Stamford"</span>),</span>
+<span id="cb23-7"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">0.03</span>,</span>
+<span id="cb23-8"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb23-9"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
+<span id="cb23-10"><a href=""></a>    )</span>
+<span id="cb23-11"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -1057,106 +1001,27 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="5-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
-<span id="cb25-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
-<span id="cb25-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
-<span id="cb25-4"><a href=""></a>) <span class="sc">+</span></span>
-<span id="cb25-5"><a href=""></a>  <span class="fu">geom_text_repel</span>(</span>
-<span id="cb25-6"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb25-7"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
-<span id="cb25-8"><a href=""></a>    )</span>
-<span id="cb25-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24" data-code-line-numbers="1,7,9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">library</span>(shadowtext)</span>
+<span id="cb24-2"><a href=""></a></span>
+<span id="cb24-3"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
+<span id="cb24-4"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Stamford"</span>,</span>
+<span id="cb24-5"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Fairfield County"</span></span>
+<span id="cb24-6"><a href=""></a>) <span class="sc">+</span></span>
+<span id="cb24-7"><a href=""></a>  <span class="fu">geom_shadowtext</span>(</span>
+<span id="cb24-8"><a href=""></a>    <span class="at">data =</span> population_projection <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Stamford"</span>),</span>
+<span id="cb24-9"><a href=""></a>    <span class="at">bg.color =</span> <span class="st">"white"</span>,</span>
+<span id="cb24-10"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">0.03</span>,</span>
+<span id="cb24-11"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb24-12"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
+<span id="cb24-13"><a href=""></a>    )</span>
+<span id="cb24-14"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-48-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="6,7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
-<span id="cb26-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
-<span id="cb26-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
-<span id="cb26-4"><a href=""></a>) <span class="sc">+</span></span>
-<span id="cb26-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb26-6"><a href=""></a>    <span class="at">data =</span> population_projection <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>),</span>
-<span id="cb26-7"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">0.03</span>,</span>
-<span id="cb26-8"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb26-9"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
-<span id="cb26-10"><a href=""></a>    )</span>
-<span id="cb26-11"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-50-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
-<span id="cb27-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Stamford"</span>,</span>
-<span id="cb27-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Fairfield County"</span></span>
-<span id="cb27-4"><a href=""></a>) <span class="sc">+</span></span>
-<span id="cb27-5"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb27-6"><a href=""></a>    <span class="at">data =</span> population_projection <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Stamford"</span>),</span>
-<span id="cb27-7"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">0.03</span>,</span>
-<span id="cb27-8"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb27-9"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
-<span id="cb27-10"><a href=""></a>    )</span>
-<span id="cb27-11"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-52-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="1,7,9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">library</span>(shadowtext)</span>
-<span id="cb28-2"><a href=""></a></span>
-<span id="cb28-3"><a href=""></a><span class="fu">population_projection_plot</span>(</span>
-<span id="cb28-4"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Stamford"</span>,</span>
-<span id="cb28-5"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Fairfield County"</span></span>
-<span id="cb28-6"><a href=""></a>) <span class="sc">+</span></span>
-<span id="cb28-7"><a href=""></a>  <span class="fu">geom_shadowtext</span>(</span>
-<span id="cb28-8"><a href=""></a>    <span class="at">data =</span> population_projection <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Stamford"</span>),</span>
-<span id="cb28-9"><a href=""></a>    <span class="at">bg.color =</span> <span class="st">"white"</span>,</span>
-<span id="cb28-10"><a href=""></a>    <span class="at">nudge_y =</span> <span class="fl">0.03</span>,</span>
-<span id="cb28-11"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb28-12"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
-<span id="cb28-13"><a href=""></a>    )</span>
-<span id="cb28-14"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-55-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-49-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1173,7 +1038,7 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>housing_cost_burden </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>housing_cost_burden </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 694 × 4
    location   burden_level       pct pct_formatted
@@ -1193,36 +1058,36 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>housing_cost_burden_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(town_to_plot, county_to_plot) {</span>
-<span id="cb31-2"><a href=""></a>  housing_cost_burden <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a href=""></a>    <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(town_to_plot, county_to_plot, <span class="st">"Connecticut"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb31-4"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb31-5"><a href=""></a>      <span class="at">x =</span> pct,</span>
-<span id="cb31-6"><a href=""></a>      <span class="at">y =</span> location,</span>
-<span id="cb31-7"><a href=""></a>      <span class="at">fill =</span> burden_level,</span>
-<span id="cb31-8"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
-<span id="cb31-9"><a href=""></a>    )) <span class="sc">+</span></span>
-<span id="cb31-10"><a href=""></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb31-11"><a href=""></a>    <span class="fu">geom_text</span>(<span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb31-12"><a href=""></a>    ...</span>
-<span id="cb31-13"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>housing_cost_burden_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(town_to_plot, county_to_plot) {</span>
+<span id="cb27-2"><a href=""></a>  housing_cost_burden <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href=""></a>    <span class="fu">filter</span>(location <span class="sc">%in%</span> <span class="fu">c</span>(town_to_plot, county_to_plot, <span class="st">"Connecticut"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb27-5"><a href=""></a>      <span class="at">x =</span> pct,</span>
+<span id="cb27-6"><a href=""></a>      <span class="at">y =</span> location,</span>
+<span id="cb27-7"><a href=""></a>      <span class="at">fill =</span> burden_level,</span>
+<span id="cb27-8"><a href=""></a>      <span class="at">label =</span> pct_formatted</span>
+<span id="cb27-9"><a href=""></a>    )) <span class="sc">+</span></span>
+<span id="cb27-10"><a href=""></a>    <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb27-11"><a href=""></a>    <span class="fu">geom_text</span>(<span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb27-12"><a href=""></a>    ...</span>
+<span id="cb27-13"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="fu">housing_cost_burden_plot</span>(</span>
-<span id="cb32-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
-<span id="cb32-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
-<span id="cb32-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">housing_cost_burden_plot</span>(</span>
+<span id="cb28-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
+<span id="cb28-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
+<span id="cb28-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-62-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-56-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1232,8 +1097,8 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span> </span>
-<span id="cb33-2"><a href=""></a>  <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a href=""></a>  <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
   location burden_level       pct pct_formatted
@@ -1246,15 +1111,15 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a>housing_cost_burden <span class="ot">&lt;-</span></span>
-<span id="cb35-2"><a href=""></a>  housing_cost_burden <span class="sc">|&gt;</span></span>
-<span id="cb35-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pct_formatted =</span> <span class="fu">if_else</span>(pct <span class="sc">&gt;</span> <span class="fl">0.07</span>, pct_formatted, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>housing_cost_burden <span class="ot">&lt;-</span></span>
+<span id="cb31-2"><a href=""></a>  housing_cost_burden <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">pct_formatted =</span> <span class="fu">if_else</span>(pct <span class="sc">&gt;</span> <span class="fl">0.07</span>, pct_formatted, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span></span>
-<span id="cb36-2"><a href=""></a>  <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>housing_cost_burden <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href=""></a>  <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 4
   location burden_level       pct pct_formatted
@@ -1270,17 +1135,17 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a><span class="fu">housing_cost_burden_plot</span>(</span>
-<span id="cb38-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
-<span id="cb38-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
-<span id="cb38-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a><span class="fu">housing_cost_burden_plot</span>(</span>
+<span id="cb34-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Hartford"</span>,</span>
+<span id="cb34-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Hartford County"</span></span>
+<span id="cb34-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-67-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-61-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1290,17 +1155,17 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">housing_cost_burden_plot</span>(</span>
-<span id="cb39-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Stamford"</span>,</span>
-<span id="cb39-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Fairfield County"</span></span>
-<span id="cb39-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">housing_cost_burden_plot</span>(</span>
+<span id="cb35-2"><a href=""></a>  <span class="at">town_to_plot =</span> <span class="st">"Stamford"</span>,</span>
+<span id="cb35-3"><a href=""></a>  <span class="at">county_to_plot =</span> <span class="st">"Fairfield County"</span></span>
+<span id="cb35-4"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-69-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-63-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1317,43 +1182,43 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>pre_post_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>pre_post_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 6
-  question            timing rating growth growth_formatted growth_text_position
-  &lt;chr&gt;               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
-1 Consider the limit… Pre       1.6   NA               NA                   NA  
-2 Consider the limit… Post      4.2    2.6              2.6                  2.9</code></pre>
+  question   timing rating growth growth_formatted growth_text_position
+  &lt;chr&gt;      &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
+1 Question 1 Pre       1.6   NA               NA                   NA  
+2 Question 1 Post      4.2    2.6              2.6                  2.9</code></pre>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>pre_post_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
-<span id="cb42-2"><a href=""></a>  df <span class="sc">|&gt;</span></span>
-<span id="cb42-3"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb42-4"><a href=""></a>      <span class="at">x =</span> rating,</span>
-<span id="cb42-5"><a href=""></a>      <span class="at">y =</span> question,</span>
-<span id="cb42-6"><a href=""></a>      <span class="at">fill =</span> timing</span>
-<span id="cb42-7"><a href=""></a>    )) <span class="sc">+</span></span>
-<span id="cb42-8"><a href=""></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb42-9"><a href=""></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
-<span id="cb42-10"><a href=""></a>    ...</span>
-<span id="cb42-11"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>pre_post_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb38-2"><a href=""></a>  df <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a href=""></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb38-4"><a href=""></a>      <span class="at">x =</span> rating,</span>
+<span id="cb38-5"><a href=""></a>      <span class="at">y =</span> question,</span>
+<span id="cb38-6"><a href=""></a>      <span class="at">fill =</span> timing</span>
+<span id="cb38-7"><a href=""></a>    )) <span class="sc">+</span></span>
+<span id="cb38-8"><a href=""></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb38-9"><a href=""></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb38-10"><a href=""></a>    ...</span>
+<span id="cb38-11"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a href=""></a>  <span class="fu">pre_post_plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href=""></a>  <span class="fu">pre_post_plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-75-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-69-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1363,34 +1228,34 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44" data-code-line-numbers="3-7|8-14|15-21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
-<span id="cb44-2"><a href=""></a>  <span class="fu">pre_post_plot</span>() <span class="sc">+</span></span>
-<span id="cb44-3"><a href=""></a>  <span class="co"># Ratings within points</span></span>
-<span id="cb44-4"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb44-5"><a href=""></a>    <span class="fu">aes</span>(<span class="at">label =</span> rating),</span>
-<span id="cb44-6"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
-<span id="cb44-7"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb44-8"><a href=""></a>  <span class="co"># Pre/post labels</span></span>
-<span id="cb44-9"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb44-10"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb44-11"><a href=""></a>      <span class="at">label =</span> timing,</span>
-<span id="cb44-12"><a href=""></a>      <span class="at">color =</span> timing</span>
-<span id="cb44-13"><a href=""></a>    )</span>
-<span id="cb44-14"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb44-15"><a href=""></a>  <span class="co"># Growth label</span></span>
-<span id="cb44-16"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb44-17"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb44-18"><a href=""></a>      <span class="at">x =</span> growth_text_position,</span>
-<span id="cb44-19"><a href=""></a>      <span class="at">label =</span> growth_formatted</span>
-<span id="cb44-20"><a href=""></a>    )</span>
-<span id="cb44-21"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40" data-code-line-numbers="3-7|8-14|15-21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href=""></a>  <span class="fu">pre_post_plot</span>() <span class="sc">+</span></span>
+<span id="cb40-3"><a href=""></a>  <span class="co"># Ratings within points</span></span>
+<span id="cb40-4"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb40-5"><a href=""></a>    <span class="fu">aes</span>(<span class="at">label =</span> rating),</span>
+<span id="cb40-6"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span></span>
+<span id="cb40-7"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb40-8"><a href=""></a>  <span class="co"># Pre/post labels</span></span>
+<span id="cb40-9"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb40-10"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb40-11"><a href=""></a>      <span class="at">label =</span> timing,</span>
+<span id="cb40-12"><a href=""></a>      <span class="at">color =</span> timing</span>
+<span id="cb40-13"><a href=""></a>    )</span>
+<span id="cb40-14"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb40-15"><a href=""></a>  <span class="co"># Growth label</span></span>
+<span id="cb40-16"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb40-17"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb40-18"><a href=""></a>      <span class="at">x =</span> growth_text_position,</span>
+<span id="cb40-19"><a href=""></a>      <span class="at">label =</span> growth_formatted</span>
+<span id="cb40-20"><a href=""></a>    )</span>
+<span id="cb40-21"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-77-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-71-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1400,13 +1265,13 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>pre_post_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>pre_post_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 6
-  question            timing rating growth growth_formatted growth_text_position
-  &lt;chr&gt;               &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
-1 Consider the limit… Pre       3.5 NA               NA                    NA   
-2 Consider the limit… Post      3.6  0.100            0.100                 3.55</code></pre>
+  question   timing rating growth growth_formatted growth_text_position
+  &lt;chr&gt;      &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;                &lt;dbl&gt;
+1 Question 2 Pre       3.5 NA               NA                    NA   
+2 Question 2 Post      3.6  0.100            0.100                 3.55</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -1414,7 +1279,7 @@
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-80-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-74-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1424,86 +1289,86 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47" data-code-line-numbers="3-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>pre_post_data <span class="ot">&lt;-</span></span>
-<span id="cb47-2"><a href=""></a>  pre_post_data <span class="sc">|&gt;</span></span>
-<span id="cb47-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">rating_text_position =</span> <span class="fu">case_when</span>(</span>
-<span id="cb47-4"><a href=""></a>    timing <span class="sc">==</span> <span class="st">"Pre"</span> <span class="sc">~</span> rating <span class="sc">-</span> <span class="fl">0.3</span>,</span>
-<span id="cb47-5"><a href=""></a>    timing <span class="sc">==</span> <span class="st">"Post"</span> <span class="sc">~</span> rating <span class="sc">+</span> <span class="fl">0.3</span></span>
-<span id="cb47-6"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43" data-code-line-numbers="3-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>pre_post_data <span class="ot">&lt;-</span></span>
+<span id="cb43-2"><a href=""></a>  pre_post_data <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">rating_text_position =</span> <span class="fu">case_when</span>(</span>
+<span id="cb43-4"><a href=""></a>    timing <span class="sc">==</span> <span class="st">"Pre"</span> <span class="sc">~</span> rating <span class="sc">-</span> <span class="fl">0.2</span>,</span>
+<span id="cb43-5"><a href=""></a>    timing <span class="sc">==</span> <span class="st">"Post"</span> <span class="sc">~</span> rating <span class="sc">+</span> <span class="fl">0.2</span></span>
+<span id="cb43-6"><a href=""></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
-<span id="cb48-2"><a href=""></a>  <span class="fu">select</span>(question, timing, rating, rating_text_position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href=""></a>  <span class="fu">select</span>(question, timing, rating, rating_text_position)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
-  question                         timing rating rating_text_position
-  &lt;chr&gt;                            &lt;chr&gt;   &lt;dbl&gt;                &lt;dbl&gt;
-1 Consider the limits of your data Pre       3.5                  3.2
-2 Consider the limits of your data Post      3.6                  3.9</code></pre>
+  question   timing rating rating_text_position
+  &lt;chr&gt;      &lt;chr&gt;   &lt;dbl&gt;                &lt;dbl&gt;
+1 Question 2 Pre       3.5                  3.3
+2 Question 2 Post      3.6                  3.8</code></pre>
 </div>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50" data-code-line-numbers="3-8|9-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
-<span id="cb50-2"><a href=""></a>  <span class="fu">pre_post_plot</span>() <span class="sc">+</span></span>
-<span id="cb50-3"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb50-4"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb50-5"><a href=""></a>      <span class="at">x =</span> rating_text_position,</span>
-<span id="cb50-6"><a href=""></a>      <span class="at">label =</span> rating</span>
-<span id="cb50-7"><a href=""></a>    )</span>
-<span id="cb50-8"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb50-9"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb50-10"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb50-11"><a href=""></a>      <span class="at">x =</span> rating_text_position,</span>
-<span id="cb50-12"><a href=""></a>      <span class="at">label =</span> timing</span>
-<span id="cb50-13"><a href=""></a>    )</span>
-<span id="cb50-14"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb50-15"><a href=""></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46" data-code-line-numbers="3-8|9-14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href=""></a>  <span class="fu">pre_post_plot</span>() <span class="sc">+</span></span>
+<span id="cb46-3"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb46-4"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb46-5"><a href=""></a>      <span class="at">x =</span> rating_text_position,</span>
+<span id="cb46-6"><a href=""></a>      <span class="at">label =</span> rating</span>
+<span id="cb46-7"><a href=""></a>    )</span>
+<span id="cb46-8"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb46-9"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb46-10"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb46-11"><a href=""></a>      <span class="at">x =</span> rating_text_position,</span>
+<span id="cb46-12"><a href=""></a>      <span class="at">label =</span> timing</span>
+<span id="cb46-13"><a href=""></a>    )</span>
+<span id="cb46-14"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb46-15"><a href=""></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
-<span id="cb51-2"><a href=""></a>  <span class="fu">pre_post_plot</span>() <span class="sc">+</span></span>
-<span id="cb51-3"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb51-4"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb51-5"><a href=""></a>      <span class="at">x =</span> rating_text_position,</span>
-<span id="cb51-6"><a href=""></a>      <span class="at">label =</span> rating</span>
-<span id="cb51-7"><a href=""></a>    )</span>
-<span id="cb51-8"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb51-9"><a href=""></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb51-10"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb51-11"><a href=""></a>      <span class="at">x =</span> rating_text_position,</span>
-<span id="cb51-12"><a href=""></a>      <span class="at">label =</span> timing</span>
-<span id="cb51-13"><a href=""></a>    )</span>
-<span id="cb51-14"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb51-15"><a href=""></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href=""></a>  <span class="fu">pre_post_plot</span>() <span class="sc">+</span></span>
+<span id="cb47-3"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb47-4"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb47-5"><a href=""></a>      <span class="at">x =</span> rating_text_position,</span>
+<span id="cb47-6"><a href=""></a>      <span class="at">label =</span> rating</span>
+<span id="cb47-7"><a href=""></a>    )</span>
+<span id="cb47-8"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb47-9"><a href=""></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb47-10"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb47-11"><a href=""></a>      <span class="at">x =</span> rating_text_position,</span>
+<span id="cb47-12"><a href=""></a>      <span class="at">label =</span> timing</span>
+<span id="cb47-13"><a href=""></a>    )</span>
+<span id="cb47-14"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb47-15"><a href=""></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-85-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-79-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52" data-code-line-numbers="3-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
-<span id="cb52-2"><a href=""></a>  <span class="fu">pre_post_plot</span>() <span class="sc">+</span></span>
-<span id="cb52-3"><a href=""></a>  <span class="fu">geom_label</span>(</span>
-<span id="cb52-4"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb52-5"><a href=""></a>      <span class="at">x =</span> <span class="dv">6</span>,</span>
-<span id="cb52-6"><a href=""></a>      <span class="at">label =</span> growth_formatted</span>
-<span id="cb52-7"><a href=""></a>    )</span>
-<span id="cb52-8"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb52-9"><a href=""></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48" data-code-line-numbers="3-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>pre_post_data <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href=""></a>  <span class="fu">pre_post_plot</span>() <span class="sc">+</span></span>
+<span id="cb48-3"><a href=""></a>  <span class="fu">geom_label</span>(</span>
+<span id="cb48-4"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb48-5"><a href=""></a>      <span class="at">x =</span> <span class="dv">6</span>,</span>
+<span id="cb48-6"><a href=""></a>      <span class="at">label =</span> growth_formatted</span>
+<span id="cb48-7"><a href=""></a>    )</span>
+<span id="cb48-8"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb48-9"><a href=""></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-87-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-81-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1514,7 +1379,7 @@
 <section id="highlight-strategically-and-programatically" class="title-slide slide level1 inverse center" data-background-image="assets/highlight.jpg">
 <h1>Highlight Strategically and Programatically</h1>
 <aside class="notes">
-<p>TODO: Talk about how I’m adding layers on top of other layers here (make diagram)</p>
+<p>Use a range of aesthetic properties</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1563,7 +1428,7 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>single_family_homes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>single_family_homes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 169 × 2
    location       pct
@@ -1583,56 +1448,59 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>single_family_homes_plot <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb55-2"><a href=""></a>  single_family_homes <span class="sc">|&gt;</span></span>
-<span id="cb55-3"><a href=""></a>    <span class="fu">ggplot</span>(</span>
-<span id="cb55-4"><a href=""></a>      <span class="fu">aes</span>(</span>
-<span id="cb55-5"><a href=""></a>        <span class="at">x =</span> pct,</span>
-<span id="cb55-6"><a href=""></a>        <span class="at">y =</span> <span class="dv">1</span></span>
-<span id="cb55-7"><a href=""></a>      )</span>
-<span id="cb55-8"><a href=""></a>    ) <span class="sc">+</span></span>
-<span id="cb55-9"><a href=""></a>    <span class="fu">geom_point</span>(</span>
-<span id="cb55-10"><a href=""></a>      <span class="at">shape =</span> <span class="dv">124</span>,</span>
-<span id="cb55-11"><a href=""></a>      <span class="at">color =</span> <span class="st">"grey80"</span></span>
-<span id="cb55-12"><a href=""></a>    ) <span class="sc">+</span></span>
-<span id="cb55-13"><a href=""></a>    ...</span>
-<span id="cb55-14"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51" data-code-line-numbers="10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>single_family_homes_plot <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb51-2"><a href=""></a>  single_family_homes <span class="sc">|&gt;</span></span>
+<span id="cb51-3"><a href=""></a>    <span class="fu">ggplot</span>(</span>
+<span id="cb51-4"><a href=""></a>      <span class="fu">aes</span>(</span>
+<span id="cb51-5"><a href=""></a>        <span class="at">x =</span> pct,</span>
+<span id="cb51-6"><a href=""></a>        <span class="at">y =</span> <span class="dv">1</span></span>
+<span id="cb51-7"><a href=""></a>      )</span>
+<span id="cb51-8"><a href=""></a>    ) <span class="sc">+</span></span>
+<span id="cb51-9"><a href=""></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb51-10"><a href=""></a>      <span class="at">shape =</span> <span class="dv">124</span>,</span>
+<span id="cb51-11"><a href=""></a>      <span class="at">color =</span> <span class="st">"grey80"</span></span>
+<span id="cb51-12"><a href=""></a>    ) <span class="sc">+</span></span>
+<span id="cb51-13"><a href=""></a>    ...</span>
+<span id="cb51-14"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="fu">single_family_homes_plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a><span class="fu">single_family_homes_plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-94-1.png" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-88-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="fu">single_family_homes_plot</span>() <span class="sc">+</span></span>
-<span id="cb57-2"><a href=""></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb57-3"><a href=""></a>    <span class="at">data =</span> single_family_homes <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>),</span>
-<span id="cb57-4"><a href=""></a>    <span class="at">shape =</span> <span class="dv">124</span>,</span>
-<span id="cb57-5"><a href=""></a>    <span class="at">color =</span> <span class="st">"#15397f"</span></span>
-<span id="cb57-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53" data-code-line-numbers="3,5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="fu">single_family_homes_plot</span>() <span class="sc">+</span></span>
+<span id="cb53-2"><a href=""></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb53-3"><a href=""></a>    <span class="at">data =</span> single_family_homes <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>),</span>
+<span id="cb53-4"><a href=""></a>    <span class="at">shape =</span> <span class="dv">124</span>,</span>
+<span id="cb53-5"><a href=""></a>    <span class="at">color =</span> <span class="st">"#15397f"</span></span>
+<span id="cb53-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<aside class="notes">
+<p>Talk about how I’m adding layers on top of other layers here</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-96-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-90-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1645,20 +1513,20 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a><span class="fu">single_family_homes_plot</span>() <span class="sc">+</span></span>
-<span id="cb58-2"><a href=""></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb58-3"><a href=""></a>    <span class="at">data =</span> single_family_homes <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>),</span>
-<span id="cb58-4"><a href=""></a>    <span class="at">shape =</span> <span class="dv">124</span>,</span>
-<span id="cb58-5"><a href=""></a>    <span class="at">color =</span> <span class="st">"#15397f"</span>,</span>
-<span id="cb58-6"><a href=""></a>    <span class="at">size =</span> <span class="dv">15</span></span>
-<span id="cb58-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="fu">single_family_homes_plot</span>() <span class="sc">+</span></span>
+<span id="cb54-2"><a href=""></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb54-3"><a href=""></a>    <span class="at">data =</span> single_family_homes <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Hartford"</span>),</span>
+<span id="cb54-4"><a href=""></a>    <span class="at">shape =</span> <span class="dv">124</span>,</span>
+<span id="cb54-5"><a href=""></a>    <span class="at">color =</span> <span class="st">"#15397f"</span>,</span>
+<span id="cb54-6"><a href=""></a>    <span class="at">size =</span> <span class="dv">15</span></span>
+<span id="cb54-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-98-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-92-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1668,20 +1536,20 @@
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a><span class="fu">single_family_homes_plot</span>() <span class="sc">+</span></span>
-<span id="cb59-2"><a href=""></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb59-3"><a href=""></a>    <span class="at">data =</span> single_family_homes <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Stamford"</span>),</span>
-<span id="cb59-4"><a href=""></a>    <span class="at">shape =</span> <span class="dv">124</span>,</span>
-<span id="cb59-5"><a href=""></a>    <span class="at">color =</span> <span class="st">"#15397f"</span>,</span>
-<span id="cb59-6"><a href=""></a>    <span class="at">size =</span> <span class="dv">15</span></span>
-<span id="cb59-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="fu">single_family_homes_plot</span>() <span class="sc">+</span></span>
+<span id="cb55-2"><a href=""></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb55-3"><a href=""></a>    <span class="at">data =</span> single_family_homes <span class="sc">|&gt;</span> <span class="fu">filter</span>(location <span class="sc">==</span> <span class="st">"Stamford"</span>),</span>
+<span id="cb55-4"><a href=""></a>    <span class="at">shape =</span> <span class="dv">124</span>,</span>
+<span id="cb55-5"><a href=""></a>    <span class="at">color =</span> <span class="st">"#15397f"</span>,</span>
+<span id="cb55-6"><a href=""></a>    <span class="at">size =</span> <span class="dv">15</span></span>
+<span id="cb55-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-100-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-94-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1711,7 +1579,7 @@
           display:block!important;
       }</style></aside>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a>rubella</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a>rubella</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -1736,29 +1604,29 @@ First 10 features:
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62" data-code-line-numbers="3-6|7-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a>region_map <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb62-2"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb62-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb62-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">1</span>),</span>
-<span id="cb62-5"><a href=""></a>      <span class="fu">aes</span>(<span class="at">fill =</span> status)</span>
-<span id="cb62-6"><a href=""></a>    ) <span class="sc">+</span></span>
-<span id="cb62-7"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb62-8"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">0</span>),</span>
-<span id="cb62-9"><a href=""></a>      <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
-<span id="cb62-10"><a href=""></a>      <span class="at">alpha =</span> <span class="fl">0.5</span></span>
-<span id="cb62-11"><a href=""></a>    ) <span class="sc">+</span></span>
-<span id="cb62-12"><a href=""></a>    ...</span>
-<span id="cb62-13"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58" data-code-line-numbers="3-6|7-11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a>region_map <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb58-2"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb58-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
+<span id="cb58-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb58-5"><a href=""></a>      <span class="fu">aes</span>(<span class="at">fill =</span> status)</span>
+<span id="cb58-6"><a href=""></a>    ) <span class="sc">+</span></span>
+<span id="cb58-7"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
+<span id="cb58-8"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb58-9"><a href=""></a>      <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
+<span id="cb58-10"><a href=""></a>      <span class="at">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb58-11"><a href=""></a>    ) <span class="sc">+</span></span>
+<span id="cb58-12"><a href=""></a>    ...</span>
+<span id="cb58-13"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a><span class="fu">region_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a><span class="fu">region_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="index_files/figure-revealjs/unnamed-chunk-106-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
+<img data-src="index_files/figure-revealjs/unnamed-chunk-100-1.png" style="width:100.0%" class="r-stretch"><aside class="notes">
 <p>https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1775,22 +1643,22 @@ First 10 features:
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64" data-code-line-numbers="1,4-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a><span class="fu">library</span>(ggfx)</span>
-<span id="cb64-2"><a href=""></a></span>
-<span id="cb64-3"><a href=""></a><span class="fu">region_map</span>() <span class="sc">+</span></span>
-<span id="cb64-4"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
-<span id="cb64-5"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb64-6"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Afghanistan"</span>)</span>
-<span id="cb64-7"><a href=""></a>    ),</span>
-<span id="cb64-8"><a href=""></a>    ...</span>
-<span id="cb64-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60" data-code-line-numbers="1,4-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a><span class="fu">library</span>(ggfx)</span>
+<span id="cb60-2"><a href=""></a></span>
+<span id="cb60-3"><a href=""></a><span class="fu">region_map</span>() <span class="sc">+</span></span>
+<span id="cb60-4"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
+<span id="cb60-5"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
+<span id="cb60-6"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Afghanistan"</span>)</span>
+<span id="cb60-7"><a href=""></a>    ),</span>
+<span id="cb60-8"><a href=""></a>    ...</span>
+<span id="cb60-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-108-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-102-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1803,22 +1671,22 @@ First 10 features:
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65" data-code-line-numbers="6-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a><span class="fu">region_map</span>() <span class="sc">+</span></span>
-<span id="cb65-2"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
-<span id="cb65-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb65-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Afghanistan"</span>)</span>
-<span id="cb65-5"><a href=""></a>    ),</span>
-<span id="cb65-6"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
-<span id="cb65-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb65-8"><a href=""></a>    ...</span>
-<span id="cb65-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61" data-code-line-numbers="6-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a><span class="fu">region_map</span>() <span class="sc">+</span></span>
+<span id="cb61-2"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
+<span id="cb61-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
+<span id="cb61-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Afghanistan"</span>)</span>
+<span id="cb61-5"><a href=""></a>    ),</span>
+<span id="cb61-6"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
+<span id="cb61-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb61-8"><a href=""></a>    ...</span>
+<span id="cb61-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="index_files/figure-revealjs/unnamed-chunk-110-1.png" style="width:100.0%"></p>
+<p><img data-src="index_files/figure-revealjs/unnamed-chunk-104-1.png" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -1844,73 +1712,59 @@ First 10 features:
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a>region_map <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb66-2"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb66-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb66-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">1</span>),</span>
-<span id="cb66-5"><a href=""></a>      <span class="fu">aes</span>(<span class="at">fill =</span> status),</span>
-<span id="cb66-6"><a href=""></a>      <span class="at">alpha =</span> <span class="fl">0.75</span></span>
-<span id="cb66-7"><a href=""></a>    ) <span class="sc">+</span></span>
-<span id="cb66-8"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb66-9"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">0</span>),</span>
-<span id="cb66-10"><a href=""></a>      <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
-<span id="cb66-11"><a href=""></a>      <span class="at">alpha =</span> <span class="fl">0.5</span></span>
-<span id="cb66-12"><a href=""></a>    ) <span class="sc">+</span></span>
-<span id="cb66-13"><a href=""></a>    ...</span>
-<span id="cb66-14"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a>region_map <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb62-2"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb62-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
+<span id="cb62-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">1</span>),</span>
+<span id="cb62-5"><a href=""></a>      <span class="fu">aes</span>(<span class="at">fill =</span> status),</span>
+<span id="cb62-6"><a href=""></a>      <span class="at">alpha =</span> <span class="fl">0.75</span></span>
+<span id="cb62-7"><a href=""></a>    ) <span class="sc">+</span></span>
+<span id="cb62-8"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
+<span id="cb62-9"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(region <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb62-10"><a href=""></a>      <span class="at">fill =</span> <span class="st">"lightgrey"</span>,</span>
+<span id="cb62-11"><a href=""></a>      <span class="at">alpha =</span> <span class="fl">0.5</span></span>
+<span id="cb62-12"><a href=""></a>    ) <span class="sc">+</span></span>
+<span id="cb62-13"><a href=""></a>    ...</span>
+<span id="cb62-14"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb67-2"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
-<span id="cb67-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb67-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Afghanistan"</span>)</span>
-<span id="cb67-5"><a href=""></a>    ),</span>
-<span id="cb67-6"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
-<span id="cb67-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb67-8"><a href=""></a>    ...</span>
-<span id="cb67-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a><span class="fu">region_map</span>() <span class="sc">+</span></span>
+<span id="cb63-2"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
+<span id="cb63-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
+<span id="cb63-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Afghanistan"</span>)</span>
+<span id="cb63-5"><a href=""></a>    ),</span>
+<span id="cb63-6"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
+<span id="cb63-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb63-8"><a href=""></a>    ...</span>
+<span id="cb63-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-113-1.png" style="width:100.0%" class="r-stretch"></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-107-1.png" style="width:100.0%" class="r-stretch"></section>
 <section class="slide level2 center">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb68-2"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
-<span id="cb68-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb68-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Afghanistan"</span>)</span>
-<span id="cb68-5"><a href=""></a>    ),</span>
-<span id="cb68-6"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
-<span id="cb68-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb68-8"><a href=""></a>    ...</span>
-<span id="cb68-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a><span class="fu">region_map</span>() <span class="sc">+</span></span>
+<span id="cb64-2"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
+<span id="cb64-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
+<span id="cb64-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Iraq"</span>)</span>
+<span id="cb64-5"><a href=""></a>    ),</span>
+<span id="cb64-6"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
+<span id="cb64-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb64-8"><a href=""></a>    ...</span>
+<span id="cb64-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="index_files/figure-revealjs/unnamed-chunk-115-1.png" style="width:100.0%" class="r-stretch"></section>
-<section class="slide level2 center">
-
-<div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a><span class="fu">region_map</span>(<span class="at">opacity_level =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
-<span id="cb69-2"><a href=""></a>  <span class="fu">with_shadow</span>(</span>
-<span id="cb69-3"><a href=""></a>    <span class="fu">geom_sf</span>(</span>
-<span id="cb69-4"><a href=""></a>      <span class="at">data =</span> rubella <span class="sc">|&gt;</span> <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Iraq"</span>)</span>
-<span id="cb69-5"><a href=""></a>    ),</span>
-<span id="cb69-6"><a href=""></a>    <span class="at">linewidth =</span> <span class="fl">0.8</span>,</span>
-<span id="cb69-7"><a href=""></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb69-8"><a href=""></a>    ...</span>
-<span id="cb69-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
-<img data-src="index_files/figure-revealjs/unnamed-chunk-117-1.png" style="width:100.0%" class="r-stretch"></section></section>
+<img data-src="index_files/figure-revealjs/unnamed-chunk-109-1.png" style="width:100.0%" class="r-stretch"></section></section>
 <section id="conclusion" class="title-slide slide level1 center">
 <h1>Conclusion</h1>
 <ol type="1">
-<li class="fragment"><p>Consider the Outer Limits of Your Data</p></li>
-<li class="fragment"><p>Minimize Text and Position it Carefully</p></li>
-<li class="fragment"><p>Highlight Strategically and Programatically with a Range of Aesthetic Properties</p></li>
+<li class="fragment"><p>Consider the outer limits of your data</p></li>
+<li class="fragment"><p>Minimize text and position it carefully</p></li>
+<li class="fragment"><p>Highlight strategically and programatically with a range of aesthetic properties</p></li>
+<li class="fragment"><p>Packages are helpers, but you are the one who has to do the thinking</p></li>
 </ol>
 <aside class="notes">
 <p>The solution is less code and more thinking about data</p>
