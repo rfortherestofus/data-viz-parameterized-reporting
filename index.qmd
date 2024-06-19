@@ -12,7 +12,7 @@ format:
 execute: 
   message: false
   warning: false
-  cache: false
+  cache: true
 knitr:
   opts_chunk:
     dev: "ragg_png"
@@ -35,11 +35,23 @@ library(ggfx)
 library(sf)
 library(ggchicklet)
 library(ggtext)
+library(qrcode)
+library(gapminder)
 ```
 
-# Follow Along!
+# Follow Along! {.center-slide}
+
+```{r}
+# qr_code("https://rfor.us/cascadia2024") |>
+#   generate_svg("assets/qrcode.svg",
+#                background = "transparent",
+#                show = FALSE)
+```
+
+![](assets/qrcode.svg)
 
 https://rfor.us/cascadia2024
+
 
 ::: {.notes}
 - Who I am
@@ -102,18 +114,10 @@ https://rfor.us/cascadia2024
 
 ---
 
-```{r}
-#| echo: true
-library(gapminder)
-
-gapminder
-```
-
----
-
 ```{yaml}
 #| echo: true
 #| eval: false
+#| code-line-numbers: "4-5"
 ---
 title: "My report"
 format: html
@@ -128,8 +132,9 @@ params:
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "4"
+#| code-line-numbers: "5"
 library(tidyverse)
+library(gapminder)
 
 gapminder |>
   filter(country == params$country) |>
@@ -163,6 +168,7 @@ gapminder |>
 ```{yaml}
 #| echo: true
 #| eval: false
+#| code-line-numbers: "4-5"
 ---
 title: "My report"
 format: html
@@ -177,9 +183,7 @@ params:
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "4"
-library(tidyverse)
-
+#| code-line-numbers: "2"
 gapminder |>
   filter(country == params$country) |>
   ggplot(aes(
@@ -265,16 +269,16 @@ Set limits as 100% when working with percent data
 ![](assets/obtn-race-ethnicity.png)
 
 ```{r}
-obtn_race_ethnicity <-
-  read_rds("data/obtn_race_ethnicity.rds")
+race_ethnicity <-
+  read_rds("data/obtn_race_ethnicity.rds") |>
+  arrange(county)
 ```
 
 ---
 
 ```{r}
 #| echo: true
-obtn_race_ethnicity |>
-  filter(county == "Multnomah")
+race_ethnicity
 ```
 
 . . .
@@ -283,7 +287,7 @@ obtn_race_ethnicity |>
 #| echo: true
 #| eval: false
 race_ethnicity_bar_chart <- function(county_to_plot) {
-  obtn_race_ethnicity |>
+  race_ethnicity |>
     filter(county == county_to_plot) |>
     ggplot(
       aes(
@@ -302,7 +306,7 @@ race_ethnicity_bar_chart <- function(county_to_plot) {
 ```{r}
 race_ethnicity_bar_chart <- function(county_to_plot) {
   obtn_race_ethnicity_filtered <-
-    obtn_race_ethnicity |>
+    race_ethnicity |>
     filter(county == county_to_plot)
 
   obtn_race_ethnicity_filtered |>
@@ -341,28 +345,34 @@ race_ethnicity_bar_chart <- function(county_to_plot) {
 ```{r}
 #| echo: true
 #| eval: false
-race_ethnicity_bar_chart("Multnomah")
+race_ethnicity_bar_chart(county_to_plot = "Multnomah")
 ```
 
 . . .
 
 ```{r}
-race_ethnicity_bar_chart("Multnomah")
+race_ethnicity_bar_chart(county_to_plot = "Multnomah")
 ```
 
 ---
 
 ```{r}
+#| echo: true
 #| fig-height: 3
-race_ethnicity_bar_chart("Multnomah")
+race_ethnicity_bar_chart(county_to_plot = "Multnomah")
 ```
 
 . . .
 
 ```{r}
+#| echo: true
 #| fig-height: 3
-race_ethnicity_bar_chart("Baker")
+race_ethnicity_bar_chart(county_to_plot = "Baker")
 ```
+
+---
+
+![](assets/obtn-multnomah-race-ethnicity.png)
 
 
 ---
@@ -371,7 +381,7 @@ race_ethnicity_bar_chart("Baker")
 #| echo: true
 #| output: false
 #| code-line-numbers: "2-9"
-race_ethnicity_bar_chart("Multnomah") +
+race_ethnicity_bar_chart(county_to_plot = "Multnomah") +
   geom_col(
     aes(
       x = 1
@@ -387,7 +397,7 @@ race_ethnicity_bar_chart("Multnomah") +
 
 ```{r}
 #| fig-height: 3.25
-race_ethnicity_bar_chart("Multnomah") +
+race_ethnicity_bar_chart(county_to_plot = "Multnomah") +
   geom_col(
     aes(
       x = 1
@@ -402,7 +412,7 @@ race_ethnicity_bar_chart("Multnomah") +
 
 ```{r}
 #| fig-height: 3.25
-race_ethnicity_bar_chart("Baker") +
+race_ethnicity_bar_chart(county_to_plot = "Baker") +
   geom_col(
     aes(
       x = 1
@@ -414,8 +424,50 @@ race_ethnicity_bar_chart("Baker") +
 ```
 
 ::: {.notes}
-Could also do this with `scale_x_continous(limits = c(0, 1))`
+Could also do this with `scale_x_continuous(limits = c(0, 1))`
 :::
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "2"
+race_ethnicity_bar_chart(county_to_plot = "Multnomah") +
+  scale_x_continuous(limits = c(0, 1))
+```
+
+. . .
+
+```{r}
+#| fig-height: 3
+race_ethnicity_bar_chart(county_to_plot = "Multnomah") +
+  scale_x_continuous(
+    limits = c(0, 1),
+    expand = expansion(0, 0)
+  )
+```
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "2"
+race_ethnicity_bar_chart(county_to_plot = "Baker") +
+  scale_x_continuous(limits = c(0, 1))
+```
+
+. . .
+
+```{r}
+#| fig-height: 3
+race_ethnicity_bar_chart(county_to_plot = "Baker") +
+  scale_x_continuous(
+    limits = c(0, 1),
+    expand = expansion(0, 0)
+  )
+```
 
 ---
 
@@ -511,7 +563,7 @@ median_income_plot <- function(county_to_plot) {
 ```{r}
 #| eval: false
 #| echo: true
-median_income_plot("Jackson")
+median_income_plot(county_to_plot = "Jackson")
 ```
 
 . . .
@@ -519,7 +571,7 @@ median_income_plot("Jackson")
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
-median_income_plot("Jackson")
+median_income_plot(county_to_plot = "Jackson")
 ```
 
 ---
@@ -527,7 +579,7 @@ median_income_plot("Jackson")
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
-median_income_plot("Jackson")
+median_income_plot(county_to_plot = "Jackson")
 ```
 
 . . .
@@ -535,7 +587,7 @@ median_income_plot("Jackson")
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
-median_income_plot("Harney")
+median_income_plot(county_to_plot = "Harney")
 ```
 
 . . .
@@ -543,7 +595,7 @@ median_income_plot("Harney")
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
-median_income_plot("Washington")
+median_income_plot(county_to_plot = "Washington")
 ```
 
 
@@ -574,7 +626,7 @@ max_median_income
 #| eval: false
 #| echo: true
 #| code-line-numbers: "2-4"
-median_income_plot("Jackson") +
+median_income_plot(county_to_plot = "Jackson") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
@@ -585,7 +637,7 @@ median_income_plot("Jackson") +
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
-median_income_plot("Jackson") +
+median_income_plot(county_to_plot = "Jackson") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
@@ -597,7 +649,7 @@ median_income_plot("Jackson") +
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
-median_income_plot("Jackson") +
+median_income_plot(county_to_plot = "Jackson") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
@@ -608,7 +660,7 @@ median_income_plot("Jackson") +
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
-median_income_plot("Harney") +
+median_income_plot(county_to_plot = "Harney") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
@@ -619,7 +671,7 @@ median_income_plot("Harney") +
 ```{r}
 #| fig-height: 3
 #| fig-width: 20
-median_income_plot("Washington") +
+median_income_plot(county_to_plot = "Washington") +
   scale_x_continuous(
     limits = c(0, max_median_income)
   )
@@ -658,12 +710,10 @@ penguins
 #| echo: true
 penguins_scatterplot <- function(number_of_dots) {
   penguins |>
-    group_by(island) |>
-    slice(1:(number_of_dots / 3)) |>
-    ungroup() |>
+    slice_sample(n = number_of_dots) |>
     ggplot(aes(
-      bill_length_mm,
-      bill_depth_mm
+      x = bill_length_mm,
+      y = bill_depth_mm
     )) +
     geom_point() +
     theme_minimal(base_size = 16)
@@ -681,7 +731,6 @@ penguins_scatterplot(number_of_dots = 36)
 
 ```{r}
 #| echo: true
-#| eval: false
 penguins_scatterplot(number_of_dots = 36) +
   geom_text(aes(label = island))
 ```
@@ -715,7 +764,16 @@ penguins_scatterplot(number_of_dots = 36) +
 ---
 
 ```{r}
+#| eval: false
 #| echo: true
+#| code-line-numbers: "1"
+penguins_scatterplot(number_of_dots = 120) +
+  geom_text_repel(aes(label = island))
+```
+
+. . .
+
+```{r}
 penguins_scatterplot(number_of_dots = 120) +
   geom_text_repel(aes(label = island))
 ```
@@ -733,10 +791,6 @@ But be careful because you don't know what you're going to get
 ![](assets/psc-population-projection.png)
 
 ---
-
-::: {.notes}
-https://show.rfor.us/QLbWktrG (but fix colors so Hartford is red)
-:::
 
 ```{r}
 # pschousing::data_population_projection |>
@@ -827,11 +881,18 @@ population_projection_plot <- function(town_to_plot, county_to_plot) {
       legend.position = "bottom",
       strip.text = element_text(
         face = "italic",
-        size = 12
+        size = 13,
+        color = "grey40"
       ),
-      legend.text = element_text(size = 12),
+      legend.text = element_text(
+        size = 13,
+        color = "grey40"
+      ),
       axis.title = element_blank(),
-      axis.text = element_text(size = 12)
+      axis.text = element_text(
+        size = 13,
+        color = "grey40"
+      )
     )
 }
 ```
@@ -1095,7 +1156,8 @@ housing_cost_burden <-
 ```
 
 ```{r}
-housing_cost_burden
+#| echo: true
+housing_cost_burden 
 ```
 
 . . .
@@ -1152,6 +1214,7 @@ housing_cost_burden_plot <- function(town_to_plot, county_to_plot) {
     theme_void(base_size = 16) +
     theme(
       legend.position = "bottom",
+      legend.text = element_text(color = "grey40"),
       axis.text.y = element_text(hjust = 1),
       plot.margin = margin(rep(20, 4))
     )
@@ -1182,6 +1245,15 @@ housing_cost_burden_plot(
 
 ```{r}
 #| echo: true
+housing_cost_burden |> 
+  filter(location == "Hartford")
+```
+
+
+. . .
+
+```{r}
+#| echo: true
 housing_cost_burden <-
   housing_cost_burden |>
   mutate(pct_formatted = if_else(pct > 0.07, pct_formatted, NA))
@@ -1191,7 +1263,8 @@ housing_cost_burden <-
 
 ```{r}
 #| echo: true
-housing_cost_burden
+housing_cost_burden |>
+  filter(location == "Hartford")
 ```
 
 ---
@@ -1508,8 +1581,8 @@ pre_post_data |>
 pre_post_data <-
   pre_post_data |>
   mutate(rating_text_position = case_when(
-    timing == "Pre" ~ rating - 0.2,
-    timing == "Post" ~ rating + 0.2
+    timing == "Pre" ~ rating - 0.3,
+    timing == "Post" ~ rating + 0.3
   ))
 ```
 
@@ -1518,7 +1591,7 @@ pre_post_data <-
 ```{r}
 #| echo: true
 pre_post_data |>
-  select(question, timing, rating_text_position)
+  select(question, timing, rating, rating_text_position)
 ```
 
 . . .
@@ -1814,8 +1887,10 @@ single_family_homes_plot <- function() {
     ) +
     theme_void() +
     theme(
-      axis.text.x = element_text(size = 13,
-                                 color = "grey40"),
+      axis.text.x = element_text(
+        size = 13,
+        color = "grey40"
+      ),
       legend.position = "none",
       plot.margin = margin(rep(20, 4))
     )
@@ -1933,15 +2008,15 @@ single_family_homes_plot() +
 ---
 
 ```{r}
-read_rds("data/sf_region_ig1_2_map.rds") |>
-  select(country_name, ind_region, disease, status) |>
-  rename(
-    "country" = "country_name",
-    "region" = "ind_region"
-  ) |>
-  filter(disease == "Rubella") |>
-  # select(-disease) |>
-  write_rds("data/rubella.rds")
+# read_rds("data/sf_region_ig1_2_map.rds") |>
+#   select(country_name, ind_region, disease, status) |>
+#   rename(
+#     "country" = "country_name",
+#     "region" = "ind_region"
+#   ) |>
+#   filter(disease == "Rubella") |>
+#   # select(-disease) |>
+#   write_rds("data/rubella.rds")
 
 rubella <- read_rds("data/rubella.rds")
 
@@ -1966,7 +2041,16 @@ region_map <- function(opacity_level = 1) {
         add_row(status = "Achieved", disease = "Rubella") |>
         add_row(status = "Re-established", disease = "Rubella") |>
         add_row(status = "Not achieved", disease = "Rubella") |>
-        add_row(status = "No data", disease = "Rubella"),
+        add_row(status = "No data", disease = "Rubella") |>
+        mutate(status = fct(
+          status,
+          levels = c(
+            "Achieved",
+            "Re-established",
+            "Not achieved",
+            "No data"
+          )
+        )),
       aes(fill = status),
       linewidth = 0.2,
       color = "white",
@@ -1980,10 +2064,6 @@ region_map <- function(opacity_level = 1) {
       linewidth = 0,
       alpha = 0.5
     ) +
-    # facet_wrap(
-    #   vars(disease),
-    #   labeller = labeller(disease = label_wrap_gen(20))
-    # ) +
     scale_fill_manual(
       name = "",
       values = c(
@@ -1994,12 +2074,17 @@ region_map <- function(opacity_level = 1) {
       ),
       drop = FALSE
     ) +
-    guides(color = "none") +
     theme_void() +
+    guides(fill = guide_legend(override.aes = list(
+      alpha = 1,
+      color = "white"
+    ))) +
     theme(
-      legend.text = element_text(size = 12,
-                                 color = "grey40",
-                                 family = "Inter"),
+      legend.text = element_text(
+        size = 12,
+        color = "grey40",
+        family = "Inter"
+      ),
       plot.margin = margin(rep(20, 4)),
       legend.position = "bottom"
     )
@@ -2075,7 +2160,7 @@ library(ggfx)
 region_map() +
   with_shadow(
     geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia")
+      data = rubella |> filter(country == "Afghanistan")
     ),
     ...
   )
@@ -2088,14 +2173,14 @@ region_map() +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia"),
+      data = rubella |> filter(country == "Afghanistan"),
       aes(fill = status),
       alpha = 1,
       color = "white",
     ),
     sigma = 0,
-    x_offset = 1,
-    y_offset = 1
+    x_offset = 4,
+    y_offset = 4
   )
 ```
 
@@ -2111,7 +2196,7 @@ region_map() +
 region_map() +
   with_shadow(
     geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia")
+      data = rubella |> filter(country == "Afghanistan")
     ),
     linewidth = 0.8,
     color = "white",
@@ -2126,15 +2211,15 @@ region_map() +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia"),
+      data = rubella |> filter(country == "Afghanistan"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
       alpha = 1
     ),
     sigma = 0,
-    x_offset = 1,
-    y_offset = 1
+    x_offset = 4,
+    y_offset = 4
   )
 ```
 
@@ -2173,7 +2258,16 @@ region_map <- function(opacity_level = 1) {
 ```{r}
 #| echo: true
 #| eval: false
-region_map(opacity_level = 0.75)
+#| code-line-numbers: "1"
+region_map(opacity_level = 0.75) +
+  with_shadow(
+    geom_sf(
+      data = rubella |> filter(country == "Afghanistan")
+    ),
+    linewidth = 0.8,
+    color = "white",
+    ...
+  )
 ```
 
 
@@ -2182,15 +2276,15 @@ region_map(opacity_level = 0.75) +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia"),
+      data = rubella |> filter(country == "Afghanistan"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
       alpha = 1
     ),
     sigma = 0,
-    x_offset = 1,
-    y_offset = 1
+    x_offset = 4,
+    y_offset = 4
   )
 ```
 
@@ -2199,7 +2293,16 @@ region_map(opacity_level = 0.75) +
 ```{r}
 #| echo: true
 #| eval: false
-region_map(opacity_level = 0.25)
+#| code-line-numbers: "1"
+region_map(opacity_level = 0.25) +
+  with_shadow(
+    geom_sf(
+      data = rubella |> filter(country == "Afghanistan")
+    ),
+    linewidth = 0.8,
+    color = "white",
+    ...
+  )
 ```
 
 ```{r}
@@ -2207,15 +2310,15 @@ region_map(opacity_level = 0.25) +
   # shadow for the current country
   with_shadow(
     geom_sf(
-      data = rubella |> filter(country == "Saudi Arabia"),
+      data = rubella |> filter(country == "Afghanistan"),
       aes(fill = status),
       linewidth = 0.8,
       color = "white",
       alpha = 1
     ),
     sigma = 0,
-    x_offset = 1,
-    y_offset = 1
+    x_offset = 4,
+    y_offset = 4
   )
 ```
 
@@ -2225,10 +2328,54 @@ Can't do it too much because then it looks like a different category
 
 ---
 
+
 ```{r}
 #| echo: true
 #| eval: false
-region_map(opacity_level = 0.75)
+#| code-line-numbers: "1"
+region_map(opacity_level = 0.75) +
+  with_shadow(
+    geom_sf(
+      data = rubella |> filter(country == "Afghanistan")
+    ),
+    linewidth = 0.8,
+    color = "white",
+    ...
+  )
+```
+
+```{r}
+region_map(opacity_level = 0.75) +
+  # shadow for the current country
+  with_shadow(
+    geom_sf(
+      data = rubella |> filter(country == "Afghanistan"),
+      aes(fill = status),
+      linewidth = 0.8,
+      color = "white",
+      alpha = 1
+    ),
+    sigma = 0,
+    x_offset = 4,
+    y_offset = 4
+  )
+```
+
+---
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "1"
+region_map(opacity_level = 0.75) +
+  with_shadow(
+    geom_sf(
+      data = rubella |> filter(country == "Iraq")
+    ),
+    linewidth = 0.8,
+    color = "white",
+    ...
+  )
 ```
 
 
@@ -2244,60 +2391,8 @@ region_map(opacity_level = 0.75) +
       alpha = 1
     ),
     sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  )
-```
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-region_map(opacity_level = 0.75)
-```
-
-
-```{r}
-region_map(opacity_level = 0.75) +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Iran (Islamic Republic of)"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
-  )
-```
-
----
-
-```{r}
-#| echo: true
-#| eval: false
-region_map(opacity_level = 0.75)
-```
-
-
-```{r}
-region_map(opacity_level = 0.75) +
-  # shadow for the current country
-  with_shadow(
-    geom_sf(
-      data = rubella |> filter(country == "Libya"),
-      aes(fill = status),
-      linewidth = 0.8,
-      color = "white",
-      alpha = 1
-    ),
-    sigma = 0,
-    x_offset = 1,
-    y_offset = 1
+    x_offset = 4,
+    y_offset = 4
   )
 ```
 
@@ -2309,7 +2404,7 @@ region_map(opacity_level = 0.75) +
 
 1. Minimize Text and Position it Carefully
 
-1. Highlight Strategically and Programatically
+1. Highlight Strategically and Programatically with a Range of Aesthetic Properties
 
 ::: {.notes}
 The solution is less code and more thinking about data
