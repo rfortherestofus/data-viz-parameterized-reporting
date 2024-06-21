@@ -101,187 +101,6 @@ There are packages to help with all of this, but nothing that can help you avoid
 
 # Consider the Outer Limits of Your Data {background-image="assets/outer-limits.jpg" .inverse}
 
-
----
-
-![](assets/obtn-multnomah-race-ethnicity.png)
-
-::: {.notes}
-Set limits as 100% when working with percent data
-:::
-
-```{r}
-# obtn::obtn_race_ethnicity |>
-#   filter(year == 2023) |>
-#   filter(geography %in% obtn::obtn_oregon_counties) |>
-#   select(geography:value) |>
-#   rename(
-#     "county" = "geography",
-#     "pct" = "value"
-#   ) |>
-#   mutate(pct_formatted = percent(pct, 0.1)) |>
-#   mutate(population = fct_rev(population)) |>
-#   write_rds("data/obtn_race_ethnicity.rds")
-```
-
-
-```{r}
-race_ethnicity <-
-  read_rds("data/obtn_race_ethnicity.rds") |>
-  arrange(county)
-```
-
----
-
-```{r}
-#| echo: true
-race_ethnicity
-```
-
-. . .
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "3"
-race_ethnicity_bar_chart <- function(county_to_plot) {
-  race_ethnicity |>
-    filter(county == county_to_plot) |>
-    ggplot(
-      aes(
-        x = pct,
-        y = population
-      )
-    ) +
-    geom_col(fill = "#004f39") +
-    ...
-}
-```
-
-
----
-
-```{r}
-race_ethnicity_bar_chart <- function(county_to_plot) {
-  obtn_race_ethnicity_filtered <-
-    race_ethnicity |>
-    filter(county == county_to_plot)
-
-  obtn_race_ethnicity_filtered |>
-    ggplot(
-      aes(
-        x = pct,
-        y = population
-      )
-    ) +
-    geom_col(fill = "#004f39") +
-    geom_text(
-      data = obtn_race_ethnicity_filtered |> filter(population == "White"),
-      aes(
-        label = pct_formatted
-      ),
-      color = "white",
-      hjust = 1.1,
-      size = 6
-    ) +
-    scale_x_continuous(
-      expand = expansion(0, 0)
-    ) +
-    labs(title = county_to_plot) +
-    theme_void() +
-    theme(
-      plot.title = element_text(
-        size = 20,
-        face = "bold"
-      ),
-      plot.margin = margin(rep(10, 4))
-    )
-}
-```
-
-
-```{r}
-#| echo: true
-#| eval: false
-race_ethnicity_bar_chart(county_to_plot = "Multnomah")
-```
-
-. . .
-
-```{r}
-race_ethnicity_bar_chart(county_to_plot = "Multnomah")
-```
-
----
-
-```{r}
-#| echo: true
-#| fig-height: 3
-race_ethnicity_bar_chart(county_to_plot = "Multnomah")
-```
-
-. . .
-
-```{r}
-#| echo: true
-#| fig-height: 3
-race_ethnicity_bar_chart(county_to_plot = "Baker")
-```
-
----
-
-![](assets/obtn-multnomah-race-ethnicity.png)
-
-
----
-
-```{r}
-#| echo: true
-#| output: false
-#| code-line-numbers: "2-5|6|7|8"
-race_ethnicity_bar_chart(county_to_plot = "Multnomah") +
-  geom_col(
-    aes(
-      x = 1
-    ),
-    fill = "transparent",
-    color = "#A9C27F",
-    linetype = "dotted"
-  )
-```
-
-
----
-
-```{r}
-#| fig-height: 3.25
-race_ethnicity_bar_chart(county_to_plot = "Multnomah") +
-  geom_col(
-    aes(
-      x = 1
-    ),
-    fill = "transparent",
-    color = "#A9C27F",
-    linetype = "dotted"
-  )
-```
-
-. . .
-
-```{r}
-#| fig-height: 3.25
-race_ethnicity_bar_chart(county_to_plot = "Baker") +
-  geom_col(
-    aes(
-      x = 1
-    ),
-    fill = "transparent",
-    color = "#A9C27F",
-    linetype = "dotted"
-  )
-```
-
-
 ---
 
 ![](assets/obtn-multnomah-median-income.png)
@@ -417,6 +236,7 @@ median_income_plot(county_to_plot = "Washington")
 
 ```{r}
 #| echo: true
+#| code-line-numbers: "1|2|3-6|7"
 max_median_income <-
   median_income |>
   slice_max(
@@ -1132,7 +952,7 @@ pre_post_data <-
     growth = if_else(timing == "Post", growth, NA),
     growth_formatted = number(growth, 0.1),
     growth_formatted = str_glue("+{growth_formatted}"),
-    growth_formatted = if_else(timing == "Post", growth, NA),
+    growth_formatted = if_else(timing == "Post", growth_formatted, NA),
     growth_text_position = rating - growth / 2
   )
 ```
@@ -1258,7 +1078,7 @@ pre_post_data <-
     growth = if_else(timing == "Post", growth, NA),
     growth_formatted = number(growth, 0.1),
     growth_formatted = str_glue("+{growth_formatted}"),
-    growth_formatted = if_else(timing == "Post", growth, NA),
+    growth_formatted = if_else(timing == "Post", growth_formatted, NA),
     growth_text_position = rating - growth / 2
   )
 ```
