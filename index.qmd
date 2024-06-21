@@ -86,10 +86,6 @@ https://rfor.us/cascadia2024
 
 # Data Viz Tips for Parameterized Reporting {background-image="assets/pencils.jpg" .inverse}
 
-::: {.notes}
-
-:::
-
 # There is No Magic Package {background-image="assets/magic-package.jpg" .inverse}
 
 ::: {.notes}
@@ -105,9 +101,6 @@ There are packages to help with all of this, but nothing that can help you avoid
 
 ![](assets/obtn-multnomah-median-income.png)
 
-::: {.notes}
-Set limits of plot based on max of all data
-:::
 
 ```{r}
 median_income <- read_csv("data/median_income.csv") |>
@@ -313,13 +306,6 @@ median_income_plot(county_to_plot = "Washington") +
 
 
 # Minimize Text and Position it Carefully {background-image="assets/erase-text.jpg" .inverse}
-
-```{r}
-library(palmerpenguins)
-
-set.seed(1234)
-```
-
 
 ::: {.notes}
 Text WILL overlap so think proactively about how to avoid it
@@ -1640,9 +1626,6 @@ region_map <- function(opacity_level = 1) {
 }
 ```
 
-::: {.notes}
-Explain how we're not using aesthetic properties here so much as putting another layer on top of existing layers
-:::
 
 ```{r}
 #| echo: true
@@ -1691,13 +1674,6 @@ region_map <- function() {
 #| echo: true
 region_map()
 ```
-
-
-::: {.notes}
-https://www.linkedin.com/feed/update/urn:li:activity:7157725182416015360/
-:::
-
-
 
 ---
 
@@ -1772,11 +1748,6 @@ region_map() +
     y_offset = 4
   )
 ```
-
-::: {.notes}
-Add outline to make it pop even more
-:::
-
 
 ## Opacity {background-image="assets/opacity.jpg" .inverse}
 
@@ -1885,6 +1856,3 @@ region_map(opacity_level = 0.75) +
 
 1. Packages are helpers, but you are the one who has to do the thinking
 
-::: {.notes}
-The solution is less code and more thinking about data
-:::
